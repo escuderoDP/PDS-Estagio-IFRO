@@ -17,6 +17,7 @@ cpf varchar(15) not null,
 rg varchar(15) not null,
 formacao varchar(50) not null,
 datanasc varchar(15) not null,
+sexo varchar(20) not null,
 empresa_fk int not null,
 foreign key (empresa_fk)
 references Empresa(id)
@@ -30,7 +31,8 @@ nome varchar(100) not null,
 cpf varchar(15) not null,
 rg varchar(15) not null,
 telefone varchar(15) not null,
-datanasc varchar(15) not null
+datanasc varchar(15) not null,
+sexo varchar(20) not null
 );
 
 create table Estagio(

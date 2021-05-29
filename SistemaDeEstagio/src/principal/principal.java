@@ -29,6 +29,7 @@ public class principal {
         alun.setRg("1234567");
         alun.setTelefone("(99)99999-9999");
         alun.setDatanasc("99/99/9999");
+        alun.setSexo("Feminino");
         alundao.cadastrar(alun);
         
         
@@ -38,6 +39,7 @@ public class principal {
         alun.setRg("12345672");
         alun.setTelefone("(99)99999-9990");
         alun.setDatanasc("99/99/9990");
+        alun.setSexo("Femininoo");
         
         alundao.atualizar(alun);
         

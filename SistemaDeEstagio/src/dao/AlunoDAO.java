@@ -25,7 +25,7 @@ public class AlunoDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para inserir
-        String sql = "INSERT INTO Aluno(nome, cpf, rg, telefone, datanasc) values(?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Aluno(nome, cpf, rg, telefone, datanasc, sexo) values(?, ?, ?, ?, ?, ?);";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
@@ -36,6 +36,8 @@ public class AlunoDAO {
             stm.setString(3, a.getRg());
             stm.setString(4, a.getTelefone());
             stm.setString(5, a.getDatanasc());
+            stm.setString(6, a.getSexo());
+
             
             // Executando cadastro
             stm.executeUpdate();
@@ -56,7 +58,7 @@ public class AlunoDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "UPDATE Aluno SET nome = ?, cpf = ?, rg = ?, telefone = ?, datanasc = ? WHERE id = ?;";
+        String sql = "UPDATE Aluno SET nome = ?, cpf = ?, rg = ?, telefone = ?, datanasc = ?, sexo = ? WHERE id = ?;";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
@@ -67,7 +69,8 @@ public class AlunoDAO {
             stm.setString(3, a.getRg());
             stm.setString(4, a.getTelefone());
             stm.setString(5, a.getDatanasc());
-            stm.setInt(6, a.getId_aluno());
+            stm.setString(6, a.getSexo());
+            stm.setInt(7, a.getId_aluno());
             
             // Executando cadastro
             stm.executeUpdate();

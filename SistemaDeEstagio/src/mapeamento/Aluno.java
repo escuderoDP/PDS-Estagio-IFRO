@@ -16,6 +16,7 @@ public class Aluno {
     private String rg;
     private String telefone;
     private String datanasc;
+    private String sexo;
 
     public int getId_aluno() {
         return id_aluno;
@@ -63,6 +64,14 @@ public class Aluno {
 
     public void setDatanasc(String datanasc) {
         this.datanasc = datanasc;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     
 }

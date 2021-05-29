@@ -16,6 +16,7 @@ public class Funcionario {
     private String rg;
     private String formacao;
     private String datanasc;
+    private String sexo;
     private Empresa empresa_fk;
 
     public int getId_funcionario() {
@@ -66,6 +67,14 @@ public class Funcionario {
         this.datanasc = datanasc;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public Empresa getEmpresa_fk() {
         return empresa_fk;
     }
@@ -73,7 +82,5 @@ public class Funcionario {
     public void setEmpresa_fk(Empresa empresa_fk) {
         this.empresa_fk = empresa_fk;
     }
-    
-    
     
 }
