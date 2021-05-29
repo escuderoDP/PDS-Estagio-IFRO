@@ -95,7 +95,7 @@ public class AlunoDAO {
         String sql = "DELETE FROM aluno WHERE id = ?;";
         
         // Pergunta se realmente deseja excluir
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir Aluno" +a.getNome()+" ?", "Excluir", JOptionPane.YES_NO_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir Aluno " +a.getNome()+" ?", "Excluir", JOptionPane.YES_NO_OPTION);
         
         // Verifica se realmente deve excluir
         if(opcao ==  JOptionPane.YES_OPTION){
@@ -143,7 +143,7 @@ public class AlunoDAO {
                 a.setRg(resultado.getString("rg"));
                 a.setTelefone(resultado.getString("telefone"));
                 a.setDatanasc(resultado.getString("datanasc"));
-                
+                a.setSexo(resultado.getString("sexo"));
                 // Adiciona alunos na lista
                 lista.add(a);
 
