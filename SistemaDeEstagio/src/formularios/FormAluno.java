@@ -13,7 +13,7 @@ import mapeamento.Aluno;
 
 /**
  *
- * @author Gabriel Pedrosa
+ * @author Millena Bello
  */
 public class FormAluno extends javax.swing.JFrame {
 
