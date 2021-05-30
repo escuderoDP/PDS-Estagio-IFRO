@@ -7,7 +7,7 @@ id int not null primary key auto_increment,
 nome varchar(100) not null,
 cnpj varchar(30) not null,
 telefone varchar(15) not null,
-horarioFunc time not null
+horarioFunc varchar(50) not null
 );
 
 create table Funcionario(

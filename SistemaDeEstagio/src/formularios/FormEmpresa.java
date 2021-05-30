@@ -5,22 +5,22 @@
  */
 package formularios;
 
-import dao.AlunoDAO;
+import dao.EmpresaDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mapeamento.Aluno;
+import mapeamento.Empresa;
 
 /**
  *
- * @author Millena Bello
+ * @author Fabricio
  */
-public class FormAluno extends javax.swing.JFrame {
+public class FormEmpresa extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormAluno
+     * Creates new form FormEmpresa
      */
-    public FormAluno() {
+    public FormEmpresa() {
         initComponents();
         preencherTabela();
         btCadAtualizar.setVisible(false);
@@ -35,8 +35,7 @@ public class FormAluno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupSexo = new javax.swing.ButtonGroup();
-        tabAluno = new javax.swing.JTabbedPane();
+        tabEmpresa = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -47,18 +46,14 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtCadTelefone = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtCadCpf = new javax.swing.JFormattedTextField();
-        txtCadtRg = new javax.swing.JTextField();
+        txtCadCnpj = new javax.swing.JFormattedTextField();
+        txtCadHorarioFunc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtCadDataNasc = new javax.swing.JFormattedTextField();
-        jLabel8 = new javax.swing.JLabel();
-        radCadFeminino = new javax.swing.JRadioButton();
-        radCadMasculino = new javax.swing.JRadioButton();
         btCadSalvar = new javax.swing.JButton();
         btCadAtualizar = new javax.swing.JButton();
         btCadCancelar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -66,28 +61,19 @@ public class FormAluno extends javax.swing.JFrame {
         btListPesquisa = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListAlunos = new javax.swing.JTable();
+        tbListEmpresas = new javax.swing.JTable();
         btListExcluir = new javax.swing.JButton();
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(54, 54, 54));
-        setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
-
-        tabAluno.setBackground(new java.awt.Color(54, 54, 54));
-        tabAluno.setForeground(new java.awt.Color(54, 54, 54));
-        tabAluno.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        tabAluno.setPreferredSize(new java.awt.Dimension(700, 500));
-
-        jPanel1.setBackground(new java.awt.Color(54, 54, 54));
 
         jPanel3.setBackground(new java.awt.Color(2, 67, 63));
 
         jLabel1.setFont(new java.awt.Font("Courier New", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(252, 209, 71));
-        jLabel1.setText("CADASTRAR ALUNOS");
+        jLabel1.setText("CADASTRAR EMPRESAS");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -96,8 +82,8 @@ public class FormAluno extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +102,7 @@ public class FormAluno extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CPF.:");
+        jLabel3.setText("CNPJ.:");
 
         jLabel5.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,50 +115,22 @@ public class FormAluno extends javax.swing.JFrame {
         }
         txtCadTelefone.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Data Nascimento.:");
-
         jLabel6.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Telefone.:");
 
         try {
-            txtCadCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCadCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCadCpf.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        txtCadCnpj.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        txtCadtRg.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        txtCadHorarioFunc.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("RG.:");
-
-        try {
-            txtCadDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtCadDataNasc.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Sexo.:");
-
-        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadFeminino);
-        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadFeminino.setSelected(true);
-        radCadFeminino.setText("Feminino");
-
-        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadMasculino);
-        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadMasculino.setText("Masculino");
+        jLabel7.setText("Horario Funcionamento.:");
 
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +153,10 @@ public class FormAluno extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("HORAS.");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -202,27 +164,8 @@ public class FormAluno extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(62, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCadCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                    .addComponent(txtCadtRg))
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,26 +173,32 @@ public class FormAluno extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCadId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE))
+                                .addComponent(txtCadId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)))))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(txtCadHorarioFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCadCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(1, 1, 1))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addGap(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(
@@ -263,23 +212,16 @@ public class FormAluno extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCadCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCadCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtCadtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radCadFeminino)
-                        .addComponent(radCadMasculino)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                    .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCadHorarioFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,11 +240,11 @@ public class FormAluno extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabAluno.addTab("Cadastro", jPanel1);
+        tabEmpresa.addTab("Cadastro", jPanel1);
 
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
@@ -338,40 +280,27 @@ public class FormAluno extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
 
-        tbListAlunos.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        tbListAlunos.setModel(new javax.swing.table.DefaultTableModel(
+        tbListEmpresas.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        tbListEmpresas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "RG", "DATA NASC", "TELEFONE", "SEXO"
+                "ID", "NOME", "CNPJ", "TELEFONE", "HORARIO FUNC."
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbListAlunos);
-        if (tbListAlunos.getColumnModel().getColumnCount() > 0) {
-            tbListAlunos.getColumnModel().getColumn(0).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(0).setPreferredWidth(15);
-            tbListAlunos.getColumnModel().getColumn(1).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tbListAlunos.getColumnModel().getColumn(2).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tbListAlunos.getColumnModel().getColumn(3).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(3).setPreferredWidth(80);
-            tbListAlunos.getColumnModel().getColumn(4).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(5).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(6).setResizable(false);
-        }
+        jScrollPane1.setViewportView(tbListEmpresas);
 
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -414,7 +343,7 @@ public class FormAluno extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -439,17 +368,17 @@ public class FormAluno extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabAluno.addTab("Lista de Alunos", jPanel2);
+        tabEmpresa.addTab("Lista de Empresas", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(tabEmpresa)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(tabEmpresa)
         );
 
         pack();
@@ -457,75 +386,89 @@ public class FormAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        String sexo = radCadFeminino.getText();
-        Aluno a = new Aluno();
-        a.setNome(txtCadNome.getText());
-        a.setCpf(txtCadCpf.getText());
-        a.setRg(txtCadtRg.getText());
-        a.setTelefone(txtCadTelefone.getText());
-        a.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
-        }
-        a.setSexo(sexo);
-        
-        AlunoDAO aDAO = new AlunoDAO();
-        
-        aDAO.cadastrar(a);
-        
+        Empresa e = new Empresa();
+        e.setNome(txtCadNome.getText());
+        e.setCnpj(txtCadCnpj.getText());
+        e.setTelefone(txtCadTelefone.getText());
+        e.setHorarioFunc(txtCadHorarioFunc.getText());
+
+        EmpresaDAO eDAO = new EmpresaDAO();
+
+        eDAO.cadastrar(e);
+
         preencherTabela();
-        tabAluno.setSelectedIndex(1);
+        tabEmpresa.setSelectedIndex(1);
+        
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        String sexo = radCadFeminino.getText();
-        Aluno a = new Aluno();
-        a.setId_aluno(Integer.parseInt(txtCadId.getText()));
-        a.setNome(txtCadNome.getText());
-        a.setCpf(txtCadCpf.getText());
-        a.setRg(txtCadtRg.getText());
-        a.setTelefone(txtCadTelefone.getText());
-        a.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
-        }
-        a.setSexo(sexo);
-        
-        AlunoDAO aDAO = new AlunoDAO();
-        
-        aDAO.atualizar(a);
-        
+        Empresa e = new Empresa();
+        e.setId_empresa(Integer.parseInt(txtCadId.getText()));
+        e.setNome(txtCadNome.getText());
+        e.setCnpj(txtCadCnpj.getText());
+        e.setTelefone(txtCadTelefone.getText());
+        e.setHorarioFunc(txtCadHorarioFunc.getText());
+
+       EmpresaDAO eDAO = new EmpresaDAO();
+
+        eDAO.atualizar(e);
+
         preencherTabela();
-        
+
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
-        
-        tabAluno.setSelectedIndex(1);
+
+        tabEmpresa.setSelectedIndex(1);
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
-    private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
-        int opcao = tbListAlunos.getSelectedRow();
-        
+    private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
+        txtCadId.setText("");
+        txtCadNome.setText("");
+        txtCadCnpj.setText("");
+        txtCadHorarioFunc.setText("");
+        txtCadTelefone.setText("");
+
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+
+        tabEmpresa.setSelectedIndex(1);
+    }//GEN-LAST:event_btCadCancelarActionPerformed
+
+    private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
+        int opcao = tbListEmpresas.getSelectedRow();
+
         if(opcao >= 0){
-            txtCadId.setText(tbListAlunos.getValueAt(opcao, 0).toString());
-            txtCadNome.setText(tbListAlunos.getValueAt(opcao, 1).toString());
-            txtCadCpf.setText(tbListAlunos.getValueAt(opcao, 2).toString());
-            txtCadtRg.setText(tbListAlunos.getValueAt(opcao, 3).toString());
-            txtCadDataNasc.setText(tbListAlunos.getValueAt(opcao, 4).toString());
-            txtCadTelefone.setText(tbListAlunos.getValueAt(opcao, 5).toString());
-            String sexo = tbListAlunos.getValueAt(opcao, 6).toString();
-            if(sexo.equals(radCadFeminino.getText())){
-                radCadFeminino.setSelected(true);
-            }else if(sexo.equals(radCadMasculino.getText())){
-                radCadMasculino.setSelected(true);
-            }
+            Empresa e = new Empresa();
+            e.setId_empresa(Integer.parseInt(tbListEmpresas.getValueAt(opcao, 0).toString()));
+            e.setNome(tbListEmpresas.getValueAt(opcao, 1).toString());
+            e.setCnpj(tbListEmpresas.getValueAt(opcao, 2).toString());
+            e.setTelefone(tbListEmpresas.getValueAt(opcao, 3).toString());
+            e.setHorarioFunc(tbListEmpresas.getValueAt(opcao, 4).toString());
             
-            tabAluno.setSelectedIndex(0);
+            EmpresaDAO eDAO = new EmpresaDAO();
+            eDAO.excluir(e);
+
+            preencherTabela();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
+        }
+    }//GEN-LAST:event_btListExcluirActionPerformed
+
+    private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
+        int opcao = tbListEmpresas.getSelectedRow();
+
+        if(opcao >= 0){
+            txtCadId.setText(tbListEmpresas.getValueAt(opcao, 0).toString());
+            txtCadNome.setText(tbListEmpresas.getValueAt(opcao, 1).toString());
+            txtCadCnpj.setText(tbListEmpresas.getValueAt(opcao, 2).toString());
+            txtCadTelefone.setText(tbListEmpresas.getValueAt(opcao, 3).toString());
+            txtCadHorarioFunc.setText(tbListEmpresas.getValueAt(opcao, 4).toString());
+            String sexo = tbListEmpresas.getValueAt(opcao, 6).toString();
             
+            tabEmpresa.setSelectedIndex(0);
+
             btCadAtualizar.setVisible(true);
             btCadSalvar.setVisible(false);
 
@@ -534,68 +477,26 @@ public class FormAluno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btListEditarActionPerformed
 
-    private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
-        int opcao = tbListAlunos.getSelectedRow();
-        
-        if(opcao >= 0){
-            Aluno a = new Aluno();
-            a.setId_aluno(Integer.parseInt(tbListAlunos.getValueAt(opcao, 0).toString()));
-            a.setNome(tbListAlunos.getValueAt(opcao, 1).toString());
-            a.setCpf(tbListAlunos.getValueAt(opcao, 2).toString());
-            a.setRg(tbListAlunos.getValueAt(opcao, 3).toString());
-            a.setDatanasc(tbListAlunos.getValueAt(opcao, 4).toString());
-            a.setTelefone(tbListAlunos.getValueAt(opcao, 5).toString());
-            String sexo = tbListAlunos.getValueAt(opcao, 6).toString();
-            a.setSexo(sexo);
-            
-            AlunoDAO aDAO = new AlunoDAO();
-            aDAO.excluir(a);
-            
-            preencherTabela();
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
-        }
-    }//GEN-LAST:event_btListExcluirActionPerformed
-
-    private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        txtCadId.setText("");
-        txtCadNome.setText("");
-        txtCadCpf.setText("");
-        txtCadtRg.setText("");
-        txtCadDataNasc.setText("");
-        txtCadTelefone.setText("");
-        radCadFeminino.setSelected(true);
-        
-        btCadAtualizar.setVisible(false);
-        btCadSalvar.setVisible(true);
-        
-        tabAluno.setSelectedIndex(1);
-    }//GEN-LAST:event_btCadCancelarActionPerformed
-
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
         txtCadId.setText("");
         txtCadNome.setText("");
-        txtCadCpf.setText("");
-        txtCadtRg.setText("");
-        txtCadDataNasc.setText("");
+        txtCadCnpj.setText("");
+        txtCadHorarioFunc.setText("");
         txtCadTelefone.setText("");
-        radCadFeminino.setSelected(true);
-        
+
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
-        
-        tabAluno.setSelectedIndex(0);
+
+        tabEmpresa.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
-    
     // Método para preencher a tabela de Alunos
     public void preencherTabela(){
-        AlunoDAO aDAO = new AlunoDAO();
-        List<Aluno> listaAlunos = aDAO.listarTodos();
-        DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListAlunos.getModel();
+        EmpresaDAO eDAO = new EmpresaDAO();
+        List<Empresa> listaEmpresas = eDAO.listarTodos();
+        DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListEmpresas.getModel();
         modeloTbAlunos.setRowCount(0);
-        for(Aluno a: listaAlunos){
-            modeloTbAlunos.addRow(new Object[] {a.getId_aluno(), a.getNome(), a.getCpf(), a.getRg(), a.getDatanasc(), a.getTelefone(), a.getSexo()});
+        for(Empresa e: listaEmpresas){
+            modeloTbAlunos.addRow(new Object[] {e.getId_empresa(), e.getNome(), e.getCnpj(), e.getTelefone(), e.getHorarioFunc()});
         }
     }
     /**
@@ -615,20 +516,20 @@ public class FormAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormAluno().setVisible(true);
+                new FormEmpresa().setVisible(true);
             }
         });
     }
@@ -641,7 +542,6 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JButton btListExcluir;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
-    private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -649,7 +549,6 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -658,16 +557,13 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton radCadFeminino;
-    private javax.swing.JRadioButton radCadMasculino;
-    private javax.swing.JTabbedPane tabAluno;
-    private javax.swing.JTable tbListAlunos;
-    private javax.swing.JFormattedTextField txtCadCpf;
-    private javax.swing.JFormattedTextField txtCadDataNasc;
+    private javax.swing.JTabbedPane tabEmpresa;
+    private javax.swing.JTable tbListEmpresas;
+    private javax.swing.JFormattedTextField txtCadCnpj;
+    private javax.swing.JTextField txtCadHorarioFunc;
     private javax.swing.JTextField txtCadId;
     private javax.swing.JTextField txtCadNome;
     private javax.swing.JFormattedTextField txtCadTelefone;
-    private javax.swing.JTextField txtCadtRg;
     private javax.swing.JTextField txtListPesquisa;
     // End of variables declaration//GEN-END:variables
 }

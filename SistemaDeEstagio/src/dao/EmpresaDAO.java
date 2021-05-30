@@ -22,7 +22,7 @@ public class EmpresaDAO {
     // Método para cadastrar as informações do empresa
     public void cadastrar(Empresa e){
         Connection con = Conectar.getConectar();
-        String sql = "INSERT INTO Empresa(nome, cnpj, telefone, horarioFunc) values(?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Empresa(nome, cnpj, telefone, horarioFunc) values(?, ?, ?, ?);";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
             
