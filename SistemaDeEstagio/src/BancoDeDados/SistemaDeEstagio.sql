@@ -50,3 +50,5 @@ references Aluno(id)
 on update cascade
 on delete restrict
 );
+
+select * from empresa;
