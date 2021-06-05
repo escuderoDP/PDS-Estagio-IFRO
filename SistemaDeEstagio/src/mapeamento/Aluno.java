@@ -17,6 +17,7 @@ public class Aluno {
     private String telefone;
     private String datanasc;
     private String sexo;
+    private String turma;
 
     public int getId_aluno() {
         return id_aluno;
@@ -72,6 +73,14 @@ public class Aluno {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
     }
     
 }

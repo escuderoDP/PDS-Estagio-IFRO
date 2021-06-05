@@ -47,7 +47,7 @@ public class principal {
 //        
 //        alundao.excluir(alun);
         
-        FormEmpresa form = new FormEmpresa();
+        FormAluno form = new FormAluno();
         form.main(args);
 
     }

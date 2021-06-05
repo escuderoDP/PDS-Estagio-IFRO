@@ -59,6 +59,8 @@ public class FormAluno extends javax.swing.JFrame {
         btCadSalvar = new javax.swing.JButton();
         btCadAtualizar = new javax.swing.JButton();
         btCadCancelar = new javax.swing.JButton();
+        txtCadTurma = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -195,6 +197,12 @@ public class FormAluno extends javax.swing.JFrame {
             }
         });
 
+        txtCadTurma.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Turma.:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -203,7 +211,7 @@ public class FormAluno extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -246,10 +254,15 @@ public class FormAluno extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)))))
+                                .addGap(43, 43, 43))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCadTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(
@@ -279,7 +292,11 @@ public class FormAluno extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(radCadFeminino)
                         .addComponent(radCadMasculino)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCadTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +309,7 @@ public class FormAluno extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 795, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,17 +358,17 @@ public class FormAluno extends javax.swing.JFrame {
         tbListAlunos.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
         tbListAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "RG", "DATA NASC", "TELEFONE", "SEXO"
+                "ID", "Nome", "CPF", "RG", "DATA NASC", "TELEFONE", "SEXO", "TURMA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -371,6 +388,7 @@ public class FormAluno extends javax.swing.JFrame {
             tbListAlunos.getColumnModel().getColumn(4).setResizable(false);
             tbListAlunos.getColumnModel().getColumn(5).setResizable(false);
             tbListAlunos.getColumnModel().getColumn(6).setResizable(false);
+            tbListAlunos.getColumnModel().getColumn(7).setResizable(false);
         }
 
         btListExcluir.setText("EXCLUIR");
@@ -470,6 +488,7 @@ public class FormAluno extends javax.swing.JFrame {
             sexo = radCadMasculino.getText();
         }
         a.setSexo(sexo);
+        a.setTurma(txtCadTurma.getText());
         
         AlunoDAO aDAO = new AlunoDAO();
         
@@ -477,6 +496,7 @@ public class FormAluno extends javax.swing.JFrame {
         
         preencherTabela();
         tabAluno.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
@@ -494,6 +514,7 @@ public class FormAluno extends javax.swing.JFrame {
             sexo = radCadMasculino.getText();
         }
         a.setSexo(sexo);
+        a.setTurma(txtCadTurma.getText());
         
         AlunoDAO aDAO = new AlunoDAO();
         
@@ -505,6 +526,7 @@ public class FormAluno extends javax.swing.JFrame {
         btCadSalvar.setVisible(true);
         
         tabAluno.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
@@ -523,6 +545,7 @@ public class FormAluno extends javax.swing.JFrame {
             }else if(sexo.equals(radCadMasculino.getText())){
                 radCadMasculino.setSelected(true);
             }
+            txtCadTurma.setText(tbListAlunos.getValueAt(opcao, 7).toString());
             
             tabAluno.setSelectedIndex(0);
             
@@ -547,6 +570,7 @@ public class FormAluno extends javax.swing.JFrame {
             a.setTelefone(tbListAlunos.getValueAt(opcao, 5).toString());
             String sexo = tbListAlunos.getValueAt(opcao, 6).toString();
             a.setSexo(sexo);
+            a.setTurma(tbListAlunos.getValueAt(opcao, 7).toString());
             
             AlunoDAO aDAO = new AlunoDAO();
             aDAO.excluir(a);
@@ -566,6 +590,7 @@ public class FormAluno extends javax.swing.JFrame {
         txtCadDataNasc.setText("");
         txtCadTelefone.setText("");
         radCadFeminino.setSelected(true);
+        txtCadTurma.setText("");
         
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
@@ -581,6 +606,7 @@ public class FormAluno extends javax.swing.JFrame {
         txtCadDataNasc.setText("");
         txtCadTelefone.setText("");
         radCadFeminino.setSelected(true);
+        txtCadTurma.setText("");
         
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
@@ -595,7 +621,7 @@ public class FormAluno extends javax.swing.JFrame {
         DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListAlunos.getModel();
         modeloTbAlunos.setRowCount(0);
         for(Aluno a: listaAlunos){
-            modeloTbAlunos.addRow(new Object[] {a.getId_aluno(), a.getNome(), a.getCpf(), a.getRg(), a.getDatanasc(), a.getTelefone(), a.getSexo()});
+            modeloTbAlunos.addRow(new Object[] {a.getId_aluno(), a.getNome(), a.getCpf(), a.getRg(), a.getDatanasc(), a.getTelefone(), a.getSexo(), a.getTurma()});
         }
     }
     /**
@@ -643,6 +669,7 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JButton btListPesquisa;
     private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -667,6 +694,7 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JTextField txtCadId;
     private javax.swing.JTextField txtCadNome;
     private javax.swing.JFormattedTextField txtCadTelefone;
+    private javax.swing.JTextField txtCadTurma;
     private javax.swing.JTextField txtCadtRg;
     private javax.swing.JTextField txtListPesquisa;
     // End of variables declaration//GEN-END:variables
