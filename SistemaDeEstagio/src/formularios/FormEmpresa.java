@@ -67,6 +67,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         btListNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
 
         jPanel3.setBackground(new java.awt.Color(2, 67, 63));
@@ -120,7 +121,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         jLabel6.setText("Telefone.:");
 
         try {
-            txtCadCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCadCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
