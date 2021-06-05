@@ -9,23 +9,23 @@ package mapeamento;
  *
  * @author Millena Bello
  */
-public class Funcionario {
-    private int id_funcionario;
+public class FuncionarioEmpresa {
+    
+    private int id_funcionarioEmp;
     private String nome;
     private String cpf;
     private String rg;
     private String formacao;
     private String datanasc;
     private String sexo;
-    private String usuario;
-    private String senha;
+    private Empresa empresa_fk;
 
-    public int getId_funcionario() {
-        return id_funcionario;
+    public int getId_funcionarioEmp() {
+        return id_funcionarioEmp;
     }
 
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
+    public void setId_funcionarioEmp(int id_funcionarioEmp) {
+        this.id_funcionarioEmp = id_funcionarioEmp;
     }
 
     public String getNome() {
@@ -76,4 +76,13 @@ public class Funcionario {
         this.sexo = sexo;
     }
 
+    public Empresa getEmpresa_fk() {
+        return empresa_fk;
+    }
+
+    public void setEmpresa_fk(Empresa empresa_fk) {
+        this.empresa_fk = empresa_fk;
+    }
+    
+    
 }
