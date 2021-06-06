@@ -11,33 +11,32 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import mapeamento.Funcionario;
+import mapeamento.ProfOrient;
 import utilitario.Conectar;
 
 /**
  *
  * @author Aline
  */
-public class FuncionarioDAO {
-    
+public class ProfOrientDAO {
     // Método para cadastrar as informações do aluno
-    public void cadastrar(Funcionario f){
+    public void cadastrar(ProfOrient po){
         Connection con = Conectar.getConectar();
         
         // Sql para inserir
-        String sql = "INSERT INTO Funcionario(nome, cpf, rg, formacao, datanasc, sexo, senha) values(?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO ProfessorOrientador(nome, cpf, rg, formacao, datanasc, sexo, senha) values(?, ?, ?, ?, ?, ?, ?);";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
             
             // Alterando os atributos do statement
-            stm.setString(1, f.getNome());
-            stm.setString(2, f.getCpf());
-            stm.setString(3, f.getRg());
-            stm.setString(4, f.getFormacao());
-            stm.setString(5, f.getDatanasc());
-            stm.setString(6, f.getSexo());
-            stm.setString(7, f.getSenha());
+            stm.setString(1, po.getNome());
+            stm.setString(2, po.getCpf());
+            stm.setString(3, po.getRg());
+            stm.setString(4, po.getFormacao());
+            stm.setString(5, po.getDatanasc());
+            stm.setString(6, po.getSexo());
+            stm.setString(7, po.getSenha());
 
             
             // Executando cadastro
@@ -55,24 +54,24 @@ public class FuncionarioDAO {
     }
     
     // Método para atualizar as informações do aluno
-    public void atualizar(Funcionario f){
+    public void atualizar(ProfOrient po){
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, rg = ?, formacao = ?, datanasc = ?, sexo = ?, senha = ? WHERE id = ?;";
+        String sql = "UPDATE ProfessorOrientador SET nome = ?, cpf = ?, rg = ?, formacao = ?, datanasc = ?, sexo = ?, senha = ? WHERE id = ?;";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
             
             // Alterando os atributos do statement
-            stm.setString(1, f.getNome());
-            stm.setString(2, f.getCpf());
-            stm.setString(3, f.getRg());
-            stm.setString(4, f.getFormacao());
-            stm.setString(5, f.getDatanasc());
-            stm.setString(6, f.getSexo());
-            stm.setString(7, f.getSenha());
-            stm.setInt(8, f.getId_funcionario());
+            stm.setString(1, po.getNome());
+            stm.setString(2, po.getCpf());
+            stm.setString(3, po.getRg());
+            stm.setString(4, po.getFormacao());
+            stm.setString(5, po.getDatanasc());
+            stm.setString(6, po.getSexo());
+            stm.setString(7, po.getSenha());
+            stm.setInt(8, po.getId_funcionario());
             
             // Executando cadastro
             stm.executeUpdate();
@@ -90,14 +89,14 @@ public class FuncionarioDAO {
     }
     
     // Método para excluir o aluno
-    public void excluir(Funcionario f){
+    public void excluir(ProfOrient po){
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "DELETE FROM funcionario WHERE id = ?;";
+        String sql = "DELETE FROM ProfessorOrientador WHERE id = ?;";
         
         // Pergunta se realmente deseja excluir
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir Funcionario " +f.getNome()+" ?", "Excluir", JOptionPane.YES_NO_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir Prof. Orientador " +po.getNome()+" ?", "Excluir", JOptionPane.YES_NO_OPTION);
         
         // Verifica se realmente deve excluir
         if(opcao ==  JOptionPane.YES_OPTION){
@@ -105,7 +104,7 @@ public class FuncionarioDAO {
             try(PreparedStatement stm = con.prepareStatement(sql)){
 
                 // Alterando os atributos do statement
-                stm.setInt(1, f.getId_funcionario());
+                stm.setInt(1, po.getId_funcionario());
 
                  // Executando cadastro
                 stm.executeUpdate();
@@ -124,12 +123,12 @@ public class FuncionarioDAO {
     }
     
     //Método para listar todos os funcionarios
-    public List<Funcionario> listarTodos(){
+    public List<ProfOrient> listarTodos(){
         Connection con = Conectar.getConectar();
         
-        List<Funcionario> lista = new ArrayList<>();
+        List<ProfOrient> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM Funcionario ORDER BY nome;";
+        String sql = "SELECT * FROM ProfessorOrientador ORDER BY nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
             
@@ -137,19 +136,19 @@ public class FuncionarioDAO {
             while(resultado.next()){
                 
                 // Cria uma instancia de aluno
-                Funcionario f = new Funcionario();
+                ProfOrient po = new ProfOrient();
                 
                 // Instancia do aluno recebe as informações do banco
-                f.setId_funcionario(resultado.getInt("id"));
-                f.setNome(resultado.getString("nome"));
-                f.setCpf(resultado.getString("cpf"));
-                f.setRg(resultado.getString("rg"));
-                f.setFormacao(resultado.getString("formacao"));
-                f.setDatanasc(resultado.getString("datanasc"));
-                f.setSexo(resultado.getString("sexo"));
-                f.setSenha(resultado.getString("senha"));
+                po.setId_funcionario(resultado.getInt("id"));
+                po.setNome(resultado.getString("nome"));
+                po.setCpf(resultado.getString("cpf"));
+                po.setRg(resultado.getString("rg"));
+                po.setFormacao(resultado.getString("formacao"));
+                po.setDatanasc(resultado.getString("datanasc"));
+                po.setSexo(resultado.getString("sexo"));
+                po.setSenha(resultado.getString("senha"));
                 // Adiciona funcionarios na lista
-                lista.add(f);
+                lista.add(po);
 
             }
             
@@ -159,4 +158,5 @@ public class FuncionarioDAO {
         
         return lista;
     }
+    
 }
