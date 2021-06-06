@@ -33,17 +33,18 @@ rg varchar(15) not null,
 formacao varchar(50) not null,
 datanasc varchar(15) not null,
 sexo varchar(20) not null,
-usuario varchar(200) not null,
 senha varchar(300) not null
 );
 
 create table ProfessorOrientador(
 id int not null primary key auto_increment,
-funcionario_fk int not null,
-foreign key (funcionario_fk)
-references Funcionario(id)
-on update cascade
-on delete restrict
+nome varchar(100) not null,
+cpf varchar(15) not null,
+rg varchar(15) not null,
+formacao varchar(50) not null,
+datanasc varchar(15) not null,
+sexo varchar(20) not null,
+senha varchar(300) not null
 );
 
 create table Supervisor(
