@@ -620,9 +620,9 @@ public class FormAluno extends javax.swing.JFrame {
         List<Aluno> listaAlunos = aDAO.listarTodos();
         DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListAlunos.getModel();
         modeloTbAlunos.setRowCount(0);
-        for(Aluno a: listaAlunos){
+        listaAlunos.forEach((a) -> {
             modeloTbAlunos.addRow(new Object[] {a.getId_aluno(), a.getNome(), a.getCpf(), a.getRg(), a.getDatanasc(), a.getTelefone(), a.getSexo(), a.getTurma()});
-        }
+        });
     }
     /**
      * @param args the command line arguments

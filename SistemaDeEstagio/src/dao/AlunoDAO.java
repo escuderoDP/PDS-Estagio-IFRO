@@ -94,7 +94,7 @@ public class AlunoDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "DELETE FROM aluno WHERE id = ?;";
+        String sql = "DELETE FROM Aluno WHERE id = ?;";
         
         // Pergunta se realmente deseja excluir
         int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir Aluno " +a.getNome()+" ?", "Excluir", JOptionPane.YES_NO_OPTION);
