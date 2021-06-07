@@ -5,7 +5,11 @@
  */
 package formularios;
 
+import dao.FuncionarioDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mapeamento.Funcionario;
 
 /**
  *
@@ -18,6 +22,8 @@ public class FormFuncionario extends javax.swing.JFrame {
      */
     public FormFuncionario() {
         initComponents();
+        btCadAtualizar.setVisible(false);
+        preencherTabela();
     }
 
     /**
@@ -29,6 +35,7 @@ public class FormFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupSexo = new javax.swing.ButtonGroup();
         tabFuncionario = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -148,12 +155,14 @@ public class FormFuncionario extends javax.swing.JFrame {
         jLabel8.setText("Sexo.:");
 
         radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
         radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
         radCadFeminino.setSelected(true);
         radCadFeminino.setText("Feminino");
 
         radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
         radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
         radCadMasculino.setText("Masculino");
@@ -446,11 +455,60 @@ public class FormFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
+        String sexo = radCadFeminino.getText();
+        Funcionario f = new Funcionario();
+        f.setNome(txtCadNome.getText());
+        f.setCpf(txtCadCpf.getText());
+        f.setRg(txtCadtRg.getText());
+        f.setFormacao(txtCadFormacao.getText());
+        f.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        f.setSexo(sexo);
+        f.setSenha(txtCadSenha.getText());
         
+        FuncionarioDAO fDAO = new FuncionarioDAO();
+        
+        fDAO.cadastrar(f);
+        
+        preencherTabela();
+        tabFuncionario.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-      
+        String sexo = radCadFeminino.getText();
+        Funcionario f = new Funcionario();
+        f.setId_funcionario(Integer.parseInt(txtCadId.getText()));
+        f.setNome(txtCadNome.getText());
+        f.setCpf(txtCadCpf.getText());
+        f.setRg(txtCadtRg.getText());
+        f.setFormacao(txtCadFormacao.getText());
+        f.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        f.setSexo(sexo);
+        f.setSenha(txtCadSenha.getText());
+        
+        FuncionarioDAO fDAO = new FuncionarioDAO();
+        
+        fDAO.atualizar(f);
+        
+        preencherTabela();
+        
+        txtCadSenha.setEditable(true);
+        
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+        
+        tabFuncionario.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);  
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
@@ -463,6 +521,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         txtCadSenha.setText("");
         radCadFeminino.setSelected(true);
         
+        txtCadSenha.setEditable(true);
 
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
@@ -474,7 +533,20 @@ public class FormFuncionario extends javax.swing.JFrame {
         int opcao = tbListFuncionarios.getSelectedRow();
 
         if(opcao >= 0){
-
+            Funcionario f = new Funcionario();
+            f.setId_funcionario(Integer.parseInt(tbListFuncionarios.getValueAt(opcao, 0).toString()));
+            f.setNome(tbListFuncionarios.getValueAt(opcao, 1).toString());
+            f.setCpf(tbListFuncionarios.getValueAt(opcao, 2).toString());
+            f.setRg(tbListFuncionarios.getValueAt(opcao, 3).toString());
+            f.setDatanasc(tbListFuncionarios.getValueAt(opcao, 4).toString());
+            String sexo = tbListFuncionarios.getValueAt(opcao, 5).toString();
+            f.setSexo(sexo);
+            f.setFormacao(tbListFuncionarios.getValueAt(opcao, 6).toString());
+            
+            FuncionarioDAO fDAO = new FuncionarioDAO();
+            fDAO.excluir(f);
+            
+            preencherTabela();
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -484,7 +556,25 @@ public class FormFuncionario extends javax.swing.JFrame {
         int opcao = tbListFuncionarios.getSelectedRow();
 
         if(opcao >= 0){
-
+            txtCadId.setText(tbListFuncionarios.getValueAt(opcao, 0).toString());
+            txtCadNome.setText(tbListFuncionarios.getValueAt(opcao, 1).toString());
+            txtCadCpf.setText(tbListFuncionarios.getValueAt(opcao, 2).toString());
+            txtCadtRg.setText(tbListFuncionarios.getValueAt(opcao, 3).toString());
+            txtCadDataNasc.setText(tbListFuncionarios.getValueAt(opcao, 4).toString());
+            String sexo = tbListFuncionarios.getValueAt(opcao, 5).toString();
+            if(sexo.equals(radCadFeminino.getText())){
+                radCadFeminino.setSelected(true);
+            }else if(sexo.equals(radCadMasculino.getText())){
+                radCadMasculino.setSelected(true);
+            }
+            txtCadFormacao.setText(tbListFuncionarios.getValueAt(opcao, 6).toString());
+            
+            txtCadSenha.setEditable(false);
+            
+            tabFuncionario.setSelectedIndex(0);
+            
+            btCadAtualizar.setVisible(true);
+            btCadSalvar.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -505,7 +595,18 @@ public class FormFuncionario extends javax.swing.JFrame {
 
         tabFuncionario.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
-
+    
+    // Método para preencher a tabela de Alunos
+    public void preencherTabela(){
+        FuncionarioDAO fDAO = new FuncionarioDAO();
+        List<Funcionario> listaFuncionarios = fDAO.listarTodos();
+        DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListFuncionarios.getModel();
+        modeloTbAlunos.setRowCount(0);
+        listaFuncionarios.forEach((f) -> {
+            modeloTbAlunos.addRow(new Object[] {f.getId_funcionario(), f.getNome(), f.getCpf(), f.getRg(), f.getDatanasc(), f.getSexo(), f.getFormacao()});
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -549,6 +650,7 @@ public class FormFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btListExcluir;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
+    private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

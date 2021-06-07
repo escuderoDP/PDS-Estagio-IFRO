@@ -25,7 +25,7 @@ public class FuncionarioDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para inserir
-        String sql = "INSERT INTO Funcionario(nome, cpf, rg, formacao, datanasc, sexo, senha) values(?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Funcionario(nome, cpf, rg, formacao, datanasc, sexo, senha) values(?, ?, ?, ?, ?, ?, MD5(?));";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
@@ -59,7 +59,7 @@ public class FuncionarioDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, rg = ?, formacao = ?, datanasc = ?, sexo = ?, senha = ? WHERE id = ?;";
+        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, rg = ?, formacao = ?, datanasc = ?, sexo = ? WHERE id = ?;";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
@@ -71,8 +71,7 @@ public class FuncionarioDAO {
             stm.setString(4, f.getFormacao());
             stm.setString(5, f.getDatanasc());
             stm.setString(6, f.getSexo());
-            stm.setString(7, f.getSenha());
-            stm.setInt(8, f.getId_funcionario());
+            stm.setInt(7, f.getId_funcionario());
             
             // Executando cadastro
             stm.executeUpdate();

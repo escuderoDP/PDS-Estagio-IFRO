@@ -17,7 +17,6 @@ public class Funcionario {
     private String formacao;
     private String datanasc;
     private String sexo;
-    private String usuario;
     private String senha;
 
     public int getId_funcionario() {
@@ -74,14 +73,6 @@ public class Funcionario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 
     public String getSenha() {

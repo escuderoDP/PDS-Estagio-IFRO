@@ -8,6 +8,7 @@ package principal;
 import dao.AlunoDAO;
 import formularios.FormAluno;
 import formularios.FormEmpresa;
+import formularios.FormFuncionario;
 import mapeamento.Aluno;
 
 /**
@@ -47,7 +48,7 @@ public class principal {
 //        
 //        alundao.excluir(alun);
         
-        FormAluno form = new FormAluno();
+        FormFuncionario form = new FormFuncionario();
         form.main(args);
 
     }
