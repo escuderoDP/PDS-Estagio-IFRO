@@ -192,6 +192,8 @@ public class FormFuncionario extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Senha.:");
 
+        txtCadFormacao.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+
         jCheckBox1.setBackground(new java.awt.Color(54, 54, 54));
         jCheckBox1.setFont(new java.awt.Font("Courier New", 1, 20)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -452,6 +454,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
@@ -600,10 +603,10 @@ public class FormFuncionario extends javax.swing.JFrame {
     public void preencherTabela(){
         FuncionarioDAO fDAO = new FuncionarioDAO();
         List<Funcionario> listaFuncionarios = fDAO.listarTodos();
-        DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListFuncionarios.getModel();
-        modeloTbAlunos.setRowCount(0);
+        DefaultTableModel modeloTbFuncionarios = (DefaultTableModel) tbListFuncionarios.getModel();
+        modeloTbFuncionarios.setRowCount(0);
         listaFuncionarios.forEach((f) -> {
-            modeloTbAlunos.addRow(new Object[] {f.getId_funcionario(), f.getNome(), f.getCpf(), f.getRg(), f.getDatanasc(), f.getSexo(), f.getFormacao()});
+            modeloTbFuncionarios.addRow(new Object[] {f.getId_funcionario(), f.getNome(), f.getCpf(), f.getRg(), f.getDatanasc(), f.getSexo(), f.getFormacao()});
         });
     }
     

@@ -97,4 +97,4 @@ on update cascade
 on delete restrict
 );
 
-select * from Aluno;
+select * from Funcionario;

@@ -5,7 +5,11 @@
  */
 package formularios;
 
+import dao.ProfOrientDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mapeamento.ProfOrient;
 
 /**
  *
@@ -18,6 +22,8 @@ public class FormProfOrient extends javax.swing.JFrame {
      */
     public FormProfOrient() {
         initComponents();
+        btCadAtualizar.setVisible(false);
+        preencherTabela();
     }
 
     /**
@@ -29,6 +35,7 @@ public class FormProfOrient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupSexo = new javax.swing.ButtonGroup();
         tabProfOrient = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -62,7 +69,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         btListPesquisa = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListFuncionarios = new javax.swing.JTable();
+        tbListProfOrient = new javax.swing.JTable();
         btListExcluir = new javax.swing.JButton();
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
@@ -90,7 +97,7 @@ public class FormProfOrient extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(54, 54, 54))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,12 +155,14 @@ public class FormProfOrient extends javax.swing.JFrame {
         jLabel8.setText("Sexo.:");
 
         radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
         radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
         radCadFeminino.setSelected(true);
         radCadFeminino.setText("Feminino");
 
         radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
         radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
         radCadMasculino.setText("Masculino");
@@ -182,6 +191,8 @@ public class FormProfOrient extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Senha.:");
+
+        txtCadFormacao.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
 
         jCheckBox1.setBackground(new java.awt.Color(54, 54, 54));
         jCheckBox1.setFont(new java.awt.Font("Courier New", 1, 20)); // NOI18N
@@ -295,10 +306,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,8 +352,8 @@ public class FormProfOrient extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
 
-        tbListFuncionarios.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        tbListFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
+        tbListProfOrient.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        tbListProfOrient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -364,7 +372,7 @@ public class FormProfOrient extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbListFuncionarios);
+        jScrollPane1.setViewportView(tbListProfOrient);
 
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -438,7 +446,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabProfOrient, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+            .addComponent(tabProfOrient, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,14 +454,64 @@ public class FormProfOrient extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-
+        String sexo = radCadFeminino.getText();
+        ProfOrient po = new ProfOrient();
+        po.setNome(txtCadNome.getText());
+        po.setCpf(txtCadCpf.getText());
+        po.setRg(txtCadtRg.getText());
+        po.setFormacao(txtCadFormacao.getText());
+        po.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        po.setSexo(sexo);
+        po.setSenha(txtCadSenha.getText());
+        
+        ProfOrientDAO poDAO = new ProfOrientDAO();
+        
+        poDAO.cadastrar(po);
+        
+        preencherTabela();
+        tabProfOrient.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-
+        String sexo = radCadFeminino.getText();
+        ProfOrient po = new ProfOrient();
+        po.setId_funcionario(Integer.parseInt(txtCadId.getText()));
+        po.setNome(txtCadNome.getText());
+        po.setCpf(txtCadCpf.getText());
+        po.setRg(txtCadtRg.getText());
+        po.setFormacao(txtCadFormacao.getText());
+        po.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        po.setSexo(sexo);
+        po.setSenha(txtCadSenha.getText());
+        
+        ProfOrientDAO poDAO = new ProfOrientDAO();
+        
+        poDAO.atualizar(po);
+        
+        preencherTabela();
+        
+        txtCadSenha.setEditable(true);
+        
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+        
+        tabProfOrient.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);  
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
@@ -473,20 +531,51 @@ public class FormProfOrient extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
-        int opcao = tbListFuncionarios.getSelectedRow();
+        int opcao = tbListProfOrient.getSelectedRow();
 
         if(opcao >= 0){
-
+            ProfOrient po = new ProfOrient();
+            po.setId_funcionario(Integer.parseInt(tbListProfOrient.getValueAt(opcao, 0).toString()));
+            po.setNome(tbListProfOrient.getValueAt(opcao, 1).toString());
+            po.setCpf(tbListProfOrient.getValueAt(opcao, 2).toString());
+            po.setRg(tbListProfOrient.getValueAt(opcao, 3).toString());
+            po.setDatanasc(tbListProfOrient.getValueAt(opcao, 4).toString());
+            String sexo = tbListProfOrient.getValueAt(opcao, 5).toString();
+            po.setSexo(sexo);
+            po.setFormacao(tbListProfOrient.getValueAt(opcao, 6).toString());
+            
+            ProfOrientDAO poDAO = new ProfOrientDAO();
+            poDAO.excluir(po);
+            
+            preencherTabela();
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
     }//GEN-LAST:event_btListExcluirActionPerformed
 
     private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
-        int opcao = tbListFuncionarios.getSelectedRow();
+        int opcao = tbListProfOrient.getSelectedRow();
 
         if(opcao >= 0){
-
+            txtCadId.setText(tbListProfOrient.getValueAt(opcao, 0).toString());
+            txtCadNome.setText(tbListProfOrient.getValueAt(opcao, 1).toString());
+            txtCadCpf.setText(tbListProfOrient.getValueAt(opcao, 2).toString());
+            txtCadtRg.setText(tbListProfOrient.getValueAt(opcao, 3).toString());
+            txtCadDataNasc.setText(tbListProfOrient.getValueAt(opcao, 4).toString());
+            String sexo = tbListProfOrient.getValueAt(opcao, 5).toString();
+            if(sexo.equals(radCadFeminino.getText())){
+                radCadFeminino.setSelected(true);
+            }else if(sexo.equals(radCadMasculino.getText())){
+                radCadMasculino.setSelected(true);
+            }
+            txtCadFormacao.setText(tbListProfOrient.getValueAt(opcao, 6).toString());
+            
+            txtCadSenha.setEditable(false);
+            
+            tabProfOrient.setSelectedIndex(0);
+            
+            btCadAtualizar.setVisible(true);
+            btCadSalvar.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -507,7 +596,17 @@ public class FormProfOrient extends javax.swing.JFrame {
 
         tabProfOrient.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
-
+    
+    // Método para preencher a tabela de Alunos
+    public void preencherTabela(){
+        ProfOrientDAO poDAO = new ProfOrientDAO();
+        List<ProfOrient> listaProfOrients = poDAO.listarTodos();
+        DefaultTableModel modeloTbProfOrient = (DefaultTableModel) tbListProfOrient.getModel();
+        modeloTbProfOrient.setRowCount(0);
+        listaProfOrients.forEach((po) -> {
+            modeloTbProfOrient.addRow(new Object[] {po.getId_funcionario(), po.getNome(), po.getCpf(), po.getRg(), po.getDatanasc(), po.getSexo(), po.getFormacao()});
+        });
+    }
     /**
      * @param args the command line arguments
      */
@@ -551,6 +650,7 @@ public class FormProfOrient extends javax.swing.JFrame {
     private javax.swing.JButton btListExcluir;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
+    private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -572,7 +672,7 @@ public class FormProfOrient extends javax.swing.JFrame {
     private javax.swing.JRadioButton radCadFeminino;
     private javax.swing.JRadioButton radCadMasculino;
     private javax.swing.JTabbedPane tabProfOrient;
-    private javax.swing.JTable tbListFuncionarios;
+    private javax.swing.JTable tbListProfOrient;
     private javax.swing.JFormattedTextField txtCadCpf;
     private javax.swing.JFormattedTextField txtCadDataNasc;
     private javax.swing.JTextField txtCadFormacao;

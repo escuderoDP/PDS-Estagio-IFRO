@@ -9,6 +9,7 @@ import dao.AlunoDAO;
 import formularios.FormAluno;
 import formularios.FormEmpresa;
 import formularios.FormFuncionario;
+import formularios.FormProfOrient;
 import mapeamento.Aluno;
 
 /**
@@ -48,7 +49,7 @@ public class principal {
 //        
 //        alundao.excluir(alun);
         
-        FormFuncionario form = new FormFuncionario();
+        FormProfOrient form = new FormProfOrient();
         form.main(args);
 
     }
