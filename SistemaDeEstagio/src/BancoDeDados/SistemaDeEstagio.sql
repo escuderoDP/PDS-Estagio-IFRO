@@ -16,6 +16,7 @@ nome varchar(100) not null,
 cpf varchar(15) not null,
 rg varchar(15) not null,
 formacao varchar(50) not null,
+cargo varchar(100) not null,
 datanasc varchar(15) not null,
 sexo varchar(20) not null,
 empresa_fk int not null,
@@ -47,25 +48,6 @@ sexo varchar(20) not null,
 senha varchar(300) not null
 );
 
-create table Supervisor(
-id int not null primary key auto_increment,
-areaAtuacao varchar(200) not null,
-funcEmp_fk int not null,
-foreign key (funcEmp_fk)
-references FuncionarioEmpresa(id)
-on update cascade
-on delete restrict
-);
-
-create table Representante(
-id int not null primary key auto_increment,
-funcEmp_fk int not null,
-foreign key (funcEmp_fk)
-references FuncionarioEmpresa(id)
-on update cascade
-on delete restrict
-);
-
 create table Aluno(
 id int not null primary key auto_increment,
 nome varchar(100) not null,
@@ -80,9 +62,9 @@ turma varchar(50) not null
 create table Estagio(
 id int not null primary key auto_increment,
 situacao varchar(100) not null,
-supervisor_fk int not null,
-foreign key(supervisor_fk)
-references Supervisor(id)
+funcionarioEmp_fk int not null,
+foreign key(funcionarioEmp_fk)
+references FuncionarioEmpresa(id)
 on update cascade
 on delete restrict,
 proforient_fk int not null,
