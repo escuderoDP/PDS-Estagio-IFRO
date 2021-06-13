@@ -37,7 +37,7 @@ public class FuncionarioDAO {
             stm.setString(4, f.getFormacao());
             stm.setString(5, f.getDatanasc());
             stm.setString(6, f.getSexo());
-            stm.setString(7, f.getSenha());
+            stm.setString(7, "systemestagioifro"+f.getSenha());
 
             
             // Executando cadastro
@@ -157,5 +157,32 @@ public class FuncionarioDAO {
         }
         
         return lista;
+    }
+    
+    public Funcionario login(String cpf, String senha){
+        Connection con = Conectar.getConectar();
+        Funcionario f = new Funcionario();
+        String sql = "SELECT * FROM funcionario where cpf = ? and senha = md5(?)";
+        try(PreparedStatement stm = con.prepareStatement(sql)){
+            stm.setString(1, cpf);
+            stm.setString(2, senha);
+            ResultSet resultado = stm.executeQuery();
+            resultado.next();
+            if(resultado.getInt("id") > 0){
+                f.setId_funcionario(resultado.getInt("id"));
+                f.setNome(resultado.getString("nome"));
+                f.setCpf(resultado.getString("cpf"));
+                f.setRg(resultado.getString("rg"));
+                f.setFormacao(resultado.getString("formacao"));
+                f.setDatanasc(resultado.getString("datanasc"));
+                f.setSexo(resultado.getString("sexo"));
+                f.setSenha(resultado.getString("senha"));
+            }else{
+                JOptionPane.showMessageDialog(null, "CPF e/ou Senha incorretos!");
+            }
+        }catch(Exception ex){
+            //JOptionPane.showMessageDialog(null, "ERRO AO VERIFICAR LOGIN! \n"+ex);
+        }
+        return f;
     }
 }
