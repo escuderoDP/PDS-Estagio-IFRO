@@ -7,6 +7,7 @@ package formularios;
 
 import dao.FuncionarioDAO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
 
 /**
@@ -98,6 +99,11 @@ public class FormLogin extends javax.swing.JFrame {
         });
 
         txtSenha.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
 
         jLabel43.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,17 +222,24 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
+        logar();
+    }//GEN-LAST:event_btLogarActionPerformed
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        logar();
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void logar(){
         FuncionarioDAO fDAO = new FuncionarioDAO();
         Funcionario f = fDAO.login(txtCpf.getText(), "systemestagioifro"+txtSenha.getText());
         if(f.getId_funcionario() > 0){
-            System.out.println("Logou");
-            System.out.println(f.getNome());
+            Menu m = new Menu(f);
+            m.setVisible(true);
             this.dispose();
         }else{
-            System.out.println("Erro de login");
+            JOptionPane.showMessageDialog(null, "CPF e/ou Senha inválidos!");
         }
-    }//GEN-LAST:event_btLogarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

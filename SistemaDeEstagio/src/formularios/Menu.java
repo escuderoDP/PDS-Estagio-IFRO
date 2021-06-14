@@ -5,6 +5,9 @@
  */
 package formularios;
 
+import static java.lang.Thread.sleep;
+import mapeamento.Funcionario;
+
 /**
  *
  * @author Guilherme
@@ -14,8 +17,30 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(Funcionario f) {
         initComponents();
+        lbNome.setText("Bem Vindo, "+f.getNome()+"!");
+        //animacao();
+   }
+    
+    public void animacao(){
+        new Thread(){
+            public void run(){
+                int x = 400;
+                int y = titulo.getLocation().y;
+                while(true){
+                    x--;
+                    if(x < - 400){
+                        x = 400;
+                    }
+                    titulo.setLocation(x, y);
+                    try{
+                        sleep(10);
+                    }catch(Exception ex){
+                    }
+                }
+            }
+        }.start();
     }
 
     /**
@@ -28,59 +53,65 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
+        btSair = new javax.swing.JButton();
+        lbNome = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btAlunos = new javax.swing.JButton();
+        btFuncionarios = new javax.swing.JButton();
+        btEmpresas = new javax.swing.JButton();
+        btRelatorios = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btEstágios = new javax.swing.JButton();
+        btProfOrient = new javax.swing.JButton();
+        btFuncEmpresa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuCadastros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuEstagios = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menuRelatorios = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        menuAjuda = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        menuConfiguracoes = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        itemLogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
         jPanel1.setBackground(new java.awt.Color(2, 67, 63));
 
-        jLabel1.setFont(new java.awt.Font("Courier New", 1, 40)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(252, 209, 71));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SISTEMA DE ESTÁGIO");
+        titulo.setFont(new java.awt.Font("Courier New", 1, 40)); // NOI18N
+        titulo.setForeground(new java.awt.Color(252, 209, 71));
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("SISTEMA DE ESTÁGIO");
 
-        jButton8.setText("SAIR");
+        btSair.setText("SAIR");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(225, 241, 137));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Bem vindo, nome!");
+        lbNome.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
+        lbNome.setForeground(new java.awt.Color(225, 241, 137));
+        lbNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbNome.setText("Bem vindo, nome!");
 
         jLabel3.setForeground(new java.awt.Color(240, 240, 240));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,10 +126,10 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,12 +137,12 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(btSair)
                         .addGap(3, 3, 3)))
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -123,29 +154,49 @@ public class Menu extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(96, 106, 164));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 204));
 
-        jButton1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/aluno.png"))); // NOI18N
-        jButton1.setText("ALUNOS");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btAlunos.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/aluno.png"))); // NOI18N
+        btAlunos.setText("ALUNOS");
+        btAlunos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btAlunos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlunosActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcionarios.png"))); // NOI18N
-        jButton2.setText("FUNCIONARIOS");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFuncionarios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcionarios.png"))); // NOI18N
+        btFuncionarios.setText("FUNCIONARIOS");
+        btFuncionarios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btFuncionarios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFuncionariosActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/empresa.png"))); // NOI18N
-        jButton3.setText("EMPRESA");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEmpresas.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/empresa.png"))); // NOI18N
+        btEmpresas.setText("EMPRESAS");
+        btEmpresas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEmpresas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmpresasActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatorios.png"))); // NOI18N
-        jButton4.setText("RELATÓRIOS");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btRelatorios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatorios.png"))); // NOI18N
+        btRelatorios.setText("RELATÓRIOS");
+        btRelatorios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btRelatorios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatoriosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -153,13 +204,13 @@ public class Menu extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(btFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(btEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                .addComponent(btRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
         );
         jPanel3Layout.setVerticalGroup(
@@ -168,58 +219,73 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                        .addComponent(btRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
         jPanel6.setBackground(new java.awt.Color(96, 106, 164));
 
-        jButton5.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/estágio.png"))); // NOI18N
-        jButton5.setText("ESTÁGIO");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEstágios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btEstágios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/estágio.png"))); // NOI18N
+        btEstágios.setText("ESTÁGIOS");
+        btEstágios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEstágios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEstágios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEstágiosActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/proforient.png"))); // NOI18N
-        jButton6.setText("<html>\n<center> \nPROFESSOR\n<br>\nORIENTADOR\n\n</center> ");
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btProfOrient.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btProfOrient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/proforient.png"))); // NOI18N
+        btProfOrient.setText(" PROF. ORIENTADOR  ");
+        btProfOrient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btProfOrient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btProfOrient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProfOrientActionPerformed(evt);
+            }
+        });
 
-        jButton7.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcemp.png"))); // NOI18N
-        jButton7.setText("<html> <center>  FUNCIONÁRIO <br> EMPRESA </center> ");
-        jButton7.setActionCommand("<html>\n<center> \nFUNCIONÁRIO\n<br>\nEMPRESA\n</center> ");
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFuncEmpresa.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btFuncEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcemp.png"))); // NOI18N
+        btFuncEmpresa.setText("FUNC. EMPRESA");
+        btFuncEmpresa.setActionCommand("<html>\n<center> \nFUNCIONÁRIO\n<br>\nEMPRESA\n</center> ");
+        btFuncEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btFuncEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFuncEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFuncEmpresaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton6)
-                .addGap(30, 30, 30)
-                .addComponent(jButton7)
-                .addGap(81, 81, 81))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btEstágios, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(btProfOrient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addComponent(btFuncEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btEstágios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(btFuncEmpresa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btProfOrient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(46, 46, 46))
         );
 
@@ -227,13 +293,13 @@ public class Menu extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -244,7 +310,7 @@ public class Menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
                 .addGap(51, 51, 51))
         );
         jPanel2Layout.setVerticalGroup(
@@ -257,78 +323,99 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenu1.setText("CADASTROS");
-        jMenu1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        menuCadastros.setText("CADASTROS");
+        menuCadastros.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem1.setText("Aluno");
-        jMenu1.add(jMenuItem1);
+        menuCadastros.add(jMenuItem1);
 
+        jMenuItem3.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem3.setText("Empresa");
-        jMenu1.add(jMenuItem3);
+        menuCadastros.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem4.setText("Funcionário");
-        jMenu1.add(jMenuItem4);
+        menuCadastros.add(jMenuItem4);
 
+        jMenuItem5.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem5.setText("Funcionário Empresa");
-        jMenu1.add(jMenuItem5);
+        menuCadastros.add(jMenuItem5);
 
+        jMenuItem6.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem6.setText("Professor Orientador");
-        jMenu1.add(jMenuItem6);
+        menuCadastros.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuCadastros);
 
-        jMenu2.setText("ESTÁGIO");
-        jMenu2.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        menuEstagios.setText("ESTÁGIO");
+        menuEstagios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
+        jMenuItem7.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem7.setText("Adicionar");
-        jMenu2.add(jMenuItem7);
+        menuEstagios.add(jMenuItem7);
 
+        jMenuItem8.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem8.setText("Editar");
-        jMenu2.add(jMenuItem8);
+        menuEstagios.add(jMenuItem8);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(menuEstagios);
 
-        jMenu3.setText("RELATÓRIOS");
-        jMenu3.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        menuRelatorios.setText("RELATÓRIOS");
+        menuRelatorios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
+        jMenuItem12.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem12.setText("Alunos");
-        jMenu3.add(jMenuItem12);
+        menuRelatorios.add(jMenuItem12);
 
+        jMenuItem2.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem2.setText("Estágios");
-        jMenu3.add(jMenuItem2);
+        menuRelatorios.add(jMenuItem2);
 
+        jMenuItem13.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem13.setText("Empresas");
-        jMenu3.add(jMenuItem13);
+        menuRelatorios.add(jMenuItem13);
 
+        jMenuItem15.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem15.setText("Funcionários");
-        jMenu3.add(jMenuItem15);
+        menuRelatorios.add(jMenuItem15);
 
+        jMenuItem16.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem16.setText("Funcionários Empresa");
-        jMenu3.add(jMenuItem16);
+        menuRelatorios.add(jMenuItem16);
 
+        jMenuItem14.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem14.setText("Professores Orientadores");
-        jMenu3.add(jMenuItem14);
+        menuRelatorios.add(jMenuItem14);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuRelatorios);
 
-        jMenu4.setText("AJUDA");
-        jMenu4.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        menuAjuda.setText("AJUDA");
+        menuAjuda.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
+        jMenuItem9.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem9.setText("Abrir Chamado");
-        jMenu4.add(jMenuItem9);
+        menuAjuda.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(menuAjuda);
 
-        jMenu5.setText("CONFIGURAÇÕES");
-        jMenu5.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        menuConfiguracoes.setText("CONFIGURAÇÕES");
+        menuConfiguracoes.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
+        jMenuItem10.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         jMenuItem10.setText("Alterar Senha");
-        jMenu5.add(jMenuItem10);
+        menuConfiguracoes.add(jMenuItem10);
 
-        jMenuItem11.setText("Logout");
-        jMenu5.add(jMenuItem11);
+        itemLogout.setFont(new java.awt.Font("Courier New", 3, 20)); // NOI18N
+        itemLogout.setText("Logout");
+        itemLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLogoutActionPerformed(evt);
+            }
+        });
+        menuConfiguracoes.add(itemLogout);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(menuConfiguracoes);
 
         setJMenuBar(jMenuBar1);
 
@@ -348,64 +435,102 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLogoutActionPerformed
+        FormLogin l = new FormLogin();
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_itemLogoutActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        FormLogin l = new FormLogin();
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btSairActionPerformed
+
+    private void btAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlunosActionPerformed
+        FormAluno form = new FormAluno();
+        form.setVisible(true);
+    }//GEN-LAST:event_btAlunosActionPerformed
+
+    private void btFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFuncionariosActionPerformed
+        FormFuncionario form = new FormFuncionario();
+        form.setVisible(true);
+    }//GEN-LAST:event_btFuncionariosActionPerformed
+
+    private void btEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmpresasActionPerformed
+        FormEmpresa form = new FormEmpresa();
+        form.setVisible(true);
+    }//GEN-LAST:event_btEmpresasActionPerformed
+
+    private void btEstágiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEstágiosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEstágiosActionPerformed
+
+    private void btRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatoriosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btRelatoriosActionPerformed
+
+    private void btProfOrientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProfOrientActionPerformed
+        FormProfOrient form = new FormProfOrient();
+        form.setVisible(true);
+    }//GEN-LAST:event_btProfOrientActionPerformed
+
+    private void btFuncEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFuncEmpresaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btFuncEmpresaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {;
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Menu().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btAlunos;
+    private javax.swing.JButton btEmpresas;
+    private javax.swing.JButton btEstágios;
+    private javax.swing.JButton btFuncEmpresa;
+    private javax.swing.JButton btFuncionarios;
+    private javax.swing.JButton btProfOrient;
+    private javax.swing.JButton btRelatorios;
+    private javax.swing.JButton btSair;
+    private javax.swing.JMenuItem itemLogout;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -424,5 +549,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lbNome;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenu menuConfiguracoes;
+    private javax.swing.JMenu menuEstagios;
+    private javax.swing.JMenu menuRelatorios;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

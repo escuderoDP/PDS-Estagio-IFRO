@@ -178,7 +178,7 @@ public class FuncionarioDAO {
                 f.setSexo(resultado.getString("sexo"));
                 f.setSenha(resultado.getString("senha"));
             }else{
-                JOptionPane.showMessageDialog(null, "CPF e/ou Senha incorretos!");
+                System.out.println("Inválidos");
             }
         }catch(Exception ex){
             //JOptionPane.showMessageDialog(null, "ERRO AO VERIFICAR LOGIN! \n"+ex);
