@@ -16,6 +16,7 @@ public class FuncionarioEmpresa {
     private String cpf;
     private String rg;
     private String formacao;
+    private String cargo;
     private String datanasc;
     private String sexo;
     private Empresa empresa_fk;
@@ -60,6 +61,14 @@ public class FuncionarioEmpresa {
         this.formacao = formacao;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
     public String getDatanasc() {
         return datanasc;
     }
@@ -83,6 +92,4 @@ public class FuncionarioEmpresa {
     public void setEmpresa_fk(Empresa empresa_fk) {
         this.empresa_fk = empresa_fk;
     }
-    
-    
 }
