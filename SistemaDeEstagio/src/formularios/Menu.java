@@ -70,25 +70,25 @@ public class Menu extends javax.swing.JFrame {
         btFuncEmpresa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        itemAluno = new javax.swing.JMenuItem();
+        itemEmpresa = new javax.swing.JMenuItem();
+        itemFuncionario = new javax.swing.JMenuItem();
+        itemFuncionarioEmp = new javax.swing.JMenuItem();
+        itemProfOrient = new javax.swing.JMenuItem();
         menuEstagios = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        itemAdicionarEstagio = new javax.swing.JMenuItem();
+        itemEditarEstagio = new javax.swing.JMenuItem();
         menuRelatorios = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        itemRelatorioAlunos = new javax.swing.JMenuItem();
+        itemRelatorioEstagio = new javax.swing.JMenuItem();
+        itemRelatorioEmpresas = new javax.swing.JMenuItem();
+        itemRelatorioFuncionarios = new javax.swing.JMenuItem();
+        itemRelatorioFuncionarioEmp = new javax.swing.JMenuItem();
+        itemRelatorioProfOrient = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        itemChamado = new javax.swing.JMenuItem();
         menuConfiguracoes = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        itemAlterarSenha = new javax.swing.JMenuItem();
         itemLogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -326,85 +326,110 @@ public class Menu extends javax.swing.JFrame {
         menuCadastros.setText("CADASTROS");
         menuCadastros.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem1.setText("Aluno");
-        menuCadastros.add(jMenuItem1);
+        itemAluno.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemAluno.setText("Aluno");
+        itemAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAlunoActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(itemAluno);
 
-        jMenuItem3.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem3.setText("Empresa");
-        menuCadastros.add(jMenuItem3);
+        itemEmpresa.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemEmpresa.setText("Empresa");
+        itemEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEmpresaActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(itemEmpresa);
 
-        jMenuItem4.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem4.setText("Funcionário");
-        menuCadastros.add(jMenuItem4);
+        itemFuncionario.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemFuncionario.setText("Funcionário");
+        itemFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFuncionarioActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(itemFuncionario);
 
-        jMenuItem5.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem5.setText("Funcionário Empresa");
-        menuCadastros.add(jMenuItem5);
+        itemFuncionarioEmp.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemFuncionarioEmp.setText("Funcionário Empresa");
+        itemFuncionarioEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFuncionarioEmpActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(itemFuncionarioEmp);
 
-        jMenuItem6.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem6.setText("Professor Orientador");
-        menuCadastros.add(jMenuItem6);
+        itemProfOrient.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemProfOrient.setText("Professor Orientador");
+        itemProfOrient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemProfOrientActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(itemProfOrient);
 
         jMenuBar1.add(menuCadastros);
 
         menuEstagios.setText("ESTÁGIO");
         menuEstagios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenuItem7.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem7.setText("Adicionar");
-        menuEstagios.add(jMenuItem7);
+        itemAdicionarEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemAdicionarEstagio.setText("Adicionar");
+        menuEstagios.add(itemAdicionarEstagio);
 
-        jMenuItem8.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem8.setText("Editar");
-        menuEstagios.add(jMenuItem8);
+        itemEditarEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemEditarEstagio.setText("Editar");
+        menuEstagios.add(itemEditarEstagio);
 
         jMenuBar1.add(menuEstagios);
 
         menuRelatorios.setText("RELATÓRIOS");
         menuRelatorios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenuItem12.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem12.setText("Alunos");
-        menuRelatorios.add(jMenuItem12);
+        itemRelatorioAlunos.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioAlunos.setText("Alunos");
+        menuRelatorios.add(itemRelatorioAlunos);
 
-        jMenuItem2.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem2.setText("Estágios");
-        menuRelatorios.add(jMenuItem2);
+        itemRelatorioEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioEstagio.setText("Estágios");
+        menuRelatorios.add(itemRelatorioEstagio);
 
-        jMenuItem13.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem13.setText("Empresas");
-        menuRelatorios.add(jMenuItem13);
+        itemRelatorioEmpresas.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioEmpresas.setText("Empresas");
+        menuRelatorios.add(itemRelatorioEmpresas);
 
-        jMenuItem15.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem15.setText("Funcionários");
-        menuRelatorios.add(jMenuItem15);
+        itemRelatorioFuncionarios.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioFuncionarios.setText("Funcionários");
+        menuRelatorios.add(itemRelatorioFuncionarios);
 
-        jMenuItem16.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem16.setText("Funcionários Empresa");
-        menuRelatorios.add(jMenuItem16);
+        itemRelatorioFuncionarioEmp.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioFuncionarioEmp.setText("Funcionários Empresa");
+        menuRelatorios.add(itemRelatorioFuncionarioEmp);
 
-        jMenuItem14.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem14.setText("Professores Orientadores");
-        menuRelatorios.add(jMenuItem14);
+        itemRelatorioProfOrient.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemRelatorioProfOrient.setText("Professores Orientadores");
+        menuRelatorios.add(itemRelatorioProfOrient);
 
         jMenuBar1.add(menuRelatorios);
 
         menuAjuda.setText("AJUDA");
         menuAjuda.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenuItem9.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem9.setText("Abrir Chamado");
-        menuAjuda.add(jMenuItem9);
+        itemChamado.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemChamado.setText("Abrir Chamado");
+        menuAjuda.add(itemChamado);
 
         jMenuBar1.add(menuAjuda);
 
         menuConfiguracoes.setText("CONFIGURAÇÕES");
         menuConfiguracoes.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
-        jMenuItem10.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        jMenuItem10.setText("Alterar Senha");
-        menuConfiguracoes.add(jMenuItem10);
+        itemAlterarSenha.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
+        itemAlterarSenha.setText("Alterar Senha");
+        menuConfiguracoes.add(itemAlterarSenha);
 
         itemLogout.setFont(new java.awt.Font("Courier New", 3, 20)); // NOI18N
         itemLogout.setText("Logout");
@@ -482,6 +507,31 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btFuncEmpresaActionPerformed
 
+    private void itemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAlunoActionPerformed
+        FormAluno form = new FormAluno();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemAlunoActionPerformed
+
+    private void itemEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEmpresaActionPerformed
+        FormEmpresa form = new FormEmpresa();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemEmpresaActionPerformed
+
+    private void itemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioActionPerformed
+        FormFuncionario form = new FormFuncionario();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemFuncionarioActionPerformed
+
+    private void itemFuncionarioEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionarioEmpActionPerformed
+       FormFuncionarioEmp form = new FormFuncionarioEmp();
+       form.setVisible(true);
+    }//GEN-LAST:event_itemFuncionarioEmpActionPerformed
+
+    private void itemProfOrientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProfOrientActionPerformed
+        FormProfOrient form = new FormProfOrient();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemProfOrientActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,24 +576,24 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btProfOrient;
     private javax.swing.JButton btRelatorios;
     private javax.swing.JButton btSair;
+    private javax.swing.JMenuItem itemAdicionarEstagio;
+    private javax.swing.JMenuItem itemAlterarSenha;
+    private javax.swing.JMenuItem itemAluno;
+    private javax.swing.JMenuItem itemChamado;
+    private javax.swing.JMenuItem itemEditarEstagio;
+    private javax.swing.JMenuItem itemEmpresa;
+    private javax.swing.JMenuItem itemFuncionario;
+    private javax.swing.JMenuItem itemFuncionarioEmp;
     private javax.swing.JMenuItem itemLogout;
+    private javax.swing.JMenuItem itemProfOrient;
+    private javax.swing.JMenuItem itemRelatorioAlunos;
+    private javax.swing.JMenuItem itemRelatorioEmpresas;
+    private javax.swing.JMenuItem itemRelatorioEstagio;
+    private javax.swing.JMenuItem itemRelatorioFuncionarioEmp;
+    private javax.swing.JMenuItem itemRelatorioFuncionarios;
+    private javax.swing.JMenuItem itemRelatorioProfOrient;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
