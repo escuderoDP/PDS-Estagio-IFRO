@@ -129,7 +129,7 @@ public class FuncionarioEmpDAO {
         
         List<FuncionarioEmpresa> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM FuncionarioEmpresa INNER JOIN Empresa ON FuncionarioEmpresa.empresa_fk = Empresa.id ORDER BY nome;";
+        String sql = "SELECT * FROM FuncionarioEmpresa INNER JOIN Empresa ON FuncionarioEmpresa.empresa_fk = Empresa.id";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
             

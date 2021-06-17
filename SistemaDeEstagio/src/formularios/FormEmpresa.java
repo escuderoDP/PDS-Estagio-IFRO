@@ -66,7 +66,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
 

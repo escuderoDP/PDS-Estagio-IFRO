@@ -5,7 +5,13 @@
  */
 package formularios;
 
+import dao.EmpresaDAO;
+import dao.FuncionarioEmpDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mapeamento.Empresa;
+import mapeamento.FuncionarioEmpresa;
 
 /**
  *
@@ -18,6 +24,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
      */
     public FormFuncionarioEmp() {
         initComponents();
+        preencherCb();
+        preencherTabela();
     }
 
     /**
@@ -29,6 +37,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupSexo = new javax.swing.ButtonGroup();
         tabFuncionarioEmpresa = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -54,7 +63,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtCadFormacao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        cbEmpresa = new javax.swing.JComboBox<>();
+        cbEmpresa = new javax.swing.JComboBox();
         cbCargo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -149,12 +158,14 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel8.setText("Sexo.:");
 
         radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
         radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
         radCadFeminino.setSelected(true);
         radCadFeminino.setText("Feminino");
 
         radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
         radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
         radCadMasculino.setText("Masculino");
@@ -191,10 +202,9 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel11.setText("Empresa.:");
 
         cbEmpresa.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        cbEmpresa.setForeground(new java.awt.Color(255, 255, 255));
 
-        cbCargo.setEditable(true);
-        cbCargo.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        cbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Representante", "Supervisor" }));
+        cbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Representante", "Supervisor", " " }));
         cbCargo.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -253,9 +263,9 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtCadFormacao))))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(141, 141, 141)
-                                        .addComponent(cbCargo, 0, 201, Short.MAX_VALUE))))))
+                                        .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(114, 114, 114)
+                                        .addComponent(cbCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,11 +302,12 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                         .addComponent(radCadFeminino)
                         .addComponent(radCadMasculino)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
+                        .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCargo))
                 .addGap(53, 53, 53)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,22 +472,101 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
+        String sexo = radCadFeminino.getText();
+        FuncionarioEmpresa fe = new FuncionarioEmpresa();
+        fe.setNome(txtCadNome.getText());
+        fe.setCpf(txtCadCpf.getText());
+        fe.setRg(txtCadtRg.getText());
+        fe.setFormacao(txtCadFormacao.getText());
+        fe.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        fe.setSexo(sexo);
+        fe.setCargo((String) cbCargo.getSelectedItem());
+        System.out.println(cbEmpresa.getSelectedItem());
+        fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
+
         
+        FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+        
+        feDAO.cadastrar(fe);
+        
+        preencherTabela();
+        tabFuncionarioEmpresa.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
+        String sexo = radCadFeminino.getText();
+        FuncionarioEmpresa fe = new FuncionarioEmpresa();
+        fe.setId_funcionarioEmp(Integer.parseInt(txtCadId.getText()));
+        fe.setNome(txtCadNome.getText());
+        fe.setCpf(txtCadCpf.getText());
+        fe.setRg(txtCadtRg.getText());
+        fe.setFormacao(txtCadFormacao.getText());
+        fe.setDatanasc(txtCadDataNasc.getText());
+        if(radCadFeminino.isSelected()){
+            sexo = radCadFeminino.getText();
+        }else if(radCadMasculino.isSelected()){
+            sexo = radCadMasculino.getText();
+        }
+        fe.setSexo(sexo);
+        fe.setFormacao((String) cbCargo.getSelectedItem());
+        fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
         
+        FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+        
+        feDAO.atualizar(fe);
+        
+        preencherTabela();
+        
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+        
+        tabFuncionarioEmpresa.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);  
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        
+        txtCadId.setText("");
+        txtCadNome.setText("");
+        txtCadCpf.setText("");
+        txtCadtRg.setText("");
+        txtCadDataNasc.setText("");
+        txtCadFormacao.setText("");
+        radCadFeminino.setSelected(true);
+        cbCargo.setSelectedIndex(-1);
+        cbEmpresa.setSelectedIndex(-1);
+
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+
+        tabFuncionarioEmpresa.setSelectedIndex(1);
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
         int opcao = tbListFuncionariosEmpresa.getSelectedRow();
 
         if(opcao >= 0){
+            FuncionarioEmpresa fe = new FuncionarioEmpresa();
+            fe.setId_funcionarioEmp(Integer.parseInt(tbListFuncionariosEmpresa.getValueAt(opcao, 0).toString()));
+            fe.setNome(tbListFuncionariosEmpresa.getValueAt(opcao, 1).toString());
+            fe.setCpf(tbListFuncionariosEmpresa.getValueAt(opcao, 2).toString());
+            fe.setRg(tbListFuncionariosEmpresa.getValueAt(opcao, 3).toString());
+            fe.setFormacao(tbListFuncionariosEmpresa.getValueAt(opcao, 4).toString());
+            fe.setCargo(tbListFuncionariosEmpresa.getValueAt(opcao, 5).toString());
+            fe.setDatanasc(tbListFuncionariosEmpresa.getValueAt(opcao, 6).toString());
+            String sexo = tbListFuncionariosEmpresa.getValueAt(opcao, 7).toString();
+            fe.setSexo(sexo);
+            fe.setEmpresa_fk((Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8));
             
+            FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+            feDAO.excluir(fe);
+            
+            preencherTabela();
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -486,16 +576,70 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         int opcao = tbListFuncionariosEmpresa.getSelectedRow();
 
         if(opcao >= 0){
+            txtCadId.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 0).toString());
+            txtCadNome.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 1).toString());
+            txtCadCpf.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 2).toString());
+            txtCadtRg.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 3).toString());
+            txtCadFormacao.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 4).toString());
+            cbCargo.setSelectedItem(tbListFuncionariosEmpresa.getValueAt(opcao, 5).toString());
+            txtCadDataNasc.setText(tbListFuncionariosEmpresa.getValueAt(opcao, 6).toString());
+            String sexo = tbListFuncionariosEmpresa.getValueAt(opcao, 7).toString();
+            if(sexo.equals(radCadFeminino.getText())){
+                radCadFeminino.setSelected(true);
+            }else if(sexo.equals(radCadMasculino.getText())){
+                radCadMasculino.setSelected(true);
+            }
+            Empresa emp = (Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8);
+            cbEmpresa.setSelectedItem(emp);
+            System.out.println("Nome combobox: "+cbEmpresa.getItemAt(0));
+            System.out.println("Nome tabela: "+tbListFuncionariosEmpresa.getValueAt(opcao, 8));
             
+            tabFuncionarioEmpresa.setSelectedIndex(0);
+            
+            btCadAtualizar.setVisible(true);
+            btCadSalvar.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
     }//GEN-LAST:event_btListEditarActionPerformed
 
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        
-    }//GEN-LAST:event_btListNovoActionPerformed
+        txtCadId.setText("");
+        txtCadNome.setText("");
+        txtCadCpf.setText("");
+        txtCadtRg.setText("");
+        txtCadDataNasc.setText("");
+        txtCadFormacao.setText("");
+        radCadFeminino.setSelected(true);
+        cbCargo.setSelectedIndex(-1);
+        cbEmpresa.setSelectedIndex(-1);
 
+        btCadAtualizar.setVisible(false);
+        btCadSalvar.setVisible(true);
+
+        tabFuncionarioEmpresa.setSelectedIndex(0);
+    }//GEN-LAST:event_btListNovoActionPerformed
+    
+    // Método para preencher a tabela de FuncionarioEmpresa
+    private void preencherTabela(){
+        FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+        List<FuncionarioEmpresa> listaFuncionariosEmp = feDAO.listarTodos();
+        DefaultTableModel modeloTbFuncionariosEmp = (DefaultTableModel) tbListFuncionariosEmpresa.getModel();
+        modeloTbFuncionariosEmp.setRowCount(0);
+        listaFuncionariosEmp.forEach((fe) -> {
+            modeloTbFuncionariosEmp.addRow(new Object[] {fe.getId_funcionarioEmp(), fe.getNome(), fe.getCpf(), fe.getRg(), fe.getFormacao(), fe.getCargo(), fe.getDatanasc(), fe.getSexo(), fe.getEmpresa_fk()});
+        });
+    }
+    
+    private void preencherCb(){
+        EmpresaDAO eDAO = new EmpresaDAO();
+        List<Empresa> listaEmpresas = eDAO.listarTodos();
+
+        for(Empresa e: listaEmpresas){
+            cbEmpresa.addItem(e);
+        }
+        cbEmpresa.setSelectedIndex(-1);
+    }
     /**
      * @param args the command line arguments
      */
@@ -540,7 +684,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JComboBox<String> cbCargo;
-    private javax.swing.JComboBox<String> cbEmpresa;
+    private javax.swing.JComboBox cbEmpresa;
+    private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

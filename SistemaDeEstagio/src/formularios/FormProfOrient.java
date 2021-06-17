@@ -74,7 +74,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabProfOrient.setBackground(new java.awt.Color(54, 54, 54));
         tabProfOrient.setForeground(new java.awt.Color(54, 54, 54));

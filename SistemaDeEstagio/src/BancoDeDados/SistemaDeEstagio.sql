@@ -36,7 +36,7 @@ datanasc varchar(15) not null,
 sexo varchar(20) not null,
 senha varchar(300) not null
 );
-
+insert into Funcionario values(null, "ADMIN", "000.000.000-00", "00000", "admin", "00/00/0000", "admin", MD5("systemestagioifro123456"));
 create table ProfessorOrientador(
 id int not null primary key auto_increment,
 nome varchar(100) not null,
@@ -79,4 +79,5 @@ on update cascade
 on delete restrict
 );
 
-select * from Funcionario;
+
+select * from FuncionarioEmpresa;

@@ -74,7 +74,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabFuncionario.setBackground(new java.awt.Color(54, 54, 54));
         tabFuncionario.setForeground(new java.awt.Color(54, 54, 54));

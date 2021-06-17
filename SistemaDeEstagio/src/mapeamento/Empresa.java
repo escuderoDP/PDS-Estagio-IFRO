@@ -55,6 +55,5 @@ public class Empresa {
     public void setHorarioFunc(String horarioFunc) {
         this.horarioFunc = horarioFunc;
     }
-    
-    
+
 }
