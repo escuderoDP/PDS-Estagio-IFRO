@@ -43,7 +43,7 @@ public class FormLogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        ckExibirSenha = new javax.swing.JCheckBox();
         txtCpf = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -113,10 +113,15 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("Senha.:");
 
-        jCheckBox1.setBackground(new java.awt.Color(40, 40, 40));
-        jCheckBox1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Exibir Senha");
+        ckExibirSenha.setBackground(new java.awt.Color(40, 40, 40));
+        ckExibirSenha.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        ckExibirSenha.setForeground(new java.awt.Color(255, 255, 255));
+        ckExibirSenha.setText("Exibir Senha");
+        ckExibirSenha.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ckExibirSenhaStateChanged(evt);
+            }
+        });
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -152,7 +157,7 @@ public class FormLogin extends javax.swing.JFrame {
                                 .addComponent(txtSenha)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(19, 19, 19)
-                                    .addComponent(jCheckBox1))
+                                    .addComponent(ckExibirSenha))
                                 .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(74, 74, 74))))
         );
@@ -170,7 +175,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
+                .addComponent(ckExibirSenha)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
@@ -229,6 +234,14 @@ public class FormLogin extends javax.swing.JFrame {
         logar();
     }//GEN-LAST:event_txtSenhaActionPerformed
 
+    private void ckExibirSenhaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ckExibirSenhaStateChanged
+        if(ckExibirSenha.isSelected()){
+            txtSenha.setEchoChar('\u0000');
+        }else{
+            txtSenha.setEchoChar('*');
+        }
+    }//GEN-LAST:event_ckExibirSenhaStateChanged
+
     private void logar(){
         FuncionarioDAO fDAO = new FuncionarioDAO();
         Funcionario f = fDAO.login(txtCpf.getText(), "systemestagioifro"+txtSenha.getText());
@@ -278,7 +291,7 @@ public class FormLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btLogar;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox ckExibirSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel42;

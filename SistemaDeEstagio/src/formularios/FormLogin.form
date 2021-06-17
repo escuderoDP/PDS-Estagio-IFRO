@@ -145,7 +145,7 @@
                                       <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ckExibirSenha" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="txtCpf" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
                                   </Group>
@@ -170,7 +170,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtSenha" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="ckExibirSenha" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -244,7 +244,7 @@
                 <Property name="text" type="java.lang.String" value="Senha.:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="ckExibirSenha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="28" green="28" red="28" type="rgb"/>
@@ -257,6 +257,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exibir Senha"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="ckExibirSenhaStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCpf">
               <Properties>

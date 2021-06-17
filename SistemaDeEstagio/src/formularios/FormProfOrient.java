@@ -61,7 +61,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtCadFormacao = new javax.swing.JTextField();
         txtCadSenha = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        ckExibirSenha = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -194,10 +194,15 @@ public class FormProfOrient extends javax.swing.JFrame {
 
         txtCadFormacao.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
 
-        jCheckBox1.setBackground(new java.awt.Color(54, 54, 54));
-        jCheckBox1.setFont(new java.awt.Font("Courier New", 1, 20)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Exibir Senha");
+        ckExibirSenha.setBackground(new java.awt.Color(54, 54, 54));
+        ckExibirSenha.setFont(new java.awt.Font("Courier New", 1, 20)); // NOI18N
+        ckExibirSenha.setForeground(new java.awt.Color(255, 255, 255));
+        ckExibirSenha.setText("Exibir Senha");
+        ckExibirSenha.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ckExibirSenhaStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -258,7 +263,7 @@ public class FormProfOrient extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addComponent(txtCadSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(41, 41, 41)
-                                        .addComponent(jCheckBox1)))))))
+                                        .addComponent(ckExibirSenha)))))))
                 .addGap(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(
@@ -292,7 +297,7 @@ public class FormProfOrient extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtCadSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(ckExibirSenha))
                 .addGap(53, 53, 53)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -596,6 +601,14 @@ public class FormProfOrient extends javax.swing.JFrame {
 
         tabProfOrient.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
+
+    private void ckExibirSenhaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ckExibirSenhaStateChanged
+       if(ckExibirSenha.isSelected()){
+            txtCadSenha.setEchoChar('\u0000');
+        }else{
+            txtCadSenha.setEchoChar('*');
+        }
+    }//GEN-LAST:event_ckExibirSenhaStateChanged
     
     // Método para preencher a tabela de Alunos
     public void preencherTabela(){
@@ -650,8 +663,8 @@ public class FormProfOrient extends javax.swing.JFrame {
     private javax.swing.JButton btListExcluir;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
+    private javax.swing.JCheckBox ckExibirSenha;
     private javax.swing.ButtonGroup groupSexo;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
