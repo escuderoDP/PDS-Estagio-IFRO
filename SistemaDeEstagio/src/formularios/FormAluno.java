@@ -6,10 +6,13 @@
 package formularios;
 
 import dao.AlunoDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Aluno;
+import utilitario.Validacoes;
 
 /**
  *
@@ -473,58 +476,95 @@ public class FormAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        String sexo = radCadFeminino.getText();
-        Aluno a = new Aluno();
-        a.setNome(txtCadNome.getText());
-        a.setCpf(txtCadCpf.getText());
-        a.setRg(txtCadtRg.getText());
-        a.setTelefone(txtCadTelefone.getText());
-        a.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
+        
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        txtCadCpf.setName("cpf");
+        txtCadDataNasc.setName("data");
+        txtCadTelefone.setName("telefone");
+        array.add(txtCadNome);
+        array.add(txtCadCpf);
+        array.add(txtCadtRg);
+        array.add(txtCadTelefone);
+        array.add(txtCadDataNasc);
+        array.add(txtCadTurma);
+        
+        String result = v.validarCampos(array);
+        if(result.equals("valido")){
+            String sexo = radCadFeminino.getText();
+            Aluno a = new Aluno();
+            a.setNome(txtCadNome.getText());
+            a.setCpf(txtCadCpf.getText());
+            a.setRg(txtCadtRg.getText());
+            a.setTelefone(txtCadTelefone.getText());
+            a.setDatanasc(txtCadDataNasc.getText());
+            if(radCadFeminino.isSelected()){
+                sexo = radCadFeminino.getText();
+            }else if(radCadMasculino.isSelected()){
+                sexo = radCadMasculino.getText();
+            }
+            a.setSexo(sexo);
+            a.setTurma(txtCadTurma.getText());
+
+            AlunoDAO aDAO = new AlunoDAO();
+
+            aDAO.cadastrar(a);
+
+            preencherTabela();
+            tabAluno.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, result);
         }
-        a.setSexo(sexo);
-        a.setTurma(txtCadTurma.getText());
         
-        AlunoDAO aDAO = new AlunoDAO();
         
-        aDAO.cadastrar(a);
-        
-        preencherTabela();
-        tabAluno.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        String sexo = radCadFeminino.getText();
-        Aluno a = new Aluno();
-        a.setId_aluno(Integer.parseInt(txtCadId.getText()));
-        a.setNome(txtCadNome.getText());
-        a.setCpf(txtCadCpf.getText());
-        a.setRg(txtCadtRg.getText());
-        a.setTelefone(txtCadTelefone.getText());
-        a.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        txtCadCpf.setName("cpf");
+        txtCadDataNasc.setName("data");
+        txtCadTelefone.setName("telefone");
+        array.add(txtCadNome);
+        array.add(txtCadCpf);
+        array.add(txtCadtRg);
+        array.add(txtCadTelefone);
+        array.add(txtCadDataNasc);
+        array.add(txtCadTurma);
+        
+        String result = v.validarCampos(array);
+        if(result.equals("valido")){
+            String sexo = radCadFeminino.getText();
+            Aluno a = new Aluno();
+            a.setId_aluno(Integer.parseInt(txtCadId.getText()));
+            a.setNome(txtCadNome.getText());
+            a.setCpf(txtCadCpf.getText());
+            a.setRg(txtCadtRg.getText());
+            a.setTelefone(txtCadTelefone.getText());
+            a.setDatanasc(txtCadDataNasc.getText());
+            if(radCadFeminino.isSelected()){
+                sexo = radCadFeminino.getText();
+            }else if(radCadMasculino.isSelected()){
+                sexo = radCadMasculino.getText();
+            }
+            a.setSexo(sexo);
+            a.setTurma(txtCadTurma.getText());
+
+            AlunoDAO aDAO = new AlunoDAO();
+
+            aDAO.atualizar(a);
+
+            preencherTabela();
+
+            btCadAtualizar.setVisible(false);
+            btCadSalvar.setVisible(true);
+
+            tabAluno.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, result);
         }
-        a.setSexo(sexo);
-        a.setTurma(txtCadTurma.getText());
-        
-        AlunoDAO aDAO = new AlunoDAO();
-        
-        aDAO.atualizar(a);
-        
-        preencherTabela();
-        
-        btCadAtualizar.setVisible(false);
-        btCadSalvar.setVisible(true);
-        
-        tabAluno.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed

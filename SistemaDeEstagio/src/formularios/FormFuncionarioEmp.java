@@ -486,7 +486,6 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         }
         fe.setSexo(sexo);
         fe.setCargo((String) cbCargo.getSelectedItem());
-        System.out.println(cbEmpresa.getSelectedItem());
         fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
 
         
@@ -589,10 +588,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
             }else if(sexo.equals(radCadMasculino.getText())){
                 radCadMasculino.setSelected(true);
             }
-            Empresa emp = (Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8);
-            cbEmpresa.setSelectedItem(emp);
-            System.out.println("Nome combobox: "+cbEmpresa.getItemAt(0));
-            System.out.println("Nome tabela: "+tbListFuncionariosEmpresa.getValueAt(opcao, 8));
+            cbEmpresa.setSelectedItem((Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8));
             
             tabFuncionarioEmpresa.setSelectedIndex(0);
             
