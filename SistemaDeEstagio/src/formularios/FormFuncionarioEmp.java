@@ -65,6 +65,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         cbEmpresa = new javax.swing.JComboBox();
         cbCargo = new javax.swing.JComboBox<>();
+        cbEmpresaHide = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -207,6 +208,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         cbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Representante", "Supervisor", " " }));
         cbCargo.setSelectedIndex(-1);
 
+        cbEmpresaHide.setFocusable(false);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -265,7 +268,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(114, 114, 114)
-                                        .addComponent(cbCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(cbCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cbEmpresaHide, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +301,9 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                     .addComponent(txtCadFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(cbEmpresaHide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(radCadFeminino)
                         .addComponent(radCadMasculino)))
@@ -513,7 +519,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
             sexo = radCadMasculino.getText();
         }
         fe.setSexo(sexo);
-        fe.setFormacao((String) cbCargo.getSelectedItem());
+        fe.setCargo((String) cbCargo.getSelectedItem());
         fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
         
         FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
@@ -588,7 +594,11 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
             }else if(sexo.equals(radCadMasculino.getText())){
                 radCadMasculino.setSelected(true);
             }
-            cbEmpresa.setSelectedItem((Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8));
+            Empresa emp = (Empresa) tbListFuncionariosEmpresa.getValueAt(opcao, 8);
+            cbEmpresaHide.setSelectedItem(emp.getNome());
+            int index = cbEmpresaHide.getSelectedIndex();
+            cbEmpresa.setSelectedIndex(index);
+            
             
             tabFuncionarioEmpresa.setSelectedIndex(0);
             
@@ -628,13 +638,16 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     }
     
     private void preencherCb(){
+        cbEmpresaHide.setVisible(false);
         EmpresaDAO eDAO = new EmpresaDAO();
         List<Empresa> listaEmpresas = eDAO.listarTodos();
 
         for(Empresa e: listaEmpresas){
             cbEmpresa.addItem(e);
+            cbEmpresaHide.addItem(e.getNome());
         }
         cbEmpresa.setSelectedIndex(-1);
+        cbEmpresaHide.setSelectedIndex(-1);
     }
     /**
      * @param args the command line arguments
@@ -681,6 +694,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JComboBox<String> cbCargo;
     private javax.swing.JComboBox cbEmpresa;
+    private javax.swing.JComboBox<String> cbEmpresaHide;
     private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

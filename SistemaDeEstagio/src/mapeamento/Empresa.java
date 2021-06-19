@@ -56,4 +56,10 @@ public class Empresa {
         this.horarioFunc = horarioFunc;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+
 }

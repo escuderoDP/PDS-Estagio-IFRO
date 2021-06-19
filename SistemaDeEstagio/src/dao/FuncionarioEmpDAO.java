@@ -59,7 +59,7 @@ public class FuncionarioEmpDAO {
         Connection con = Conectar.getConectar();
         
         // Sql para atualizar
-        String sql = "UPDATE FuncionarioEmpresa SET nome = ?, cpf = ?, rg = ?, formacao = ?, cargo = ? datanasc = ?, sexo = ?, empresa_fk = ? WHERE id = ?;";
+        String sql = "UPDATE FuncionarioEmpresa SET nome = ?, cpf = ?, rg = ?, formacao = ?, cargo = ?, datanasc = ?, sexo = ?, empresa_fk = ? WHERE id = ?;";
         
         // Preparação de statement
         try(PreparedStatement stm = con.prepareStatement(sql)){
