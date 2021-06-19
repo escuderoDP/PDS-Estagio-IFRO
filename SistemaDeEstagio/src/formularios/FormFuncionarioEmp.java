@@ -78,7 +78,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tabFuncionarioEmpresa.setBackground(new java.awt.Color(54, 54, 54));
         tabFuncionarioEmpresa.setForeground(new java.awt.Color(54, 54, 54));
@@ -475,6 +476,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed

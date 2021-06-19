@@ -491,7 +491,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btEmpresasActionPerformed
 
     private void btEstágiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEstágiosActionPerformed
-        // TODO add your handling code here:
+        FormEstagio form = new FormEstagio();
+        form.setVisible(true);
     }//GEN-LAST:event_btEstágiosActionPerformed
 
     private void btRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatoriosActionPerformed
@@ -504,7 +505,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btProfOrientActionPerformed
 
     private void btFuncEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFuncEmpresaActionPerformed
-        // TODO add your handling code here:
+        FormFuncionarioEmp form = new FormFuncionarioEmp();
+        form.setVisible(true);
     }//GEN-LAST:event_btFuncEmpresaActionPerformed
 
     private void itemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAlunoActionPerformed

@@ -75,6 +75,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         btListNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tabProfOrient.setBackground(new java.awt.Color(54, 54, 54));
         tabProfOrient.setForeground(new java.awt.Color(54, 54, 54));

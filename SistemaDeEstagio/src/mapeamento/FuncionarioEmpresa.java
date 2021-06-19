@@ -92,5 +92,11 @@ public class FuncionarioEmpresa {
     public void setEmpresa_fk(Empresa empresa_fk) {
         this.empresa_fk = empresa_fk;
     }    
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
+    
     
 }
