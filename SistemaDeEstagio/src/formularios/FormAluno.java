@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Aluno;
+import utilitario.Aparencia;
 import utilitario.Validacoes;
 
 /**
@@ -27,6 +29,8 @@ public class FormAluno extends javax.swing.JFrame {
         initComponents();
         preencherTabela();
         btCadAtualizar.setVisible(false);
+        Aparencia.temaPrincipal(this);
+        hideColumns();
     }
 
     /**
@@ -57,18 +61,20 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCadDataNasc = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        radCadFeminino = new javax.swing.JRadioButton();
-        radCadMasculino = new javax.swing.JRadioButton();
         btCadSalvar = new javax.swing.JButton();
         btCadAtualizar = new javax.swing.JButton();
         btCadCancelar = new javax.swing.JButton();
         txtCadTurma = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        radCadFeminino = new javax.swing.JRadioButton();
+        radCadMasculino = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtListPesquisa = new javax.swing.JTextField();
         btListPesquisa = new javax.swing.JButton();
+        btListLimpar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListAlunos = new javax.swing.JTable();
@@ -81,7 +87,7 @@ public class FormAluno extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
 
-        tabAluno.setBackground(new java.awt.Color(54, 54, 54));
+        tabAluno.setBackground(new java.awt.Color(255, 255, 255));
         tabAluno.setForeground(new java.awt.Color(54, 54, 54));
         tabAluno.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         tabAluno.setPreferredSize(new java.awt.Dimension(700, 500));
@@ -166,19 +172,6 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Sexo.:");
 
-        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadFeminino);
-        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadFeminino.setSelected(true);
-        radCadFeminino.setText("Feminino");
-
-        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadMasculino);
-        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadMasculino.setText("Masculino");
-
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +199,38 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Turma.:");
 
+        jPanel8.setBackground(new java.awt.Color(54, 54, 54));
+
+        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
+        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadFeminino.setSelected(true);
+        radCadFeminino.setText("Feminino");
+
+        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
+        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadMasculino.setText("Masculino");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(radCadFeminino)
+                .addComponent(radCadMasculino))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -221,19 +246,22 @@ public class FormAluno extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCadCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                    .addComponent(txtCadtRg))
-                                .addGap(34, 34, 34)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtCadCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                            .addComponent(txtCadtRg))
+                                        .addGap(34, 34, 34)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,22 +271,13 @@ public class FormAluno extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCadId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))
+                        .addGap(80, 80, 80)
+                        .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel10)
@@ -287,13 +306,11 @@ public class FormAluno extends javax.swing.JFrame {
                     .addComponent(txtCadtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radCadFeminino)
-                        .addComponent(radCadMasculino)))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCadTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -331,7 +348,9 @@ public class FormAluno extends javax.swing.JFrame {
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
 
-        btListPesquisa.setText("...");
+        btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+
+        btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -341,17 +360,25 @@ public class FormAluno extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
@@ -365,7 +392,7 @@ public class FormAluno extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "RG", "DATA NASC", "TELEFONE", "SEXO", "TURMA"
+                "ID", "NOME", "CPF", "RG", "DATA NASC", "TELEFONE", "SEXO", "TURMA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -376,11 +403,11 @@ public class FormAluno extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbListAlunos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbListAlunos);
         if (tbListAlunos.getColumnModel().getColumnCount() > 0) {
             tbListAlunos.getColumnModel().getColumn(0).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(0).setPreferredWidth(15);
-            tbListAlunos.getColumnModel().getColumn(1).setResizable(false);
+            tbListAlunos.getColumnModel().getColumn(0).setPreferredWidth(35);
             tbListAlunos.getColumnModel().getColumn(1).setPreferredWidth(150);
             tbListAlunos.getColumnModel().getColumn(2).setResizable(false);
             tbListAlunos.getColumnModel().getColumn(2).setPreferredWidth(100);
@@ -389,7 +416,6 @@ public class FormAluno extends javax.swing.JFrame {
             tbListAlunos.getColumnModel().getColumn(4).setResizable(false);
             tbListAlunos.getColumnModel().getColumn(5).setResizable(false);
             tbListAlunos.getColumnModel().getColumn(6).setResizable(false);
-            tbListAlunos.getColumnModel().getColumn(7).setResizable(false);
         }
 
         btListExcluir.setText("EXCLUIR");
@@ -662,34 +688,22 @@ public class FormAluno extends javax.swing.JFrame {
             modeloTbAlunos.addRow(new Object[] {a.getId_aluno(), a.getNome(), a.getCpf(), a.getRg(), a.getDatanasc(), a.getTelefone(), a.getSexo(), a.getTurma()});
         });
     }
+    
+    public void hideColumns(){
+        tbListAlunos.getColumnModel().getColumn(3).setMinWidth(0);
+        tbListAlunos.getColumnModel().getColumn(3).setMaxWidth(0);
+        tbListAlunos.getColumnModel().getColumn(5).setMinWidth(0);
+        tbListAlunos.getColumnModel().getColumn(5).setMaxWidth(0);
+        tbListAlunos.getColumnModel().getColumn(6).setMinWidth(0);
+        tbListAlunos.getColumnModel().getColumn(6).setMaxWidth(0);
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+        
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormAluno().setVisible(true);
@@ -703,6 +717,7 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JButton btCadSalvar;
     private javax.swing.JButton btListEditar;
     private javax.swing.JButton btListExcluir;
+    private javax.swing.JButton btListLimpar;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.ButtonGroup groupSexo;
@@ -722,6 +737,7 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radCadFeminino;
     private javax.swing.JRadioButton radCadMasculino;

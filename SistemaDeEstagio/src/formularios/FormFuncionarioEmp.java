@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Empresa;
 import mapeamento.FuncionarioEmpresa;
+import utilitario.Aparencia;
 
 /**
  *
@@ -26,6 +27,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         initComponents();
         preencherCb();
         preencherTabela();
+        Aparencia.temaPrincipal(this);
+        hideColumns();
     }
 
     /**
@@ -55,8 +58,6 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCadDataNasc = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        radCadFeminino = new javax.swing.JRadioButton();
-        radCadMasculino = new javax.swing.JRadioButton();
         btCadSalvar = new javax.swing.JButton();
         btCadAtualizar = new javax.swing.JButton();
         btCadCancelar = new javax.swing.JButton();
@@ -66,11 +67,15 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         cbEmpresa = new javax.swing.JComboBox();
         cbCargo = new javax.swing.JComboBox<>();
         cbEmpresaHide = new javax.swing.JComboBox<>();
+        jPanel8 = new javax.swing.JPanel();
+        radCadFeminino = new javax.swing.JRadioButton();
+        radCadMasculino = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         txtListPesquisa = new javax.swing.JTextField();
         btListPesquisa = new javax.swing.JButton();
+        btListLimpar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListFuncionariosEmpresa = new javax.swing.JTable();
@@ -81,7 +86,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        tabFuncionarioEmpresa.setBackground(new java.awt.Color(54, 54, 54));
+        tabFuncionarioEmpresa.setBackground(new java.awt.Color(255, 255, 255));
         tabFuncionarioEmpresa.setForeground(new java.awt.Color(54, 54, 54));
         tabFuncionarioEmpresa.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         tabFuncionarioEmpresa.setPreferredSize(new java.awt.Dimension(700, 500));
@@ -159,19 +164,6 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Sexo.:");
 
-        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadFeminino);
-        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadFeminino.setSelected(true);
-        radCadFeminino.setText("Feminino");
-
-        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadMasculino);
-        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadMasculino.setText("Masculino");
-
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +203,38 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
 
         cbEmpresaHide.setFocusable(false);
 
+        jPanel8.setBackground(new java.awt.Color(54, 54, 54));
+
+        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
+        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadFeminino.setSelected(true);
+        radCadFeminino.setText("Feminino");
+
+        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
+        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadMasculino.setText("Masculino");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(radCadFeminino)
+                .addComponent(radCadMasculino))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -218,22 +242,13 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))
+                        .addGap(80, 80, 80)
+                        .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(62, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -270,7 +285,10 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                                         .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(114, 114, 114)
                                         .addComponent(cbCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(cbEmpresaHide, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(cbEmpresaHide, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,15 +318,13 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
                     .addComponent(txtCadFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
                         .addComponent(cbEmpresaHide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radCadFeminino)
-                        .addComponent(radCadMasculino)))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
@@ -342,14 +358,16 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
+        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+
+        btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+
+        btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
         jLabel9.setText("Pesquisar.:");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-
-        btListPesquisa.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -359,17 +377,25 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
@@ -394,7 +420,22 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbListFuncionariosEmpresa.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbListFuncionariosEmpresa);
+        if (tbListFuncionariosEmpresa.getColumnModel().getColumnCount() > 0) {
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(0).setResizable(false);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(1).setPreferredWidth(130);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(2).setResizable(false);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(2).setPreferredWidth(120);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(3).setResizable(false);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(5).setPreferredWidth(120);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(6).setResizable(false);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(7).setResizable(false);
+            tbListFuncionariosEmpresa.getColumnModel().getColumn(8).setPreferredWidth(100);
+        }
 
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -651,32 +692,20 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         cbEmpresa.setSelectedIndex(-1);
         cbEmpresaHide.setSelectedIndex(-1);
     }
+    
+    public void hideColumns(){
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(3).setMinWidth(0);
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(3).setMaxWidth(0);
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(6).setMinWidth(0);
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(6).setMaxWidth(0);
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(7).setMinWidth(0);
+        tbListFuncionariosEmpresa.getColumnModel().getColumn(7).setMaxWidth(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionarioEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionarioEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionarioEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionarioEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -692,6 +721,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     private javax.swing.JButton btCadSalvar;
     private javax.swing.JButton btListEditar;
     private javax.swing.JButton btListExcluir;
+    private javax.swing.JButton btListLimpar;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JComboBox<String> cbCargo;
@@ -715,6 +745,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radCadFeminino;
     private javax.swing.JRadioButton radCadMasculino;

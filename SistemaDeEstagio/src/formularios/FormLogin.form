@@ -198,6 +198,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btLogar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="ff" red="99" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Courier New" size="18" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="LOGAR"/>
               </Properties>
               <Events>
@@ -206,6 +212,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btCancelar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Courier New" size="18" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CANCELAR"/>
               </Properties>
               <Events>

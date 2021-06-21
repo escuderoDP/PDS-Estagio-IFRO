@@ -9,6 +9,7 @@ import dao.FuncionarioDAO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
+import utilitario.Aparencia;
 
 /**
  *
@@ -21,7 +22,7 @@ public class FormLogin extends javax.swing.JFrame {
      */
     public FormLogin() {
         initComponents();
-        this.setIconImage(new ImageIcon("icon.png").getImage());
+        Aparencia.temaPrincipal(this);
     }
 
     /**
@@ -84,6 +85,8 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel1.setText("LOGIN");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        btLogar.setBackground(new java.awt.Color(153, 255, 153));
+        btLogar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btLogar.setText("LOGAR");
         btLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +94,8 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(255, 102, 102));
+        btCancelar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCancelar.setText("CANCELAR");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,28 +262,6 @@ public class FormLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

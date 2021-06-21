@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Empresa;
+import utilitario.Aparencia;
 
 /**
  *
@@ -24,6 +25,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         initComponents();
         preencherTabela();
         btCadAtualizar.setVisible(false);
+        Aparencia.temaPrincipal(this);
     }
 
     /**
@@ -56,9 +58,10 @@ public class FormEmpresa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         txtListPesquisa = new javax.swing.JTextField();
         btListPesquisa = new javax.swing.JButton();
+        btListLimpar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListEmpresas = new javax.swing.JTable();
@@ -69,6 +72,8 @@ public class FormEmpresa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
+
+        tabEmpresa.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(2, 67, 63));
 
@@ -222,7 +227,7 @@ public class FormEmpresa extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtCadHorarioFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,14 +254,16 @@ public class FormEmpresa extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
+        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+
+        btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+
+        btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
         jLabel9.setText("Pesquisar.:");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-
-        btListPesquisa.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -266,17 +273,25 @@ public class FormEmpresa extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
@@ -301,7 +316,18 @@ public class FormEmpresa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbListEmpresas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbListEmpresas);
+        if (tbListEmpresas.getColumnModel().getColumnCount() > 0) {
+            tbListEmpresas.getColumnModel().getColumn(0).setResizable(false);
+            tbListEmpresas.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbListEmpresas.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tbListEmpresas.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tbListEmpresas.getColumnModel().getColumn(3).setResizable(false);
+            tbListEmpresas.getColumnModel().getColumn(3).setPreferredWidth(120);
+            tbListEmpresas.getColumnModel().getColumn(4).setResizable(false);
+            tbListEmpresas.getColumnModel().getColumn(4).setPreferredWidth(80);
+        }
 
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +370,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -500,33 +526,21 @@ public class FormEmpresa extends javax.swing.JFrame {
             modeloTbAlunos.addRow(new Object[] {e.getId_empresa(), e.getNome(), e.getCnpj(), e.getTelefone(), e.getHorarioFunc()});
         }
     }
+    
+    public void hideColumns(){
+        tbListEmpresas.getColumnModel().getColumn(3).setMinWidth(0);
+        tbListEmpresas.getColumnModel().getColumn(3).setMaxWidth(0);
+        tbListEmpresas.getColumnModel().getColumn(5).setMinWidth(0);
+        tbListEmpresas.getColumnModel().getColumn(5).setMaxWidth(0);
+        tbListEmpresas.getColumnModel().getColumn(6).setMinWidth(0);
+        tbListEmpresas.getColumnModel().getColumn(6).setMaxWidth(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -541,6 +555,7 @@ public class FormEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton btCadSalvar;
     private javax.swing.JButton btListEditar;
     private javax.swing.JButton btListExcluir;
+    private javax.swing.JButton btListLimpar;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JLabel jLabel1;

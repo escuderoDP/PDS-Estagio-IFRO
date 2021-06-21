@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Funcionario;
+import utilitario.Aparencia;
 
 /**
  *
@@ -24,6 +25,8 @@ public class FormFuncionario extends javax.swing.JFrame {
         initComponents();
         btCadAtualizar.setVisible(false);
         preencherTabela();
+        Aparencia.temaPrincipal(this);
+        hideColumns();
     }
 
     /**
@@ -36,6 +39,7 @@ public class FormFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         groupSexo = new javax.swing.ButtonGroup();
+        jPanel7 = new javax.swing.JPanel();
         tabFuncionario = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -53,8 +57,6 @@ public class FormFuncionario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCadDataNasc = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        radCadFeminino = new javax.swing.JRadioButton();
-        radCadMasculino = new javax.swing.JRadioButton();
         btCadSalvar = new javax.swing.JButton();
         btCadAtualizar = new javax.swing.JButton();
         btCadCancelar = new javax.swing.JButton();
@@ -62,11 +64,15 @@ public class FormFuncionario extends javax.swing.JFrame {
         txtCadFormacao = new javax.swing.JTextField();
         txtCadSenha = new javax.swing.JPasswordField();
         ckExibirSenha = new javax.swing.JCheckBox();
+        jPanel8 = new javax.swing.JPanel();
+        radCadFeminino = new javax.swing.JRadioButton();
+        radCadMasculino = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         txtListPesquisa = new javax.swing.JTextField();
         btListPesquisa = new javax.swing.JButton();
+        btListLimpar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListFuncionarios = new javax.swing.JTable();
@@ -74,9 +80,20 @@ public class FormFuncionario extends javax.swing.JFrame {
         btListEditar = new javax.swing.JButton();
         btListNovo = new javax.swing.JButton();
 
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tabFuncionario.setBackground(new java.awt.Color(54, 54, 54));
+        tabFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         tabFuncionario.setForeground(new java.awt.Color(54, 54, 54));
         tabFuncionario.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         tabFuncionario.setPreferredSize(new java.awt.Dimension(700, 500));
@@ -154,19 +171,6 @@ public class FormFuncionario extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Sexo.:");
 
-        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadFeminino);
-        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadFeminino.setSelected(true);
-        radCadFeminino.setText("Feminino");
-
-        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
-        groupSexo.add(radCadMasculino);
-        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        radCadMasculino.setText("Masculino");
-
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +208,38 @@ public class FormFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(54, 54, 54));
+
+        radCadFeminino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadFeminino);
+        radCadFeminino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadFeminino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadFeminino.setSelected(true);
+        radCadFeminino.setText("Feminino");
+
+        radCadMasculino.setBackground(new java.awt.Color(54, 54, 54));
+        groupSexo.add(radCadMasculino);
+        radCadMasculino.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        radCadMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        radCadMasculino.setText("Masculino");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(radCadFeminino)
+                .addComponent(radCadMasculino))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -211,22 +247,13 @@ public class FormFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(radCadFeminino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radCadMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))
+                        .addGap(80, 80, 80)
+                        .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap(49, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -246,24 +273,26 @@ public class FormFuncionario extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtCadCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                            .addComponent(txtCadtRg))
-                                        .addGap(34, 34, 34)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCadFormacao))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(txtCadSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(ckExibirSenha)))))))
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtCadCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                                .addComponent(txtCadtRg))
+                                            .addGap(34, 34, 34)
+                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                    .addComponent(jLabel4)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtCadDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                                    .addComponent(jLabel6)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtCadFormacao))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                            .addComponent(txtCadSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(41, 41, 41)
+                                            .addComponent(ckExibirSenha)))
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(
@@ -287,13 +316,11 @@ public class FormFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
                     .addComponent(txtCadFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radCadFeminino)
-                        .addComponent(radCadMasculino)))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtCadSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,21 +345,23 @@ public class FormFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 482, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabFuncionario.addTab("Cadastro", jPanel1);
 
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
+        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+
+        btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+
+        btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
         jLabel9.setText("Pesquisar.:");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-
-        btListPesquisa.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -342,17 +371,25 @@ public class FormFuncionario extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
@@ -378,6 +415,18 @@ public class FormFuncionario extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbListFuncionarios);
+        if (tbListFuncionarios.getColumnModel().getColumnCount() > 0) {
+            tbListFuncionarios.getColumnModel().getColumn(0).setResizable(false);
+            tbListFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tbListFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(130);
+            tbListFuncionarios.getColumnModel().getColumn(2).setResizable(false);
+            tbListFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(130);
+            tbListFuncionarios.getColumnModel().getColumn(3).setResizable(false);
+            tbListFuncionarios.getColumnModel().getColumn(4).setResizable(false);
+            tbListFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tbListFuncionarios.getColumnModel().getColumn(5).setResizable(false);
+            tbListFuncionarios.getColumnModel().getColumn(6).setPreferredWidth(100);
+        }
 
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -623,33 +672,18 @@ public class FormFuncionario extends javax.swing.JFrame {
         });
     }
     
+    public void hideColumns(){
+        tbListFuncionarios.getColumnModel().getColumn(3).setMinWidth(0);
+        tbListFuncionarios.getColumnModel().getColumn(3).setMaxWidth(0);
+        tbListFuncionarios.getColumnModel().getColumn(5).setMinWidth(0);
+        tbListFuncionarios.getColumnModel().getColumn(5).setMaxWidth(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -664,6 +698,7 @@ public class FormFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btCadSalvar;
     private javax.swing.JButton btListEditar;
     private javax.swing.JButton btListExcluir;
+    private javax.swing.JButton btListLimpar;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JCheckBox ckExibirSenha;
@@ -684,6 +719,8 @@ public class FormFuncionario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radCadFeminino;
     private javax.swing.JRadioButton radCadMasculino;

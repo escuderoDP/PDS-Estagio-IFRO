@@ -38,7 +38,6 @@ public class AlunoDAO {
             stm.setString(5, a.getDatanasc());
             stm.setString(6, a.getSexo());
             stm.setString(7, a.getTurma());
-
             
             // Executando cadastro
             stm.executeUpdate();

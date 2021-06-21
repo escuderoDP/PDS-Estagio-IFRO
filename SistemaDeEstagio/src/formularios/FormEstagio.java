@@ -16,6 +16,7 @@ import mapeamento.Aluno;
 import mapeamento.Estagio;
 import mapeamento.FuncionarioEmpresa;
 import mapeamento.ProfOrient;
+import utilitario.Aparencia;
 
 /**
  *
@@ -30,6 +31,8 @@ public class FormEstagio extends javax.swing.JFrame {
         initComponents();
         preencherCb();
         preencherTabela();
+        Aparencia.temaPrincipal(this);
+        hideColumns();
     }
 
     /**
@@ -64,9 +67,10 @@ public class FormEstagio extends javax.swing.JFrame {
         cbSituacao = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         txtListPesquisa = new javax.swing.JTextField();
         btListPesquisa = new javax.swing.JButton();
+        btListLimpar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListEstagio = new javax.swing.JTable();
@@ -77,7 +81,7 @@ public class FormEstagio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        tabEstagio.setBackground(new java.awt.Color(54, 54, 54));
+        tabEstagio.setBackground(new java.awt.Color(255, 255, 255));
         tabEstagio.setForeground(new java.awt.Color(54, 54, 54));
         tabEstagio.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         tabEstagio.setPreferredSize(new java.awt.Dimension(700, 500));
@@ -263,14 +267,16 @@ public class FormEstagio extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
+        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+
+        btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+
+        btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
         jLabel9.setText("Pesquisar.:");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
-
-        btListPesquisa.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -280,17 +286,25 @@ public class FormEstagio extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtListPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btListLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBackground(new java.awt.Color(54, 54, 54));
@@ -319,14 +333,13 @@ public class FormEstagio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbListEstagio);
         if (tbListEstagio.getColumnModel().getColumnCount() > 0) {
             tbListEstagio.getColumnModel().getColumn(0).setResizable(false);
-            tbListEstagio.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tbListEstagio.getColumnModel().getColumn(1).setResizable(false);
+            tbListEstagio.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tbListEstagio.getColumnModel().getColumn(1).setPreferredWidth(130);
             tbListEstagio.getColumnModel().getColumn(2).setResizable(false);
+            tbListEstagio.getColumnModel().getColumn(2).setPreferredWidth(130);
             tbListEstagio.getColumnModel().getColumn(3).setResizable(false);
             tbListEstagio.getColumnModel().getColumn(3).setPreferredWidth(120);
-            tbListEstagio.getColumnModel().getColumn(4).setResizable(false);
-            tbListEstagio.getColumnModel().getColumn(4).setPreferredWidth(70);
-            tbListEstagio.getColumnModel().getColumn(5).setResizable(false);
+            tbListEstagio.getColumnModel().getColumn(4).setPreferredWidth(100);
             tbListEstagio.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
@@ -413,42 +426,70 @@ public class FormEstagio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        Estagio est = new Estagio();
-        
-        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
-        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
-        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
-        est.setSituacao((String) cbSituacao.getSelectedItem());
-        
-        EstagioDAO estDAO = new EstagioDAO();
-        
-        estDAO.cadastrar(est);
-        
-        preencherTabela();
-        tabEstagio.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
-    }//GEN-LAST:event_btCadSalvarActionPerformed
+    private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
+        txtCadId.setText("");
+        cbSituacao.setSelectedIndex(-1);
+        cbAluno.setSelectedIndex(-1);
+        cbProfOrient.setSelectedIndex(-1);
+        cbSupervisor.setSelectedIndex(-1);
 
-    private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        Estagio est = new Estagio();
-        est.setId(Integer.parseInt(txtCadId.getText()));
-        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
-        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
-        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
-        est.setSituacao((String) cbSituacao.getSelectedItem());
-        
-        EstagioDAO estDAO = new EstagioDAO();
-        
-        estDAO.atualizar(est);
-        
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
-        
-        preencherTabela();
-        tabEstagio.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
-    }//GEN-LAST:event_btCadAtualizarActionPerformed
+
+        tabEstagio.setSelectedIndex(0);
+    }//GEN-LAST:event_btListNovoActionPerformed
+
+    private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
+        int opcao = tbListEstagio.getSelectedRow();
+
+        if(opcao >= 0){
+            txtCadId.setText(tbListEstagio.getValueAt(opcao, 0).toString());
+            Aluno a = (Aluno) tbListEstagio.getValueAt(opcao, 1);
+            FuncionarioEmpresa fe = (FuncionarioEmpresa) tbListEstagio.getValueAt(opcao, 2);
+            ProfOrient po = (ProfOrient) tbListEstagio.getValueAt(opcao, 3);
+            cbSituacao.setSelectedItem(tbListEstagio.getValueAt(opcao, 5).toString());
+
+            cbAlunoHide.setSelectedItem(a.getNome());
+            int index1 = cbAlunoHide.getSelectedIndex();
+            cbAluno.setSelectedIndex(index1);
+
+            cbSupervisorHide.setSelectedItem(fe.getNome());
+            int index2 = cbSupervisorHide.getSelectedIndex();
+            cbSupervisor.setSelectedIndex(index2);
+
+            cbProfOrientHide.setSelectedItem(po.getNome());
+            int index3 = cbProfOrientHide.getSelectedIndex();
+            cbProfOrient.setSelectedIndex(index3);
+
+            tabEstagio.setSelectedIndex(0);
+
+            btCadAtualizar.setVisible(true);
+            btCadSalvar.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
+        }
+    }//GEN-LAST:event_btListEditarActionPerformed
+
+    private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
+        int opcao = tbListEstagio.getSelectedRow();
+
+        if(opcao >= 0){
+            Estagio est = new Estagio();
+            est.setId(Integer.parseInt(tbListEstagio.getValueAt(opcao, 0).toString()));
+            est.setAluno_fk((Aluno) tbListEstagio.getValueAt(opcao, 1));
+            est.setFucionarioEmp_fk((FuncionarioEmpresa) tbListEstagio.getValueAt(opcao, 2));
+            est.setProfOrient_fk((ProfOrient) tbListEstagio.getValueAt(opcao, 3));
+            est.setSituacao(tbListEstagio.getValueAt(opcao, 5).toString());
+
+            EstagioDAO estDAO = new EstagioDAO();
+            estDAO.excluir(est);
+
+            preencherTabela();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
+        }
+    }//GEN-LAST:event_btListExcluirActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
         txtCadId.setText("");
@@ -463,70 +504,42 @@ public class FormEstagio extends javax.swing.JFrame {
         tabEstagio.setSelectedIndex(1);
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
-    private void btListExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListExcluirActionPerformed
-        int opcao = tbListEstagio.getSelectedRow();
+    private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
+        Estagio est = new Estagio();
+        est.setId(Integer.parseInt(txtCadId.getText()));
+        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
+        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
+        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
+        est.setSituacao((String) cbSituacao.getSelectedItem());
 
-        if(opcao >= 0){
-            Estagio est = new Estagio();
-            est.setId(Integer.parseInt(tbListEstagio.getValueAt(opcao, 0).toString()));
-            est.setAluno_fk((Aluno) tbListEstagio.getValueAt(opcao, 1));
-            est.setFucionarioEmp_fk((FuncionarioEmpresa) tbListEstagio.getValueAt(opcao, 2));
-            est.setProfOrient_fk((ProfOrient) tbListEstagio.getValueAt(opcao, 3));
-            est.setSituacao(tbListEstagio.getValueAt(opcao, 5).toString());
-            
-            EstagioDAO estDAO = new EstagioDAO();
-            estDAO.excluir(est);
-            
-            preencherTabela();
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
-        }
-    }//GEN-LAST:event_btListExcluirActionPerformed
+        EstagioDAO estDAO = new EstagioDAO();
 
-    private void btListEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListEditarActionPerformed
-        int opcao = tbListEstagio.getSelectedRow();
-
-        if(opcao >= 0){
-            txtCadId.setText(tbListEstagio.getValueAt(opcao, 0).toString());
-            Aluno a = (Aluno) tbListEstagio.getValueAt(opcao, 1);
-            FuncionarioEmpresa fe = (FuncionarioEmpresa) tbListEstagio.getValueAt(opcao, 2);
-            ProfOrient po = (ProfOrient) tbListEstagio.getValueAt(opcao, 3);
-            cbSituacao.setSelectedItem(tbListEstagio.getValueAt(opcao, 5).toString());
-            
-            cbAlunoHide.setSelectedItem(a.getNome());
-            int index1 = cbAlunoHide.getSelectedIndex();
-            cbAluno.setSelectedIndex(index1);
-            
-            cbSupervisorHide.setSelectedItem(fe.getNome());
-            int index2 = cbSupervisorHide.getSelectedIndex();
-            cbSupervisor.setSelectedIndex(index2);
-            
-            cbProfOrientHide.setSelectedItem(po.getNome());
-            int index3 = cbProfOrientHide.getSelectedIndex();
-            cbProfOrient.setSelectedIndex(index3);
-            
-            tabEstagio.setSelectedIndex(0);
-            
-            btCadAtualizar.setVisible(true);
-            btCadSalvar.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
-        }
-    }//GEN-LAST:event_btListEditarActionPerformed
-
-    private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        txtCadId.setText("");
-        cbSituacao.setSelectedIndex(-1);
-        cbAluno.setSelectedIndex(-1);
-        cbProfOrient.setSelectedIndex(-1);
-        cbSupervisor.setSelectedIndex(-1);
+        estDAO.atualizar(est);
 
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
 
-        tabEstagio.setSelectedIndex(0);
-    }//GEN-LAST:event_btListNovoActionPerformed
+        preencherTabela();
+        tabEstagio.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
+    }//GEN-LAST:event_btCadAtualizarActionPerformed
+
+    private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
+        Estagio est = new Estagio();
+
+        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
+        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
+        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
+        est.setSituacao((String) cbSituacao.getSelectedItem());
+
+        EstagioDAO estDAO = new EstagioDAO();
+
+        estDAO.cadastrar(est);
+
+        preencherTabela();
+        tabEstagio.setSelectedIndex(1);
+        btCadCancelarActionPerformed(evt);
+    }//GEN-LAST:event_btCadSalvarActionPerformed
     
     // Método para preencher a tabela deEstagios
     private void preencherTabela(){
@@ -572,32 +585,16 @@ public class FormEstagio extends javax.swing.JFrame {
         cbSupervisor.setSelectedIndex(-1);
         cbSupervisorHide.setSelectedIndex(-1);
     }
+    
+    public void hideColumns(){
+        tbListEstagio.getColumnModel().getColumn(3).setMinWidth(0);
+        tbListEstagio.getColumnModel().getColumn(3).setMaxWidth(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -613,6 +610,7 @@ public class FormEstagio extends javax.swing.JFrame {
     private javax.swing.JButton btCadSalvar;
     private javax.swing.JButton btListEditar;
     private javax.swing.JButton btListExcluir;
+    private javax.swing.JButton btListLimpar;
     private javax.swing.JButton btListNovo;
     private javax.swing.JButton btListPesquisa;
     private javax.swing.JComboBox cbAluno;
