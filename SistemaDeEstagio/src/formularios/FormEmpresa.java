@@ -23,7 +23,7 @@ public class FormEmpresa extends javax.swing.JFrame {
      */
     public FormEmpresa() {
         initComponents();
-        preencherTabela();
+        preencherTabela(null);
         btCadAtualizar.setVisible(false);
         Aparencia.temaPrincipal(this);
     }
@@ -255,10 +255,25 @@ public class FormEmpresa extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
@@ -423,7 +438,7 @@ public class FormEmpresa extends javax.swing.JFrame {
 
         eDAO.cadastrar(e);
 
-        preencherTabela();
+        preencherTabela(null);
         tabEmpresa.setSelectedIndex(1);
         
         btCadCancelarActionPerformed(evt);
@@ -441,7 +456,7 @@ public class FormEmpresa extends javax.swing.JFrame {
 
         eDAO.atualizar(e);
 
-        preencherTabela();
+        preencherTabela(null);
 
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
@@ -476,7 +491,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             EmpresaDAO eDAO = new EmpresaDAO();
             eDAO.excluir(e);
 
-            preencherTabela();
+            preencherTabela(null);
 
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
@@ -516,10 +531,25 @@ public class FormEmpresa extends javax.swing.JFrame {
 
         tabEmpresa.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+        preencherTabela(null);
+        txtListPesquisa.setText("");
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     // Método para preencher a tabela de Alunos
-    public void preencherTabela(){
+    public void preencherTabela(String busca){
         EmpresaDAO eDAO = new EmpresaDAO();
-        List<Empresa> listaEmpresas = eDAO.listarTodos();
+        List<Empresa> listaEmpresas = eDAO.listarTodos(busca);
         DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListEmpresas.getModel();
         modeloTbAlunos.setRowCount(0);
         for(Empresa e: listaEmpresas){

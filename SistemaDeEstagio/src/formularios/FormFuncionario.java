@@ -24,7 +24,7 @@ public class FormFuncionario extends javax.swing.JFrame {
     public FormFuncionario() {
         initComponents();
         btCadAtualizar.setVisible(false);
-        preencherTabela();
+        preencherTabela(null);
         Aparencia.temaPrincipal(this);
         hideColumns();
     }
@@ -92,6 +92,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tabFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         tabFuncionario.setForeground(new java.awt.Color(54, 54, 54));
@@ -353,10 +354,25 @@ public class FormFuncionario extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
@@ -531,7 +547,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         
         fDAO.cadastrar(f);
         
-        preencherTabela();
+        preencherTabela(null);
         tabFuncionario.setSelectedIndex(1);
         btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
@@ -557,7 +573,7 @@ public class FormFuncionario extends javax.swing.JFrame {
         
         fDAO.atualizar(f);
         
-        preencherTabela();
+        preencherTabela(null);
         
         txtCadSenha.setEditable(true);
         
@@ -603,7 +619,7 @@ public class FormFuncionario extends javax.swing.JFrame {
             FuncionarioDAO fDAO = new FuncionarioDAO();
             fDAO.excluir(f);
             
-            preencherTabela();
+            preencherTabela(null);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -660,11 +676,24 @@ public class FormFuncionario extends javax.swing.JFrame {
             txtCadSenha.setEchoChar('*');
         }
     }//GEN-LAST:event_ckExibirSenhaStateChanged
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+        preencherTabela(null);
+        txtListPesquisa.setText("");
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     
     // Método para preencher a tabela de Alunos
-    public void preencherTabela(){
+    public void preencherTabela(String busca){
         FuncionarioDAO fDAO = new FuncionarioDAO();
-        List<Funcionario> listaFuncionarios = fDAO.listarTodos();
+        List<Funcionario> listaFuncionarios = fDAO.listarTodos(busca);
         DefaultTableModel modeloTbFuncionarios = (DefaultTableModel) tbListFuncionarios.getModel();
         modeloTbFuncionarios.setRowCount(0);
         listaFuncionarios.forEach((f) -> {

@@ -123,15 +123,22 @@ public class FuncionarioDAO {
     }
     
     //Método para listar todos os funcionarios
-    public List<Funcionario> listarTodos(){
+    public List<Funcionario> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<Funcionario> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM Funcionario ORDER BY nome;";
+        String sql = "SELECT * FROM Funcionario ";
+        
+        if(busca != null && busca != ""){
+            sql += " WHERE nome LIKE ? ";
+        }
+        sql += " ORDER BY nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
-            
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+            }
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){
                 

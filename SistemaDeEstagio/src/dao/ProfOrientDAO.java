@@ -123,14 +123,21 @@ public class ProfOrientDAO {
     }
     
     //Método para listar todos os funcionarios
-    public List<ProfOrient> listarTodos(){
+    public List<ProfOrient> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<ProfOrient> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM ProfessorOrientador ORDER BY nome;";
+        String sql = "SELECT * FROM ProfessorOrientador ";
+        if(busca != null && busca != ""){
+            sql += " WHERE nome LIKE ? ";
+        }
+        sql += " ORDER BY nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+            }
             
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){

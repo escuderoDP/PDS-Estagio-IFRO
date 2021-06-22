@@ -30,7 +30,7 @@ public class FormEstagio extends javax.swing.JFrame {
     public FormEstagio() {
         initComponents();
         preencherCb();
-        preencherTabela();
+        preencherTabela(null);
         Aparencia.temaPrincipal(this);
         hideColumns();
     }
@@ -268,10 +268,25 @@ public class FormEstagio extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
@@ -484,7 +499,7 @@ public class FormEstagio extends javax.swing.JFrame {
             EstagioDAO estDAO = new EstagioDAO();
             estDAO.excluir(est);
 
-            preencherTabela();
+            preencherTabela(null);
 
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
@@ -519,7 +534,7 @@ public class FormEstagio extends javax.swing.JFrame {
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
 
-        preencherTabela();
+        preencherTabela(null);
         tabEstagio.setSelectedIndex(1);
         btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadAtualizarActionPerformed
@@ -536,15 +551,30 @@ public class FormEstagio extends javax.swing.JFrame {
 
         estDAO.cadastrar(est);
 
-        preencherTabela();
+        preencherTabela(null);
         tabEstagio.setSelectedIndex(1);
         btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+        preencherTabela(null);
+        txtListPesquisa.setText("");
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     
     // Método para preencher a tabela deEstagios
-    private void preencherTabela(){
+    private void preencherTabela(String busca){
         EstagioDAO estDAO = new EstagioDAO();
-        List<Estagio> listaEstagios = estDAO.listarTodos();
+        List<Estagio> listaEstagios = estDAO.listarTodos(busca);
         DefaultTableModel modeloTbEstagios = (DefaultTableModel) tbListEstagio.getModel();
         modeloTbEstagios.setRowCount(0);
         listaEstagios.forEach((est) -> {
@@ -558,21 +588,21 @@ public class FormEstagio extends javax.swing.JFrame {
         cbSupervisorHide.setVisible(false);
         
         AlunoDAO aDAO = new AlunoDAO();
-        List<Aluno> listaAlunos = aDAO.listarTodos();
+        List<Aluno> listaAlunos = aDAO.listarTodos(null);
         for(Aluno a: listaAlunos){
             cbAluno.addItem(a);
             cbAlunoHide.addItem(a.getNome());
         }
         
         ProfOrientDAO poDAO = new ProfOrientDAO();
-        List<ProfOrient> listaProfOrients = poDAO.listarTodos();
+        List<ProfOrient> listaProfOrients = poDAO.listarTodos(null);
         for(ProfOrient po: listaProfOrients){
             cbProfOrient.addItem(po);
             cbProfOrientHide.addItem(po.getNome());
         }
         
         FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
-        List<FuncionarioEmpresa> listaFuncionariosEmp = feDAO.listarTodos();
+        List<FuncionarioEmpresa> listaFuncionariosEmp = feDAO.listarSupervisores();
         for(FuncionarioEmpresa fe: listaFuncionariosEmp){
             cbSupervisor.addItem(fe);
             cbSupervisorHide.addItem(fe.getNome());
@@ -587,8 +617,8 @@ public class FormEstagio extends javax.swing.JFrame {
     }
     
     public void hideColumns(){
-        tbListEstagio.getColumnModel().getColumn(3).setMinWidth(0);
-        tbListEstagio.getColumnModel().getColumn(3).setMaxWidth(0);
+        tbListEstagio.getColumnModel().getColumn(2).setMinWidth(0);
+        tbListEstagio.getColumnModel().getColumn(2).setMaxWidth(0);
     }
     
     /**

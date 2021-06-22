@@ -24,7 +24,7 @@ public class FormProfOrient extends javax.swing.JFrame {
     public FormProfOrient() {
         initComponents();
         btCadAtualizar.setVisible(false);
-        preencherTabela();
+        preencherTabela(null);
         Aparencia.temaPrincipal(this);
         hideColumns();
     }
@@ -342,10 +342,25 @@ public class FormProfOrient extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
@@ -520,7 +535,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         
         poDAO.cadastrar(po);
         
-        preencherTabela();
+        preencherTabela(null);
         tabProfOrient.setSelectedIndex(1);
         btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
@@ -546,7 +561,7 @@ public class FormProfOrient extends javax.swing.JFrame {
         
         poDAO.atualizar(po);
         
-        preencherTabela();
+        preencherTabela(null);
         
         txtCadSenha.setEditable(true);
         
@@ -590,7 +605,7 @@ public class FormProfOrient extends javax.swing.JFrame {
             ProfOrientDAO poDAO = new ProfOrientDAO();
             poDAO.excluir(po);
             
-            preencherTabela();
+            preencherTabela(null);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -647,11 +662,26 @@ public class FormProfOrient extends javax.swing.JFrame {
             txtCadSenha.setEchoChar('*');
         }
     }//GEN-LAST:event_ckExibirSenhaStateChanged
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+        preencherTabela(null);
+        txtListPesquisa.setText("");
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     
     // Método para preencher a tabela de Alunos
-    public void preencherTabela(){
+    public void preencherTabela(String busca){
         ProfOrientDAO poDAO = new ProfOrientDAO();
-        List<ProfOrient> listaProfOrients = poDAO.listarTodos();
+        List<ProfOrient> listaProfOrients = poDAO.listarTodos(busca);
         DefaultTableModel modeloTbProfOrient = (DefaultTableModel) tbListProfOrient.getModel();
         modeloTbProfOrient.setRowCount(0);
         listaProfOrients.forEach((po) -> {

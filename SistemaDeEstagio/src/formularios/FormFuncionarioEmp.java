@@ -26,7 +26,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     public FormFuncionarioEmp() {
         initComponents();
         preencherCb();
-        preencherTabela();
+        preencherTabela(null);
         Aparencia.temaPrincipal(this);
         hideColumns();
     }
@@ -359,10 +359,25 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(2, 67, 63));
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 1, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(252, 209, 71));
@@ -542,7 +557,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         
         feDAO.cadastrar(fe);
         
-        preencherTabela();
+        preencherTabela(null);
         tabFuncionarioEmpresa.setSelectedIndex(1);
         btCadCancelarActionPerformed(evt);
     }//GEN-LAST:event_btCadSalvarActionPerformed
@@ -569,7 +584,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         
         feDAO.atualizar(fe);
         
-        preencherTabela();
+        preencherTabela(null);
         
         btCadAtualizar.setVisible(false);
         btCadSalvar.setVisible(true);
@@ -614,7 +629,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
             FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
             feDAO.excluir(fe);
             
-            preencherTabela();
+            preencherTabela(null);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
         }
@@ -668,11 +683,26 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
 
         tabFuncionarioEmpresa.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+        preencherTabela(null);
+        txtListPesquisa.setText("");
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     
     // Método para preencher a tabela de FuncionarioEmpresa
-    private void preencherTabela(){
+    private void preencherTabela(String busca){
         FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
-        List<FuncionarioEmpresa> listaFuncionariosEmp = feDAO.listarTodos();
+        List<FuncionarioEmpresa> listaFuncionariosEmp = feDAO.listarTodos(busca);
         DefaultTableModel modeloTbFuncionariosEmp = (DefaultTableModel) tbListFuncionariosEmpresa.getModel();
         modeloTbFuncionariosEmp.setRowCount(0);
         listaFuncionariosEmp.forEach((fe) -> {
@@ -683,7 +713,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     private void preencherCb(){
         cbEmpresaHide.setVisible(false);
         EmpresaDAO eDAO = new EmpresaDAO();
-        List<Empresa> listaEmpresas = eDAO.listarTodos();
+        List<Empresa> listaEmpresas = eDAO.listarTodos(null);
 
         for(Empresa e: listaEmpresas){
             cbEmpresa.addItem(e);

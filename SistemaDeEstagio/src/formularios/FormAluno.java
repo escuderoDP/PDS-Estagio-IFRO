@@ -27,7 +27,7 @@ public class FormAluno extends javax.swing.JFrame {
      */
     public FormAluno() {
         initComponents();
-        preencherTabela();
+        preencherTabela(null);
         btCadAtualizar.setVisible(false);
         Aparencia.temaPrincipal(this);
         hideColumns();
@@ -347,10 +347,25 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         txtListPesquisa.setFont(new java.awt.Font("Courier New", 1, 22)); // NOI18N
+        txtListPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtListPesquisaKeyTyped(evt);
+            }
+        });
 
         btListPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa32.png"))); // NOI18N
+        btListPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListPesquisaActionPerformed(evt);
+            }
+        });
 
         btListLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/borracha32.png"))); // NOI18N
+        btListLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -536,7 +551,7 @@ public class FormAluno extends javax.swing.JFrame {
 
             aDAO.cadastrar(a);
 
-            preencherTabela();
+            preencherTabela(null);
             tabAluno.setSelectedIndex(1);
             btCadCancelarActionPerformed(evt);
         }else{
@@ -581,7 +596,7 @@ public class FormAluno extends javax.swing.JFrame {
 
             aDAO.atualizar(a);
 
-            preencherTabela();
+            preencherTabela(null);
 
             btCadAtualizar.setVisible(false);
             btCadSalvar.setVisible(true);
@@ -639,7 +654,7 @@ public class FormAluno extends javax.swing.JFrame {
             AlunoDAO aDAO = new AlunoDAO();
             aDAO.excluir(a);
             
-            preencherTabela();
+            preencherTabela(null);
 
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
@@ -677,11 +692,26 @@ public class FormAluno extends javax.swing.JFrame {
         
         tabAluno.setSelectedIndex(0);
     }//GEN-LAST:event_btListNovoActionPerformed
+
+    private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
+        preencherTabela(txtListPesquisa.getText());
+        txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListPesquisaActionPerformed
+
+    private void btListLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListLimparActionPerformed
+       preencherTabela(null);
+       txtListPesquisa.setText("");
+       txtListPesquisa.requestFocus();
+    }//GEN-LAST:event_btListLimparActionPerformed
+
+    private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
+        preencherTabela(txtListPesquisa.getText());
+    }//GEN-LAST:event_txtListPesquisaKeyTyped
     
     // Método para preencher a tabela de Alunos
-    public void preencherTabela(){
+    public void preencherTabela(String busca){
         AlunoDAO aDAO = new AlunoDAO();
-        List<Aluno> listaAlunos = aDAO.listarTodos();
+        List<Aluno> listaAlunos = aDAO.listarTodos(busca);
         DefaultTableModel modeloTbAlunos = (DefaultTableModel) tbListAlunos.getModel();
         modeloTbAlunos.setRowCount(0);
         listaAlunos.forEach((a) -> {

@@ -124,15 +124,67 @@ public class FuncionarioEmpDAO {
         }
     }
     
-    public List<FuncionarioEmpresa> listarTodos(){
+    public List<FuncionarioEmpresa> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<FuncionarioEmpresa> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM FuncionarioEmpresa INNER JOIN Empresa ON FuncionarioEmpresa.empresa_fk = Empresa.id";
+        String sql = "SELECT * FROM FuncionarioEmpresa INNER JOIN Empresa ON FuncionarioEmpresa.empresa_fk = Empresa.id ";
+        if(busca != null && busca != ""){
+            sql += " WHERE FuncionarioEmpresa.nome LIKE ? ";
+        }
+        sql += " ORDER BY FuncionarioEmpresa.nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+            }
+            ResultSet resultado = stm.executeQuery();
+            while(resultado.next()){
+                
+                // Cria uma instancia de funcionarioEmpresa
+                FuncionarioEmpresa fe = new FuncionarioEmpresa();
+                
+                // Instancia do funcionário da empresa recebe as informações do banco
+                fe.setId_funcionarioEmp(resultado.getInt("FuncionarioEmpresa.id"));
+                fe.setNome(resultado.getString("FuncionarioEmpresa.nome"));
+                fe.setCpf(resultado.getString("FuncionarioEmpresa.cpf"));
+                fe.setRg(resultado.getString("FuncionarioEmpresa.rg"));
+                fe.setFormacao(resultado.getString("FuncionarioEmpresa.formacao"));
+                fe.setCargo(resultado.getString("FuncionarioEmpresa.cargo"));
+                fe.setDatanasc(resultado.getString("FuncionarioEmpresa.datanasc"));
+                fe.setSexo(resultado.getString("FuncionarioEmpresa.sexo"));
+                
+                Empresa e = new Empresa();
+                e.setId_empresa(resultado.getInt("Empresa.id"));
+                e.setNome(resultado.getString("Empresa.nome"));
+                e.setCnpj(resultado.getString("Empresa.cnpj"));
+                e.setTelefone(resultado.getString("Empresa.telefone"));
+                e.setHorarioFunc(resultado.getString("Empresa.horarioFunc"));
+                
+                fe.setEmpresa_fk(e);
+                // Adiciona funcionariosEmpresa na lista
+                lista.add(fe);
+
+            }
             
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao listar: "+ex);
+        }
+        
+        return lista;
+    }
+    
+    public List<FuncionarioEmpresa> listarSupervisores(){
+        Connection con = Conectar.getConectar();
+        
+        List<FuncionarioEmpresa> lista = new ArrayList<>();
+        
+        String sql = "SELECT * FROM FuncionarioEmpresa INNER JOIN Empresa ON FuncionarioEmpresa.empresa_fk = Empresa.id ";
+        sql += " WHERE FuncionarioEmpresa.cargo = 'Supervisor' ";
+        sql += " ORDER BY FuncionarioEmpresa.nome;";
+        
+        try(PreparedStatement stm = con.prepareStatement(sql)){
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){
                 

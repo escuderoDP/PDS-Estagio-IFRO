@@ -105,15 +105,22 @@ public class EmpresaDAO {
         }
     }
     // Método para listar as empresas
-    public List<Empresa> listarTodos(){
+    public List<Empresa> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<Empresa> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM Empresa ORDER BY nome;";
+        String sql = "SELECT * FROM Empresa ";
+        
+        if(busca != null && busca != ""){
+            sql += " WHERE nome LIKE ? ";
+        }
+        sql += " ORDER BY nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
-            
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+            }
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){
                 

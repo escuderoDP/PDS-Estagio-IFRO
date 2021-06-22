@@ -119,15 +119,21 @@ public class EstagioDAO {
         }
     }
     
-    public List<Estagio> listarTodos(){
+    public List<Estagio> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<Estagio> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM Estagio INNER JOIN Aluno ON Aluno.id = Estagio.aluno_fk INNER JOIN ProfessorOrientador ON ProfessorOrientador.id = Estagio.proforient_fk INNER JOIN FuncionarioEmpresa ON FuncionarioEmpresa.id = Estagio.funcionarioEmp_fk INNER JOIN Empresa ON Empresa.id = FuncionarioEmpresa.empresa_fk;";
-        
+        String sql = "SELECT * FROM Estagio INNER JOIN Aluno ON Aluno.id = Estagio.aluno_fk INNER JOIN ProfessorOrientador ON ProfessorOrientador.id = Estagio.proforient_fk INNER JOIN FuncionarioEmpresa ON FuncionarioEmpresa.id = Estagio.funcionarioEmp_fk INNER JOIN Empresa ON Empresa.id = FuncionarioEmpresa.empresa_fk ";
+        if(busca != null && busca != ""){
+            sql += " WHERE Aluno.nome LIKE ? or ProfessorOrientador.nome LIKE ? or Empresa.nome LIKE ?";
+        }
         try(PreparedStatement stm = con.prepareStatement(sql)){
-            
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+                stm.setString(2, "%"+busca+"%");
+                stm.setString(3, "%"+busca+"%");
+            }
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){
                 

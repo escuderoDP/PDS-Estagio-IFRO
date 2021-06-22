@@ -122,15 +122,21 @@ public class AlunoDAO {
         }
     }
     
-    public List<Aluno> listarTodos(){
+    public List<Aluno> listarTodos(String busca){
         Connection con = Conectar.getConectar();
         
         List<Aluno> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM Aluno ORDER BY nome;";
+        String sql = "SELECT * FROM Aluno";
+        if(busca != null && busca != ""){
+            sql += " WHERE nome LIKE ? ";
+        }
+        sql += " ORDER BY nome;";
         
         try(PreparedStatement stm = con.prepareStatement(sql)){
-            
+            if(busca != null && busca != ""){
+                stm.setString(1, "%"+busca+"%");
+            }
             ResultSet resultado = stm.executeQuery();
             while(resultado.next()){
                 
