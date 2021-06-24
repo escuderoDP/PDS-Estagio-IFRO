@@ -6,16 +6,23 @@
 package formularios;
 
 import java.awt.Component;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -50,6 +57,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         groupFiltro = new javax.swing.ButtonGroup();
         groupTipo = new javax.swing.ButtonGroup();
         groupCampos = new javax.swing.ButtonGroup();
+        jFiles = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -78,7 +86,10 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         ckTurma = new javax.swing.JCheckBox();
         ckSituacao = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jFiles.setDialogTitle("");
+        jFiles.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(54, 54, 54));
 
@@ -431,12 +442,11 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
@@ -445,14 +455,43 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         String cf = capturarFiltro();
         if(cc != null && cf != null){
             sql = cc + cf;
-            visualizarRelatorio(sql);
+            JasperPrint jp = gerarRelatorio(sql);
+            if(jp != null){
+                visualizarRelatorio(jp);
+            }
         }else if(cc != null){
             sql = null;
         }
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void btsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalvarActionPerformed
-        // TODO add your handling code here:
+        String sql = "";
+        String cc = capturarCampos();
+        String cf = capturarFiltro();
+        String path = null;
+        if(cc != null && cf != null){
+            sql = cc + cf;
+            JasperPrint jp = gerarRelatorio(sql);
+            if(jp != null){int returnVal = jFiles.showOpenDialog(this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = jFiles.getSelectedFile();
+                    try {
+                      // What to do with the file, e.g. display it in a TextArea
+                        path = file.getAbsolutePath();
+                    } catch (Exception ex) {
+                      System.out.println("problem accessing file"+file.getAbsolutePath());
+                      path = null;
+                    }
+                } else {
+                    System.out.println("File access cancelled by user.");
+                    path = null;
+                }
+                
+                salvarRelatorio(jp, path);
+            }
+        }else if(cc != null){
+            sql = null;
+        }
     }//GEN-LAST:event_btsalvarActionPerformed
 
     private void radCompletoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radCompletoItemStateChanged
@@ -471,7 +510,6 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
 
     private void radSimplificadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radSimplificadoItemStateChanged
        if(radSimplificado.isSelected()){
-            ckId.setSelected(true);
             ckNome.setSelected(true);
             ckCpf.setSelected(true);
             ckRg.setSelected(false);
@@ -485,7 +523,6 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
 
     private void radPersonalizadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPersonalizadoItemStateChanged
         if(radPersonalizado.isSelected()){
-            ckId.setEnabled(true);
             ckNome.setEnabled(true);
             ckCpf.setEnabled(true);
             ckRg.setEnabled(true);
@@ -495,7 +532,6 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             ckTurma.setEnabled(true);
             ckSituacao.setEnabled(true);
         }else{
-            ckId.setEnabled(false);
             ckNome.setEnabled(false);
             ckCpf.setEnabled(false);
             ckRg.setEnabled(false);
@@ -559,7 +595,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         }
     }
     
-    private void visualizarRelatorio(String sql){
+    private JasperPrint gerarRelatorio(String sql){
         System.out.println(sql);
         try{
             Map param = new HashMap();
@@ -570,13 +606,43 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             JRResultSetDataSource resRelat = new JRResultSetDataSource(res);
             param.put("jr", resRelat);
             JasperPrint jpPrint = JasperFillManager.fillReport("src/relatorios/relatorio_alunos.jasper", param, resRelat);
+            return jpPrint;
+        }catch(Exception ex){
+             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório;");
+             System.out.println(ex);
+             return null;
+        }
+    }
+    
+    private void visualizarRelatorio(JasperPrint jpPrint){
+        try{
             JasperViewer jv = new JasperViewer(jpPrint, false);
             jv.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
             jv.setVisible(true);
             jv.toFront();
         }catch(Exception ex){
-             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório;");
-             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro ao Visualizar relatório;");
+            System.out.println(ex);
+        }
+    }
+    
+    private void salvarRelatorio(JasperPrint jpPrint, String path){
+        try{
+            Date data = new Date();
+            SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+            String dataStr = formatador.format( data );
+            
+            String name = path+"/relatorioAlunos"+dataStr+".pdf";
+            
+            JasperExportManager.exportReportToPdfFile(jpPrint, name);
+            Runtime.getRuntime().exec("cmd /e start "+name);
+            File file = new File(name);
+            
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(file);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao Salvar relatório;");
+            System.out.println(ex);
         }
     }
     /**
@@ -633,6 +699,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
     private javax.swing.ButtonGroup groupCampos;
     private javax.swing.ButtonGroup groupFiltro;
     private javax.swing.ButtonGroup groupTipo;
+    private javax.swing.JFileChooser jFiles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

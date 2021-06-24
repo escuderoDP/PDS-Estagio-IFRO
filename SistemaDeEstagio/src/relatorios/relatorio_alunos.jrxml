@@ -317,7 +317,7 @@
 		<band height="20">
 			<staticText>
 				<reportElement x="0" y="0" width="36" height="19" uuid="ad452935-9432-454f-8e8b-5344b63f2d8d">
-					<printWhenExpression><![CDATA[!$F{id}.isEmpty()]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{id}.toString().isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Courier New" size="12" isBold="true"/>
@@ -401,7 +401,7 @@
 			</line>
 			<textField>
 				<reportElement x="0" y="1" width="36" height="20" uuid="b5caf852-551f-4e49-8fa7-be37fbf6b917">
-					<printWhenExpression><![CDATA[!$F{id}.isEmpty()]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{id}.toString().isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0"/>
