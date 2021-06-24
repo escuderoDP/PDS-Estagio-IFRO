@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class Conectar {
     private static final String USUARIO = "root";
     private static final String SENHA = "root";
-    private static final String URL = "jdbc:mysql://localhost/SistemaDeEstagio";
+    private static final String URL = "jdbc:mysql://localhost/SistemaDeEstagio?characterEncoding=latin1";
     
     public static Connection getConectar(){
         Connection con = null;

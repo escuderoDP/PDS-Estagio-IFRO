@@ -163,7 +163,7 @@ public class FormEstagio extends javax.swing.JFrame {
         jLabel6.setText("Supervisor.:");
 
         cbSituacao.setFont(new java.awt.Font("Courier New", 1, 20)); // NOI18N
-        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Andamento", "Aprovado", "Reprovado" }));
+        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Aprovado", "Reprovado" }));
         cbSituacao.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

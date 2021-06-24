@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_alunos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e6583d1a-c342-47ff-8dae-4323308ea919">
+	<property name="ireport.zoom" value="2.853116706110009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="130"/>
+	<property name="ireport.callouts" value="##Thu Jun 24 17:54:27 BRT 2021"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Alunos" uuid="2fb904d5-6a88-43fc-8fee-e50bb4766c35">
+		<queryString language="SQL">
+			<![CDATA[select Aluno.id, Aluno.nome, Aluno.cpf, Aluno.rg, Aluno.telefone, Aluno.sexo, Aluno.datanasc, Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cpf" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="rg" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="telefone" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="sexo" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="datanasc" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="turma" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="situacao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="Teste1" uuid="884e1d62-5455-4332-9f57-86aa6683dd34">
+		<queryString language="SQL">
+			<![CDATA[select Aluno.id, Aluno.nome, Aluno.cpf, Aluno.rg, Aluno.telefone, Aluno.sexo, Aluno.datanasc, Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cpf" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="rg" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="telefone" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="sexo" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="datanasc" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="turma" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="situacao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="nomeFuncionario" class="java.lang.String"/>
+	<parameter name="jr" class="JRDataSource"/>
+	<queryString>
+		<![CDATA[select Aluno.id, Aluno.nome, Aluno.cpf, Aluno.rg, Aluno.telefone, Aluno.sexo, Aluno.datanasc, Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rg" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="datanasc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turma" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="nome">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73">
+			<image>
+				<reportElement x="668" y="0" width="101" height="71" uuid="975d3dab-ab1a-447d-9792-b89c8b2063bc"/>
+				<imageExpression><![CDATA["icon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="21" y="10" width="402" height="54" uuid="b50f8795-8a8a-4bc0-a2de-0468506f234e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ALUNOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41">
+			<textField>
+				<reportElement x="12" y="8" width="380" height="20" uuid="c397f268-c768-437e-b17c-63bc58370ee7"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Funcionário Responsável: "+$P{nomeFuncionario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="36" height="19" uuid="ad452935-9432-454f-8e8b-5344b63f2d8d">
+					<printWhenExpression><![CDATA[!$F{id}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="0" width="100" height="19" uuid="0a37314a-a127-4988-b8f2-8a266701c16e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="0" width="100" height="19" uuid="f9527c23-126c-4399-a42d-9b92d2b17dfb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="0" width="100" height="19" uuid="26573713-c955-4e90-abf5-a79cfc33f74f">
+					<printWhenExpression><![CDATA[!$F{rg}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="100" height="19" uuid="aa41cca8-2467-4fff-b215-4f5e1599d65b">
+					<printWhenExpression><![CDATA[!$F{telefone}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="0" width="85" height="19" uuid="e793581d-508c-4bdd-9321-51814946ed14">
+					<printWhenExpression><![CDATA[!$F{sexo}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="0" width="88" height="19" uuid="24144689-277f-40b9-8fe0-eb13dfe4903d">
+					<printWhenExpression><![CDATA[!$F{datanasc}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA NASC.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="609" y="0" width="93" height="19" uuid="36301442-4da7-4f09-a5d3-bdbff6547239">
+					<printWhenExpression><![CDATA[!$F{turma}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TURMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="701" y="0" width="100" height="19" uuid="7f75cef3-d1cc-43dd-98f6-01e44a876158">
+					<printWhenExpression><![CDATA[!$F{situacao}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SITUAÇÃO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23">
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" uuid="40721388-8eef-44a8-8a2b-c7de62c4e328"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="1" width="36" height="20" uuid="b5caf852-551f-4e49-8fa7-be37fbf6b917">
+					<printWhenExpression><![CDATA[!$F{id}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="1" width="100" height="20" uuid="db779dcc-1967-4a68-a56e-12d27b4fcc80"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="1" width="100" height="20" uuid="f1f3cb12-b76a-4b24-b399-ad2384961894"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="1" width="100" height="20" uuid="37e0edb6-049b-4a45-97b1-0f3b9c691b58">
+					<printWhenExpression><![CDATA[!$F{rg}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="1" width="100" height="20" uuid="76ce8af2-4e4d-4b23-87fe-991ccfe093ec">
+					<printWhenExpression><![CDATA[!$F{telefone}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="1" width="85" height="20" uuid="6981a09a-379c-442f-ab58-fd204adce758">
+					<printWhenExpression><![CDATA[!$F{sexo}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="521" y="1" width="88" height="20" uuid="16867ae4-731b-4f2e-8dd1-15798108d1b1">
+					<printWhenExpression><![CDATA[!$F{datanasc}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datanasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="609" y="1" width="93" height="20" uuid="ebd95998-09a8-4984-acb2-5cdf3d158e38">
+					<printWhenExpression><![CDATA[!$F{turma}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turma}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="802" height="1" uuid="13a23340-0266-4db1-be92-44fbbe898e89"/>
+			</line>
+			<line>
+				<reportElement x="802" y="0" width="1" height="22" uuid="c92a4adf-5a10-4477-aecd-00a30a36dee6"/>
+			</line>
+			<textField>
+				<reportElement x="701" y="3" width="100" height="20" uuid="05a9f69c-c8a4-4a5f-9ed4-0727010f110d">
+					<printWhenExpression><![CDATA[!$F{situacao}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="1" height="21" uuid="07870050-e918-4eef-b4bb-37f98330754c"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="652" y="34" width="117" height="20" uuid="16488d6e-4853-4b87-a55b-3370b3496ce4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="769" y="34" width="54" height="20" uuid="f404183f-d784-4aa3-94c9-f0545ac9d752"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="34" width="190" height="20" uuid="dd4dd63a-6954-4ce6-a918-fee5ca908980"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

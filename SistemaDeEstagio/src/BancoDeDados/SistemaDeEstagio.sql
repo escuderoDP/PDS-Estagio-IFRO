@@ -80,4 +80,7 @@ on delete restrict
 );
 
 
-select * from FuncionarioEmpresa;
+select Aluno.id, Aluno.nome, Aluno.cpf,  Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;
+
+
+	

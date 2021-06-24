@@ -5,9 +5,23 @@
  */
 package formularios;
 
+import java.awt.Desktop;
+import java.io.File;
 import static java.lang.Thread.sleep;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import utilitario.Aparencia;
+import utilitario.Conectar;
 
 /**
  *
@@ -18,9 +32,12 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    
+    Funcionario f ;
     public Menu(Funcionario f) {
         initComponents();
         lbNome.setText("Bem Vindo, "+f.getNome()+"!");
+        this.f = f;
         //animacao();
         Aparencia.temaPrincipal(this);
    }
@@ -395,6 +412,11 @@ public class Menu extends javax.swing.JFrame {
 
         itemRelatorioAlunos.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         itemRelatorioAlunos.setText("Alunos");
+        itemRelatorioAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRelatorioAlunosActionPerformed(evt);
+            }
+        });
         menuRelatorios.add(itemRelatorioAlunos);
 
         itemRelatorioEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
@@ -537,6 +559,28 @@ public class Menu extends javax.swing.JFrame {
         FormProfOrient form = new FormProfOrient();
         form.setVisible(true);
     }//GEN-LAST:event_itemProfOrientActionPerformed
+
+    private void itemRelatorioAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRelatorioAlunosActionPerformed
+        //String sql = "select * from aluno;";
+//            Map param = new HashMap();
+//            param.put("nomeFuncionario", f.getNome());
+//            Connection con = Conectar.getConectar();
+//            PreparedStatement stm = con.prepareStatement(sql);
+//            ResultSet res = stm.executeQuery();
+//            JRResultSetDataSource resRelat = new JRResultSetDataSource(res);
+//            JasperPrint jpPrint = JasperFillManager.fillReport("src/relatorios/relatorio_alunos.jasper", param, resRelat);
+//            JasperViewer jv = new JasperViewer(jpPrint, false);
+//            jv.setVisible(true);
+//            jv.toFront();
+            
+            //JasperExportManager.exportReportToPdfFile()
+            //Runtime.getRuntime().exec("cmd /e start ");
+            //File file = new File("");
+            
+//            Desktop desktop = Desktop.getDesktop();
+//            desktop.open(new File(""));
+        
+    }//GEN-LAST:event_itemRelatorioAlunosActionPerformed
 
     /**
      * @param args the command line arguments
