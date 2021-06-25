@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_estagios" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a914458-4545-4ba3-8c48-ed9145c007ca">
+	<property name="ireport.zoom" value="1.000000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nomeFuncionario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select Estagio.id as Estagioid, Estagio.situacao as Estagiosituacao,  Aluno.nome as Alunonome, FuncionarioEmpresa.nome as FuncionarioEmpresanome, ProfessorOrientador.nome as ProfessorOrientadornome, Empresa.nome as Empresanome from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk;
+]]>
+	</queryString>
+	<field name="Estagioid" class="java.lang.Integer"/>
+	<field name="Estagiosituacao" class="java.lang.String"/>
+	<field name="Alunonome" class="java.lang.String"/>
+	<field name="FuncionarioEmpresanome" class="java.lang.String"/>
+	<field name="ProfessorOrientadornome" class="java.lang.String"/>
+	<field name="Empresanome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="402" height="54" uuid="4b99291c-9164-4afb-9a95-abad8e9a5605"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ESTÁGIOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="679" y="0" width="101" height="71" uuid="04264b41-bf0c-441c-bd21-24314a14b4e3"/>
+				<imageExpression><![CDATA["icon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="380" height="20" uuid="e491b131-d506-4b1a-a4d0-db63c8b03f03"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Funcionário Responsável: "+$P{nomeFuncionario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="35" height="20" uuid="2922c296-e2bc-40b8-94d0-8dfefa237053"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="0" width="120" height="20" uuid="74e91225-cd95-45d9-8eef-e1d9cda41c3b">
+					<printWhenExpression><![CDATA[!$F{Alunonome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALUNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="0" width="140" height="20" uuid="b3fcdf3e-2c58-4dcb-b081-f00296da7092">
+					<printWhenExpression><![CDATA[!$F{ProfessorOrientadornome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROFESSOR ORIENT.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="0" width="120" height="20" uuid="8d68d92a-5f0d-4a92-ad5d-24aaa21884d8">
+					<printWhenExpression><![CDATA[!$F{FuncionarioEmpresanome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPERVISOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="120" height="20" uuid="072a80f7-71d7-4b71-83e8-78dc9d6fdffa">
+					<printWhenExpression><![CDATA[!$F{Empresanome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPRESA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="120" height="20" uuid="1e503092-df7a-46e1-9fb1-fde1a838f1eb">
+					<printWhenExpression><![CDATA[!$F{Estagiosituacao}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SITUAÇÃO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="35" height="20" uuid="ee4d6e48-2374-45cb-abbe-bf299855eea9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estagioid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="0" width="120" height="20" uuid="29f6cec7-aab4-45b9-a2a2-d521a8bdcdc5">
+					<printWhenExpression><![CDATA[!$F{Alunonome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Alunonome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="0" width="140" height="20" uuid="f0454ce4-7d19-4697-973d-34d9cdf04cd1">
+					<printWhenExpression><![CDATA[!$F{ProfessorOrientadornome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ProfessorOrientadornome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="0" width="120" height="20" uuid="abb0f778-1fe3-4553-828d-36be6a846ef4">
+					<printWhenExpression><![CDATA[!$F{FuncionarioEmpresanome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FuncionarioEmpresanome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="0" width="120" height="20" uuid="4a8210f7-acc5-47df-9a3b-25c72dec8a11">
+					<printWhenExpression><![CDATA[!$F{Empresanome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empresanome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="535" y="0" width="120" height="20" uuid="8809106a-b80b-40c0-bc7c-5cf8244d3725">
+					<printWhenExpression><![CDATA[!$F{Estagiosituacao}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estagiosituacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="2bb4004d-637b-48fb-baa6-c76b4bf8e5d3"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" uuid="5193167a-ed8b-4fcc-ab1e-b9788b295c8d"/>
+			</line>
+			<line>
+				<reportElement x="802" y="0" width="1" height="20" uuid="9b9617b8-5950-44cc-964a-da89d9b0a94d"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="20" uuid="5a1776bf-a210-4817-a52b-5e27c4f90ee6"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="34" width="190" height="20" uuid="2d6c7184-5936-4054-92b9-6c3722a34ba2"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="780" y="34" width="54" height="20" uuid="ada483ad-5900-4821-8934-b7bc9a7860b8"/>
+				<textElement>
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="663" y="34" width="117" height="20" uuid="e89eb39e-6a0c-48d1-9a0a-79e06b3e2e5e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

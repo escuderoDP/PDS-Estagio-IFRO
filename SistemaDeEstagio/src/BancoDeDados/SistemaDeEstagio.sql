@@ -82,5 +82,6 @@ on delete restrict
 
 select Aluno.id, Aluno.nome, Aluno.cpf,  Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;
 
+select Estagio.id as Estagioid, Estagio.situacao as Estagiosituacao,  Aluno.nome as Alunonome, FuncionarioEmpresa.nome as FuncionarioEmpresaNome, ProfessorOrientador.nome as ProfessorOrientadorNome, Empresa.nome as EmpresaNome from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk;
 
 	

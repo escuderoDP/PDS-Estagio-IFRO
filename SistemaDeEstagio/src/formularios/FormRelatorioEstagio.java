@@ -8,7 +8,6 @@ package formularios;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +19,6 @@ import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import mapeamento.Funcionario;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -30,19 +28,16 @@ import utilitario.Conectar;
 
 /**
  *
- * @author Aline
+ * @author Guilherme
  */
-public class FormRelatorioAluno extends javax.swing.JFrame {
+public class FormRelatorioEstagio extends javax.swing.JFrame {
 
     /**
      * Creates new form FormRelatorioEstagio
      */
-    Funcionario f;
-    public FormRelatorioAluno(Funcionario f) {
-        this.f = f;
+    public FormRelatorioEstagio() {
         initComponents();
         capturarCampos();
-        capturarFiltro();
     }
 
     /**
@@ -54,9 +49,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupFiltro = new javax.swing.ButtonGroup();
         groupTipo = new javax.swing.ButtonGroup();
-        groupCampos = new javax.swing.ButtonGroup();
         jFiles = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -77,13 +70,10 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         painelCampos = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         ckId = new javax.swing.JCheckBox();
-        ckNome = new javax.swing.JCheckBox();
-        ckCpf = new javax.swing.JCheckBox();
-        ckRg = new javax.swing.JCheckBox();
-        ckTelefone = new javax.swing.JCheckBox();
-        ckDatanasc = new javax.swing.JCheckBox();
-        ckSexo = new javax.swing.JCheckBox();
-        ckTurma = new javax.swing.JCheckBox();
+        ckAluno = new javax.swing.JCheckBox();
+        ckProfOrient = new javax.swing.JCheckBox();
+        ckSupervisor = new javax.swing.JCheckBox();
+        ckEmpresa = new javax.swing.JCheckBox();
         ckSituacao = new javax.swing.JCheckBox();
 
         jFiles.setDialogTitle("");
@@ -98,7 +88,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Courier New", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(252, 209, 71));
-        jLabel1.setText("RELATÓRIO DE ALUNOS");
+        jLabel1.setText("RELATÓRIO DE ESTAGIOS");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -107,8 +97,8 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,59 +260,37 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         ckId.setSelected(true);
         ckId.setText("Id");
         ckId.setEnabled(false);
-        ckId.setName("Aluno.id"); // NOI18N
+        ckId.setName("Estagio.id"); // NOI18N
 
-        ckNome.setBackground(new java.awt.Color(54, 54, 54));
-        ckNome.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckNome.setForeground(new java.awt.Color(255, 255, 255));
-        ckNome.setSelected(true);
-        ckNome.setText("Nome");
-        ckNome.setEnabled(false);
-        ckNome.setName("Aluno.nome"); // NOI18N
+        ckAluno.setBackground(new java.awt.Color(54, 54, 54));
+        ckAluno.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        ckAluno.setForeground(new java.awt.Color(255, 255, 255));
+        ckAluno.setSelected(true);
+        ckAluno.setText("Aluno");
+        ckAluno.setEnabled(false);
+        ckAluno.setName("Aluno.nome"); // NOI18N
 
-        ckCpf.setBackground(new java.awt.Color(54, 54, 54));
-        ckCpf.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckCpf.setForeground(new java.awt.Color(255, 255, 255));
-        ckCpf.setSelected(true);
-        ckCpf.setText("CPF");
-        ckCpf.setEnabled(false);
-        ckCpf.setName("Aluno.cpf"); // NOI18N
+        ckProfOrient.setBackground(new java.awt.Color(54, 54, 54));
+        ckProfOrient.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        ckProfOrient.setForeground(new java.awt.Color(255, 255, 255));
+        ckProfOrient.setSelected(true);
+        ckProfOrient.setText("Professor Orientador");
+        ckProfOrient.setEnabled(false);
+        ckProfOrient.setName("ProfessorOrientador.nome"); // NOI18N
 
-        ckRg.setBackground(new java.awt.Color(54, 54, 54));
-        ckRg.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckRg.setForeground(new java.awt.Color(255, 255, 255));
-        ckRg.setText("RG");
-        ckRg.setEnabled(false);
-        ckRg.setName("Aluno.rg"); // NOI18N
+        ckSupervisor.setBackground(new java.awt.Color(54, 54, 54));
+        ckSupervisor.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        ckSupervisor.setForeground(new java.awt.Color(255, 255, 255));
+        ckSupervisor.setText("Supervisor");
+        ckSupervisor.setEnabled(false);
+        ckSupervisor.setName("FuncionarioEmpresa.nome"); // NOI18N
 
-        ckTelefone.setBackground(new java.awt.Color(54, 54, 54));
-        ckTelefone.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckTelefone.setForeground(new java.awt.Color(255, 255, 255));
-        ckTelefone.setText("Telefone");
-        ckTelefone.setEnabled(false);
-        ckTelefone.setName("Aluno.telefone"); // NOI18N
-
-        ckDatanasc.setBackground(new java.awt.Color(54, 54, 54));
-        ckDatanasc.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckDatanasc.setForeground(new java.awt.Color(255, 255, 255));
-        ckDatanasc.setText("Data de Nascimento");
-        ckDatanasc.setEnabled(false);
-        ckDatanasc.setName("Aluno.datanasc"); // NOI18N
-
-        ckSexo.setBackground(new java.awt.Color(54, 54, 54));
-        ckSexo.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckSexo.setForeground(new java.awt.Color(255, 255, 255));
-        ckSexo.setText("Sexo");
-        ckSexo.setEnabled(false);
-        ckSexo.setName("Aluno.sexo"); // NOI18N
-
-        ckTurma.setBackground(new java.awt.Color(54, 54, 54));
-        ckTurma.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
-        ckTurma.setForeground(new java.awt.Color(255, 255, 255));
-        ckTurma.setSelected(true);
-        ckTurma.setText("Turma");
-        ckTurma.setEnabled(false);
-        ckTurma.setName("Aluno.turma"); // NOI18N
+        ckEmpresa.setBackground(new java.awt.Color(54, 54, 54));
+        ckEmpresa.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
+        ckEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        ckEmpresa.setText("Empresa");
+        ckEmpresa.setEnabled(false);
+        ckEmpresa.setName("Empresa.nome"); // NOI18N
 
         ckSituacao.setBackground(new java.awt.Color(54, 54, 54));
         ckSituacao.setFont(new java.awt.Font("Courier New", 1, 16)); // NOI18N
@@ -344,19 +312,13 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(ckId)
                         .addGap(18, 18, 18)
-                        .addComponent(ckNome)
+                        .addComponent(ckAluno)
                         .addGap(18, 18, 18)
-                        .addComponent(ckCpf)
+                        .addComponent(ckProfOrient)
                         .addGap(18, 18, 18)
-                        .addComponent(ckRg)
-                        .addGap(18, 18, 18)
-                        .addComponent(ckTelefone)
-                        .addGap(18, 18, 18)
-                        .addComponent(ckSexo))
+                        .addComponent(ckEmpresa))
                     .addGroup(painelCamposLayout.createSequentialGroup()
-                        .addComponent(ckDatanasc)
-                        .addGap(18, 18, 18)
-                        .addComponent(ckTurma)
+                        .addComponent(ckSupervisor)
                         .addGap(18, 18, 18)
                         .addComponent(ckSituacao)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -368,16 +330,13 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
                 .addGroup(painelCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(ckId)
-                    .addComponent(ckNome)
-                    .addComponent(ckCpf)
-                    .addComponent(ckRg)
-                    .addComponent(ckTelefone)
-                    .addComponent(ckSexo))
+                    .addComponent(ckAluno)
+                    .addComponent(ckProfOrient)
+                    .addComponent(ckEmpresa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ckDatanasc)
-                    .addComponent(ckTurma)
-                    .addComponent(ckSituacao))
+                    .addComponent(ckSituacao)
+                    .addComponent(ckSupervisor))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -437,9 +396,9 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,17 +436,18 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = jFiles.getSelectedFile();
                     try {
-                      // What to do with the file, e.g. display it in a TextArea
+                        // What to do with the file, e.g. display it in a TextArea
                         path = file.getAbsolutePath();
                     } catch (Exception ex) {
-                      System.out.println("problem accessing file"+file.getAbsolutePath());
-                      path = null;
+                        System.out.println("problem accessing file"+file.getAbsolutePath());
+                        JOptionPane.showMessageDialog(null, "Não foi possível localizar o diretório!");
+                        path = null;
                     }
                 } else {
                     System.out.println("File access cancelled by user.");
                     path = null;
                 }
-                
+
                 salvarRelatorio(jp, path);
             }
         }else if(cc != null){
@@ -498,52 +458,39 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
     private void radCompletoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radCompletoItemStateChanged
         if(radCompleto.isSelected()){
             ckId.setSelected(true);
-            ckNome.setSelected(true);
-            ckCpf.setSelected(true);
-            ckRg.setSelected(true);
-            ckTelefone.setSelected(true);
-            ckSexo.setSelected(true);
-            ckDatanasc.setSelected(true);
-            ckTurma.setSelected(true);
+            ckAluno.setSelected(true);
+            ckProfOrient.setSelected(true);
+            ckEmpresa.setSelected(true);
+            ckSupervisor.setSelected(true);
             ckSituacao.setSelected(true);
         }
     }//GEN-LAST:event_radCompletoItemStateChanged
 
     private void radSimplificadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radSimplificadoItemStateChanged
-       if(radSimplificado.isSelected()){
-            ckNome.setSelected(true);
-            ckCpf.setSelected(true);
-            ckRg.setSelected(false);
-            ckTelefone.setSelected(false);
-            ckSexo.setSelected(false);
-            ckDatanasc.setSelected(false);
-            ckTurma.setSelected(true);
+        if(radSimplificado.isSelected()){
+            ckAluno.setSelected(true);
+            ckProfOrient.setSelected(true);
+            ckEmpresa.setSelected(false);
+            ckSupervisor.setSelected(false);
             ckSituacao.setSelected(true);
         }
     }//GEN-LAST:event_radSimplificadoItemStateChanged
 
     private void radPersonalizadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPersonalizadoItemStateChanged
         if(radPersonalizado.isSelected()){
-            ckNome.setEnabled(true);
-            ckCpf.setEnabled(true);
-            ckRg.setEnabled(true);
-            ckTelefone.setEnabled(true);
-            ckSexo.setEnabled(true);
-            ckDatanasc.setEnabled(true);
-            ckTurma.setEnabled(true);
+            ckAluno.setEnabled(true);
+            ckProfOrient.setEnabled(true);
+            ckEmpresa.setEnabled(true);
+            ckSupervisor.setEnabled(true);
             ckSituacao.setEnabled(true);
         }else{
-            ckNome.setEnabled(false);
-            ckCpf.setEnabled(false);
-            ckRg.setEnabled(false);
-            ckTelefone.setEnabled(false);
-            ckSexo.setEnabled(false);
-            ckDatanasc.setEnabled(false);
-            ckTurma.setEnabled(false);
+            ckAluno.setEnabled(false);
+            ckProfOrient.setEnabled(false);
+            ckEmpresa.setEnabled(false);
+            ckSupervisor.setEnabled(false);
             ckSituacao.setEnabled(false);
         }
     }//GEN-LAST:event_radPersonalizadoItemStateChanged
-    
     private String capturarCampos(){
         String sqlParams = "select ";
         int cont = 0;
@@ -551,20 +498,22 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             if("class javax.swing.JCheckBox".equals(c.getClass().toString())){
                 JCheckBox ck = (JCheckBox) c;
                 if(ck.isSelected()){
-                    sqlParams += ck.getName();
+                    String field = ck.getName();
+                    String[] result = field.split(Pattern.quote("."));
+                    sqlParams += field+" as "+ result[0]+result[1];
                     sqlParams += ", ";
                     cont++;
                 }
                 else{
                     String field = ck.getName();
                     String[] result = field.split(Pattern.quote("."));
-                    sqlParams += "null as "+field.substring(result[0].length()+1, field.length());
+                    sqlParams += "null as "+ result[0]+result[1];
                     sqlParams += ", ";
                 }
             }
         }
         sqlParams = sqlParams.substring(0, sqlParams.length()-2);
-        sqlParams += " from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk ";
+        sqlParams += " from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk    ";
         System.out.println(sqlParams);
         if(cont > 0){
             return sqlParams;
@@ -600,13 +549,13 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
         System.out.println(sql);
         try{
             Map param = new HashMap();
-            param.put("nomeFuncionario", "Aline");
+            param.put("nomeFuncionario", "Guilherme");
             Connection con = Conectar.getConectar();
             PreparedStatement stm = con.prepareStatement(sql);
             ResultSet res = stm.executeQuery();
             JRResultSetDataSource resRelat = new JRResultSetDataSource(res);
             param.put("jr", resRelat);
-            JasperPrint jpPrint = JasperFillManager.fillReport("src/relatorios/relatorio_alunos.jasper", param, resRelat);
+            JasperPrint jpPrint = JasperFillManager.fillReport("src/relatorios/relatorio_estagios.jasper", param, resRelat);
             return jpPrint;
         }catch(Exception ex){
              JOptionPane.showMessageDialog(null, "Erro ao gerar relatório;");
@@ -633,7 +582,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
             String dataStr = formatador.format( data );
             
-            String name = path+"/relatorioAlunos"+dataStr+".pdf";
+            String name = path+"/relatorioEstagios"+dataStr+".pdf";
             
             JasperExportManager.exportReportToPdfFile(jpPrint, name);
             Runtime.getRuntime().exec("cmd /e start "+name);
@@ -646,6 +595,7 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
             System.out.println(ex);
         }
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -663,21 +613,20 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormRelatorioEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormRelatorioEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormRelatorioEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormRelatorioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormRelatorioEstagio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormRelatorioAluno(null).setVisible(true);
+                new FormRelatorioEstagio().setVisible(true);
             }
         });
     }
@@ -685,20 +634,15 @@ public class FormRelatorioAluno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btVisualizar;
     private javax.swing.JButton btsalvar;
+    private javax.swing.JCheckBox ckAluno;
     private javax.swing.JCheckBox ckAprovados;
-    private javax.swing.JCheckBox ckCpf;
-    private javax.swing.JCheckBox ckDatanasc;
+    private javax.swing.JCheckBox ckEmpresa;
     private javax.swing.JCheckBox ckId;
-    private javax.swing.JCheckBox ckNome;
     private javax.swing.JCheckBox ckPendentes;
+    private javax.swing.JCheckBox ckProfOrient;
     private javax.swing.JCheckBox ckReprovados;
-    private javax.swing.JCheckBox ckRg;
-    private javax.swing.JCheckBox ckSexo;
     private javax.swing.JCheckBox ckSituacao;
-    private javax.swing.JCheckBox ckTelefone;
-    private javax.swing.JCheckBox ckTurma;
-    private javax.swing.ButtonGroup groupCampos;
-    private javax.swing.ButtonGroup groupFiltro;
+    private javax.swing.JCheckBox ckSupervisor;
     private javax.swing.ButtonGroup groupTipo;
     private javax.swing.JFileChooser jFiles;
     private javax.swing.JLabel jLabel1;
