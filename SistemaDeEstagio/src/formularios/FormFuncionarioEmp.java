@@ -7,12 +7,16 @@ package formularios;
 
 import dao.EmpresaDAO;
 import dao.FuncionarioEmpDAO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Empresa;
 import mapeamento.FuncionarioEmpresa;
 import utilitario.Aparencia;
+import utilitario.Validacoes;
 
 /**
  *
@@ -27,8 +31,10 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         initComponents();
         preencherCb();
         preencherTabela(null);
+        btCadAtualizar.setVisible(false);
         Aparencia.temaPrincipal(this);
         hideColumns();
+        txtCadId.setText("N/A");
     }
 
     /**
@@ -121,6 +127,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel2.setText("ID.:");
 
         txtCadId.setEditable(false);
+        txtCadId.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
         txtCadNome.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
@@ -196,8 +203,8 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
         jLabel11.setText("Empresa.:");
 
         cbEmpresa.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        cbEmpresa.setForeground(new java.awt.Color(255, 255, 255));
 
+        cbCargo.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         cbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Representante", "Supervisor", " " }));
         cbCargo.setSelectedIndex(-1);
 
@@ -536,65 +543,105 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        String sexo = radCadFeminino.getText();
-        FuncionarioEmpresa fe = new FuncionarioEmpresa();
-        fe.setNome(txtCadNome.getText());
-        fe.setCpf(txtCadCpf.getText());
-        fe.setRg(txtCadtRg.getText());
-        fe.setFormacao(txtCadFormacao.getText());
-        fe.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
-        }
-        fe.setSexo(sexo);
-        fe.setCargo((String) cbCargo.getSelectedItem());
-        fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        ArrayList<JComboBox> arrayCb = new ArrayList<>();
+        txtCadCpf.setName("cpf");
+        txtCadDataNasc.setName("data");
+        array.add(txtCadNome);
+        array.add(txtCadCpf);
+        array.add(txtCadtRg);
+        array.add(txtCadFormacao);
+        array.add(txtCadDataNasc);
+        
+        arrayCb.add(cbEmpresa);
+        arrayCb.add(cbCargo);
+        
+        String result = v.validarCampos(array);
+        String resultCb = v.validarCbs(arrayCb);
+        if(result.equals("valido") && resultCb.equals("valido")){
+            String sexo = radCadFeminino.getText();
+            FuncionarioEmpresa fe = new FuncionarioEmpresa();
+            fe.setNome(txtCadNome.getText());
+            fe.setCpf(txtCadCpf.getText());
+            fe.setRg(txtCadtRg.getText());
+            fe.setFormacao(txtCadFormacao.getText());
+            fe.setDatanasc(txtCadDataNasc.getText());
+            if(radCadFeminino.isSelected()){
+                sexo = radCadFeminino.getText();
+            }else if(radCadMasculino.isSelected()){
+                sexo = radCadMasculino.getText();
+            }
+            fe.setSexo(sexo);
+            fe.setCargo((String) cbCargo.getSelectedItem());
+            fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
 
-        
-        FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
-        
-        feDAO.cadastrar(fe);
-        
-        preencherTabela(null);
-        tabFuncionarioEmpresa.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
+
+            FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+
+            feDAO.cadastrar(fe);
+
+            preencherTabela(null);
+            tabFuncionarioEmpresa.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            if(!"valido".equals(result)){
+                JOptionPane.showMessageDialog(null, result);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, resultCb);
+            } 
+        }
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        String sexo = radCadFeminino.getText();
-        FuncionarioEmpresa fe = new FuncionarioEmpresa();
-        fe.setId_funcionarioEmp(Integer.parseInt(txtCadId.getText()));
-        fe.setNome(txtCadNome.getText());
-        fe.setCpf(txtCadCpf.getText());
-        fe.setRg(txtCadtRg.getText());
-        fe.setFormacao(txtCadFormacao.getText());
-        fe.setDatanasc(txtCadDataNasc.getText());
-        if(radCadFeminino.isSelected()){
-            sexo = radCadFeminino.getText();
-        }else if(radCadMasculino.isSelected()){
-            sexo = radCadMasculino.getText();
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        txtCadCpf.setName("cpf");
+        txtCadDataNasc.setName("data");
+        array.add(txtCadNome);
+        array.add(txtCadCpf);
+        array.add(txtCadtRg);
+        array.add(txtCadFormacao);
+        array.add(txtCadDataNasc);
+        
+        String result = v.validarCampos(array);
+            if(result.equals("valido")){
+            String sexo = radCadFeminino.getText();
+            FuncionarioEmpresa fe = new FuncionarioEmpresa();
+            fe.setId_funcionarioEmp(Integer.parseInt(txtCadId.getText()));
+            fe.setNome(txtCadNome.getText());
+            fe.setCpf(txtCadCpf.getText());
+            fe.setRg(txtCadtRg.getText());
+            fe.setFormacao(txtCadFormacao.getText());
+            fe.setDatanasc(txtCadDataNasc.getText());
+            if(radCadFeminino.isSelected()){
+                sexo = radCadFeminino.getText();
+            }else if(radCadMasculino.isSelected()){
+                sexo = radCadMasculino.getText();
+            }
+            fe.setSexo(sexo);
+            fe.setCargo((String) cbCargo.getSelectedItem());
+            fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
+
+            FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
+
+            feDAO.atualizar(fe);
+
+            preencherTabela(null);
+
+            btCadAtualizar.setVisible(false);
+            btCadSalvar.setVisible(true);
+
+            tabFuncionarioEmpresa.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, result);
         }
-        fe.setSexo(sexo);
-        fe.setCargo((String) cbCargo.getSelectedItem());
-        fe.setEmpresa_fk((Empresa) cbEmpresa.getSelectedItem());
-        
-        FuncionarioEmpDAO feDAO = new FuncionarioEmpDAO();
-        
-        feDAO.atualizar(fe);
-        
-        preencherTabela(null);
-        
-        btCadAtualizar.setVisible(false);
-        btCadSalvar.setVisible(true);
-        
-        tabFuncionarioEmpresa.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);  
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCpf.setText("");
         txtCadtRg.setText("");
@@ -668,7 +715,7 @@ public class FormFuncionarioEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_btListEditarActionPerformed
 
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCpf.setText("");
         txtCadtRg.setText("");

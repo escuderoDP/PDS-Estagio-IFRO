@@ -5,23 +5,12 @@
  */
 package formularios;
 
-import java.awt.Desktop;
-import java.io.File;
+import dao.FuncionarioDAO;
 import static java.lang.Thread.sleep;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import mapeamento.Funcionario;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 import utilitario.Aparencia;
-import utilitario.Conectar;
 
 /**
  *
@@ -82,7 +71,6 @@ public class Menu extends javax.swing.JFrame {
         btAlunos = new javax.swing.JButton();
         btFuncionarios = new javax.swing.JButton();
         btEmpresas = new javax.swing.JButton();
-        btRelatorios = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btEstágios = new javax.swing.JButton();
         btProfOrient = new javax.swing.JButton();
@@ -104,8 +92,6 @@ public class Menu extends javax.swing.JFrame {
         itemRelatorioFuncionarios = new javax.swing.JMenuItem();
         itemRelatorioFuncionarioEmp = new javax.swing.JMenuItem();
         itemRelatorioProfOrient = new javax.swing.JMenuItem();
-        menuAjuda = new javax.swing.JMenu();
-        itemChamado = new javax.swing.JMenuItem();
         menuConfiguracoes = new javax.swing.JMenu();
         itemAlterarSenha = new javax.swing.JMenuItem();
         itemLogout = new javax.swing.JMenuItem();
@@ -201,21 +187,11 @@ public class Menu extends javax.swing.JFrame {
         btEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/empresa.png"))); // NOI18N
         btEmpresas.setText("EMPRESAS");
         btEmpresas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEmpresas.setPreferredSize(new java.awt.Dimension(175, 97));
         btEmpresas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btEmpresas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEmpresasActionPerformed(evt);
-            }
-        });
-
-        btRelatorios.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        btRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatorios.png"))); // NOI18N
-        btRelatorios.setText("RELATÓRIOS");
-        btRelatorios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btRelatorios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btRelatorios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRelatoriosActionPerformed(evt);
             }
         });
 
@@ -224,29 +200,22 @@ public class Menu extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
+                .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addComponent(btFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(btEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
+                .addGap(29, 29, 29))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -399,10 +368,20 @@ public class Menu extends javax.swing.JFrame {
 
         itemAdicionarEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         itemAdicionarEstagio.setText("Adicionar");
+        itemAdicionarEstagio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAdicionarEstagioActionPerformed(evt);
+            }
+        });
         menuEstagios.add(itemAdicionarEstagio);
 
         itemEditarEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         itemEditarEstagio.setText("Editar");
+        itemEditarEstagio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarEstagioActionPerformed(evt);
+            }
+        });
         menuEstagios.add(itemEditarEstagio);
 
         jMenuBar1.add(menuEstagios);
@@ -421,6 +400,11 @@ public class Menu extends javax.swing.JFrame {
 
         itemRelatorioEstagio.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         itemRelatorioEstagio.setText("Estágios");
+        itemRelatorioEstagio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRelatorioEstagioActionPerformed(evt);
+            }
+        });
         menuRelatorios.add(itemRelatorioEstagio);
 
         itemRelatorioEmpresas.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
@@ -441,20 +425,16 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuRelatorios);
 
-        menuAjuda.setText("AJUDA");
-        menuAjuda.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-
-        itemChamado.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        itemChamado.setText("Abrir Chamado");
-        menuAjuda.add(itemChamado);
-
-        jMenuBar1.add(menuAjuda);
-
         menuConfiguracoes.setText("CONFIGURAÇÕES");
         menuConfiguracoes.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
         itemAlterarSenha.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
         itemAlterarSenha.setText("Alterar Senha");
+        itemAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAlterarSenhaActionPerformed(evt);
+            }
+        });
         menuConfiguracoes.add(itemAlterarSenha);
 
         itemLogout.setFont(new java.awt.Font("Courier New", 3, 20)); // NOI18N
@@ -521,10 +501,6 @@ public class Menu extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_btEstágiosActionPerformed
 
-    private void btRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatoriosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btRelatoriosActionPerformed
-
     private void btProfOrientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProfOrientActionPerformed
         FormProfOrient form = new FormProfOrient();
         form.setVisible(true);
@@ -561,26 +537,45 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemProfOrientActionPerformed
 
     private void itemRelatorioAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRelatorioAlunosActionPerformed
-        //String sql = "select * from aluno;";
-//            Map param = new HashMap();
-//            param.put("nomeFuncionario", f.getNome());
-//            Connection con = Conectar.getConectar();
-//            PreparedStatement stm = con.prepareStatement(sql);
-//            ResultSet res = stm.executeQuery();
-//            JRResultSetDataSource resRelat = new JRResultSetDataSource(res);
-//            JasperPrint jpPrint = JasperFillManager.fillReport("src/relatorios/relatorio_alunos.jasper", param, resRelat);
-//            JasperViewer jv = new JasperViewer(jpPrint, false);
-//            jv.setVisible(true);
-//            jv.toFront();
-            
-            //JasperExportManager.exportReportToPdfFile()
-            //Runtime.getRuntime().exec("cmd /e start ");
-            //File file = new File("");
-            
-//            Desktop desktop = Desktop.getDesktop();
-//            desktop.open(new File(""));
-        
+        FormRelatorioAluno form = new FormRelatorioAluno(f);
+        form.setVisible(true);
     }//GEN-LAST:event_itemRelatorioAlunosActionPerformed
+
+    private void itemAdicionarEstagioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAdicionarEstagioActionPerformed
+        FormEstagio form = new FormEstagio();
+        form.setVisible(true);
+    }//GEN-LAST:event_itemAdicionarEstagioActionPerformed
+
+    private void itemEditarEstagioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarEstagioActionPerformed
+        FormEstagio form = new FormEstagio();
+        form.tab(1);
+        form.setVisible(true);
+    }//GEN-LAST:event_itemEditarEstagioActionPerformed
+
+    private void itemRelatorioEstagioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRelatorioEstagioActionPerformed
+        FormRelatorioEstagio form = new FormRelatorioEstagio(f);
+        form.setVisible(true);
+    }//GEN-LAST:event_itemRelatorioEstagioActionPerformed
+
+    private void itemAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAlterarSenhaActionPerformed
+        JPasswordField txtSenha = new JPasswordField();
+        JPasswordField txtConfirmSenha = new JPasswordField();
+        int okCxl = JOptionPane.showConfirmDialog(null, txtSenha, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            int confirm = JOptionPane.showConfirmDialog(null, txtConfirmSenha, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if (confirm == JOptionPane.OK_OPTION) {
+                if(txtSenha.getText().equals(txtConfirmSenha.getText())){
+                    String password = txtSenha.getText();
+                    f.setSenha(password);
+                    FuncionarioDAO fDAO = new FuncionarioDAO();
+                    fDAO.atualizarSenha(f);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Senhas diferentes!\nNão foi possível alterar a senha!");
+                }
+            }
+        }
+    }//GEN-LAST:event_itemAlterarSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -602,12 +597,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btFuncEmpresa;
     private javax.swing.JButton btFuncionarios;
     private javax.swing.JButton btProfOrient;
-    private javax.swing.JButton btRelatorios;
     private javax.swing.JButton btSair;
     private javax.swing.JMenuItem itemAdicionarEstagio;
     private javax.swing.JMenuItem itemAlterarSenha;
     private javax.swing.JMenuItem itemAluno;
-    private javax.swing.JMenuItem itemChamado;
     private javax.swing.JMenuItem itemEditarEstagio;
     private javax.swing.JMenuItem itemEmpresa;
     private javax.swing.JMenuItem itemFuncionario;
@@ -628,7 +621,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lbNome;
-    private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuCadastros;
     private javax.swing.JMenu menuConfiguracoes;
     private javax.swing.JMenu menuEstagios;

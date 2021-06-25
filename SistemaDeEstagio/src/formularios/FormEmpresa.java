@@ -6,11 +6,14 @@
 package formularios;
 
 import dao.EmpresaDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Empresa;
 import utilitario.Aparencia;
+import utilitario.Validacoes;
 
 /**
  *
@@ -103,6 +106,8 @@ public class FormEmpresa extends javax.swing.JFrame {
         jLabel2.setText("ID.:");
 
         txtCadId.setEditable(false);
+        txtCadId.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        txtCadId.setText("N/A");
 
         txtCadNome.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
@@ -227,7 +232,7 @@ public class FormEmpresa extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtCadHorarioFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -428,44 +433,70 @@ public class FormEmpresa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        Empresa e = new Empresa();
-        e.setNome(txtCadNome.getText());
-        e.setCnpj(txtCadCnpj.getText());
-        e.setTelefone(txtCadTelefone.getText());
-        e.setHorarioFunc(txtCadHorarioFunc.getText());
-
-        EmpresaDAO eDAO = new EmpresaDAO();
-
-        eDAO.cadastrar(e);
-
-        preencherTabela(null);
-        tabEmpresa.setSelectedIndex(1);
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        txtCadCnpj.setName("cnpj");
+        txtCadTelefone.setName("telefone");
+        array.add(txtCadNome);
+        array.add(txtCadTelefone);
+        array.add(txtCadHorarioFunc);
         
-        btCadCancelarActionPerformed(evt);
+        String result = v.validarCampos(array);
+        if(result.equals("valido")){
+            Empresa e = new Empresa();
+            e.setNome(txtCadNome.getText());
+            e.setCnpj(txtCadCnpj.getText());
+            e.setTelefone(txtCadTelefone.getText());
+            e.setHorarioFunc(txtCadHorarioFunc.getText());
+
+            EmpresaDAO eDAO = new EmpresaDAO();
+
+            eDAO.cadastrar(e);
+
+            preencherTabela(null);
+            tabEmpresa.setSelectedIndex(1);
+
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, result);
+        }
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        Empresa e = new Empresa();
-        e.setId_empresa(Integer.parseInt(txtCadId.getText()));
-        e.setNome(txtCadNome.getText());
-        e.setCnpj(txtCadCnpj.getText());
-        e.setTelefone(txtCadTelefone.getText());
-        e.setHorarioFunc(txtCadHorarioFunc.getText());
+        Validacoes v = new Validacoes();
+        ArrayList<JTextField> array = new ArrayList<>();
+        txtCadCnpj.setName("cnpj");
+        txtCadTelefone.setName("telefone");
+        array.add(txtCadNome);
+        array.add(txtCadTelefone);
+        array.add(txtCadHorarioFunc);
+        
+        String result = v.validarCampos(array);
+        if(result.equals("valido")){
+            Empresa e = new Empresa();
+            e.setId_empresa(Integer.parseInt(txtCadId.getText()));
+            e.setNome(txtCadNome.getText());
+            e.setCnpj(txtCadCnpj.getText());
+            e.setTelefone(txtCadTelefone.getText());
+            e.setHorarioFunc(txtCadHorarioFunc.getText());
 
-       EmpresaDAO eDAO = new EmpresaDAO();
+           EmpresaDAO eDAO = new EmpresaDAO();
 
-        eDAO.atualizar(e);
+            eDAO.atualizar(e);
 
-        preencherTabela(null);
+            preencherTabela(null);
 
-        btCadAtualizar.setVisible(false);
-        btCadSalvar.setVisible(true);
+            btCadAtualizar.setVisible(false);
+            btCadSalvar.setVisible(true);
 
-        tabEmpresa.setSelectedIndex(1);
+            tabEmpresa.setSelectedIndex(1);
+        }else{
+            JOptionPane.showMessageDialog(null, result);
+        }
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCnpj.setText("");
         txtCadHorarioFunc.setText("");
@@ -506,13 +537,13 @@ public class FormEmpresa extends javax.swing.JFrame {
             txtCadNome.setText(tbListEmpresas.getValueAt(opcao, 1).toString());
             txtCadCnpj.setText(tbListEmpresas.getValueAt(opcao, 2).toString());
             txtCadTelefone.setText(tbListEmpresas.getValueAt(opcao, 3).toString());
-            txtCadHorarioFunc.setText(tbListEmpresas.getValueAt(opcao, 4).toString());
-            String sexo = tbListEmpresas.getValueAt(opcao, 6).toString();
+            txtCadHorarioFunc.setText(tbListEmpresas.getValueAt(opcao, 4).toString());            
             
-            tabEmpresa.setSelectedIndex(0);
 
             btCadAtualizar.setVisible(true);
             btCadSalvar.setVisible(false);
+            
+            tabEmpresa.setSelectedIndex(0);
 
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma linha para continuar!");
@@ -520,7 +551,7 @@ public class FormEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btListEditarActionPerformed
 
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCnpj.setText("");
         txtCadHorarioFunc.setText("");

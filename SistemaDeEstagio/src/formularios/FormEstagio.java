@@ -9,14 +9,18 @@ import dao.AlunoDAO;
 import dao.EstagioDAO;
 import dao.FuncionarioEmpDAO;
 import dao.ProfOrientDAO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Aluno;
 import mapeamento.Estagio;
 import mapeamento.FuncionarioEmpresa;
 import mapeamento.ProfOrient;
 import utilitario.Aparencia;
+import utilitario.Validacoes;
 
 /**
  *
@@ -31,8 +35,10 @@ public class FormEstagio extends javax.swing.JFrame {
         initComponents();
         preencherCb();
         preencherTabela(null);
+        btCadAtualizar.setVisible(false);
         Aparencia.temaPrincipal(this);
         hideColumns();
+        txtCadId.setText("N/A");
     }
 
     /**
@@ -442,7 +448,7 @@ public class FormEstagio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         cbSituacao.setSelectedIndex(-1);
         cbAluno.setSelectedIndex(-1);
         cbProfOrient.setSelectedIndex(-1);
@@ -467,7 +473,7 @@ public class FormEstagio extends javax.swing.JFrame {
             cbAlunoHide.setSelectedItem(a.getNome());
             int index1 = cbAlunoHide.getSelectedIndex();
             cbAluno.setSelectedIndex(index1);
-
+            
             cbSupervisorHide.setSelectedItem(fe.getNome());
             int index2 = cbSupervisorHide.getSelectedIndex();
             cbSupervisor.setSelectedIndex(index2);
@@ -507,7 +513,7 @@ public class FormEstagio extends javax.swing.JFrame {
     }//GEN-LAST:event_btListExcluirActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         cbSituacao.setSelectedIndex(-1);
         cbAluno.setSelectedIndex(-1);
         cbProfOrient.setSelectedIndex(-1);
@@ -520,40 +526,71 @@ public class FormEstagio extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btCadAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadAtualizarActionPerformed
-        Estagio est = new Estagio();
-        est.setId(Integer.parseInt(txtCadId.getText()));
-        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
-        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
-        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
-        est.setSituacao((String) cbSituacao.getSelectedItem());
+        Validacoes v = new Validacoes();
 
-        EstagioDAO estDAO = new EstagioDAO();
+        ArrayList<JComboBox> arrayCb = new ArrayList<>();
 
-        estDAO.atualizar(est);
+        
+        arrayCb.add(cbAluno);
+        arrayCb.add(cbProfOrient);
+        arrayCb.add(cbSupervisor);
+        arrayCb.add(cbSituacao);
+        
+        String resultCb = v.validarCbs(arrayCb);
+        if(resultCb.equals("valido")){
+            Estagio est = new Estagio();
+            est.setId(Integer.parseInt(txtCadId.getText()));
+            est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
+            est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
+            est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
+            est.setSituacao((String) cbSituacao.getSelectedItem());
 
-        btCadAtualizar.setVisible(false);
-        btCadSalvar.setVisible(true);
+            EstagioDAO estDAO = new EstagioDAO();
 
-        preencherTabela(null);
-        tabEstagio.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
+            estDAO.atualizar(est);
+
+            btCadAtualizar.setVisible(false);
+            btCadSalvar.setVisible(true);
+
+            preencherTabela(null);
+            tabEstagio.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, resultCb);
+        }
     }//GEN-LAST:event_btCadAtualizarActionPerformed
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        Estagio est = new Estagio();
+        
+        Validacoes v = new Validacoes();
 
-        est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
-        est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
-        est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
-        est.setSituacao((String) cbSituacao.getSelectedItem());
+        ArrayList<JComboBox> arrayCb = new ArrayList<>();
 
-        EstagioDAO estDAO = new EstagioDAO();
+        
+        arrayCb.add(cbAluno);
+        arrayCb.add(cbProfOrient);
+        arrayCb.add(cbSupervisor);
+        arrayCb.add(cbSituacao);
+        
+        String resultCb = v.validarCbs(arrayCb);
+        if(resultCb.equals("valido")){
+            Estagio est = new Estagio();
 
-        estDAO.cadastrar(est);
+            est.setAluno_fk((Aluno)cbAluno.getSelectedItem());
+            est.setFucionarioEmp_fk((FuncionarioEmpresa) cbSupervisor.getSelectedItem());
+            est.setProfOrient_fk((ProfOrient) cbProfOrient.getSelectedItem());
+            est.setSituacao((String) cbSituacao.getSelectedItem());
 
-        preencherTabela(null);
-        tabEstagio.setSelectedIndex(1);
-        btCadCancelarActionPerformed(evt);
+            EstagioDAO estDAO = new EstagioDAO();
+
+            estDAO.cadastrar(est);
+
+            preencherTabela(null);
+            tabEstagio.setSelectedIndex(1);
+            btCadCancelarActionPerformed(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, resultCb);
+        }
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btListPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListPesquisaActionPerformed
@@ -570,6 +607,10 @@ public class FormEstagio extends javax.swing.JFrame {
     private void txtListPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtListPesquisaKeyTyped
         preencherTabela(txtListPesquisa.getText());
     }//GEN-LAST:event_txtListPesquisaKeyTyped
+    
+    public void tab(int index){
+        tabEstagio.setSelectedIndex(index);
+    }
     
     // Método para preencher a tabela deEstagios
     private void preencherTabela(String busca){

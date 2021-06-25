@@ -36,6 +36,7 @@ datanasc varchar(15) not null,
 sexo varchar(20) not null,
 senha varchar(300) not null
 );
+
 insert into Funcionario values(null, "ADMIN", "000.000.000-00", "00000", "admin", "00/00/0000", "admin", MD5("systemestagioifro123456"));
 create table ProfessorOrientador(
 id int not null primary key auto_increment,
@@ -78,10 +79,10 @@ references Aluno(id)
 on update cascade
 on delete restrict
 );
-
-
+select * from Funcionario;
 select Aluno.id, Aluno.nome, Aluno.cpf,  Aluno.turma, Estagio.situacao from Aluno INNER JOIN Estagio ON Aluno.id = Estagio.aluno_fk where situacao = 'Pendente' or situacao = 'Aprovado' or situacao = 'Reprovado' ;
 
-select Estagio.id as Estagioid, Estagio.situacao as Estagiosituacao,  Aluno.nome as Alunonome, FuncionarioEmpresa.nome as FuncionarioEmpresaNome, ProfessorOrientador.nome as ProfessorOrientadorNome, Empresa.nome as EmpresaNome from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk;
+select Estagio.id as Estagioid, Estagio.situacao as Estagiosituacao,  Aluno.nome as Alunonome, FuncionarioEmpresa.nome as FuncionarioEmpresanome, ProfessorOrientador.nome as ProfessorOrientadornome, Empresa.nome as Empresanome from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk;
 
-	
+
+select Estagio.id as Estagioid, Aluno.nome as Alunonome, ProfessorOrientador.nome as ProfessorOrientadornome, null as Empresanome, null as FuncionarioEmpresanome, Estagio.situacao as Estagiosituacao from Estagio inner join Aluno on Aluno.id = Estagio.aluno_fk inner join FuncionarioEmpresa on Estagio.funcionarioEmp_fk = FuncionarioEmpresa.id inner join ProfessorOrientador on ProfessorOrientador.id = Estagio.proforient_fk inner join Empresa on Empresa.id = FuncionarioEmpresa.empresa_fk    

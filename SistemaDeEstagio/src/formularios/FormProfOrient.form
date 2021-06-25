@@ -265,6 +265,9 @@
                 <Component class="javax.swing.JTextField" name="txtCadId">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCadNome">

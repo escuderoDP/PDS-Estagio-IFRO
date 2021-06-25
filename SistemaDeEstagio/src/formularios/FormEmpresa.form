@@ -195,7 +195,7 @@
                               <Component id="txtCadHorarioFunc" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="167" max="32767" attributes="0"/>
+                          <EmptySpace pref="169" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btCadSalvar" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
                               <Component id="btCadAtualizar" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
@@ -221,6 +221,10 @@
                 <Component class="javax.swing.JTextField" name="txtCadId">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="N/A"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCadNome">

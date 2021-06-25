@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -159,6 +160,27 @@ public class Validacoes {
         return validacao;
     }
     
+    public String validarCbs(ArrayList<JComboBox> array){
+        String validacao = "valido";
+        for(JComboBox cb : array){
+            boolean valido;
+            int index = cb.getSelectedIndex();
+            if(index != -1){
+                validacao = "valido";
+                valido = true;
+            }else{
+                validacao = "PREENCHA TODOS OS CAMPOS!";
+                valido = false;
+            }
+            if(valido == false){
+                break;
+            }else{
+                validacao = "valido";
+            }
+        }
+        return validacao;
+    }
+    
     public String validarCampos(ArrayList<JTextField> array){
         String validacao = "valido";
         for(JTextField txt : array){
@@ -187,7 +209,7 @@ public class Validacoes {
                         validacao = "TELEFONE INVALIDO!";
                         break;
                     case "cnpj":
-                        valido = this.validarTelefone(text);
+                        valido = this.validarCnpj(text);
                         validacao = "CNPJ INVALIDO!";
                         break;
                     default:

@@ -88,6 +88,34 @@ public class FuncionarioDAO {
         
     }
     
+    public void atualizarSenha(Funcionario f){
+        Connection con = Conectar.getConectar();
+        
+        // Sql para atualizar
+        String sql = "UPDATE funcionario SET senha = MD5(?) WHERE id = ?;";
+        
+        // Preparação de statement
+        try(PreparedStatement stm = con.prepareStatement(sql)){
+            
+            // Alterando os atributos do statement
+            stm.setString(1, "systemestagioifro"+f.getSenha());
+            stm.setInt(2, f.getId_funcionario());
+            
+            // Executando cadastro
+            stm.executeUpdate();
+            
+            // Finalizando conexões
+            stm.close();
+            con.close();
+            
+            JOptionPane.showMessageDialog(null, "Senha Atualizada com Sucesso!");
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: "+ex);
+        }
+        
+    }
+    
     // Método para excluir o aluno
     public void excluir(Funcionario f){
         Connection con = Conectar.getConectar();

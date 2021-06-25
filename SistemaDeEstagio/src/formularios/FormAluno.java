@@ -122,6 +122,8 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel2.setText("ID.:");
 
         txtCadId.setEditable(false);
+        txtCadId.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        txtCadId.setText("N/A");
 
         txtCadNome.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
 
@@ -314,7 +316,7 @@ public class FormAluno extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCadTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -662,7 +664,7 @@ public class FormAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btListExcluirActionPerformed
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCpf.setText("");
         txtCadtRg.setText("");
@@ -678,7 +680,7 @@ public class FormAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btListNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListNovoActionPerformed
-        txtCadId.setText("");
+        txtCadId.setText("N/A");
         txtCadNome.setText("");
         txtCadCpf.setText("");
         txtCadtRg.setText("");

@@ -132,23 +132,20 @@
                               <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="btLogar" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                                          <Component id="btCancelar" min="-2" pref="120" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel44" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Component id="ckExibirSenha" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtCpf" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btLogar" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                                      <Component id="btCancelar" min="-2" pref="120" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel44" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Component id="ckExibirSenha" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCpf" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
@@ -171,9 +168,7 @@
                       <Component id="txtSenha" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ckExibirSenha" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <EmptySpace pref="88" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btLogar" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="btCancelar" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
@@ -281,17 +276,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Courier New" size="18" style="1"/>
                 </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Courier New" size="20" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Esqueceu seu Senha?"/>
               </Properties>
             </Component>
           </SubComponents>
