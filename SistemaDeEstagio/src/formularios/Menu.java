@@ -560,9 +560,9 @@ public class Menu extends javax.swing.JFrame {
     private void itemAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAlterarSenhaActionPerformed
         JPasswordField txtSenha = new JPasswordField();
         JPasswordField txtConfirmSenha = new JPasswordField();
-        int okCxl = JOptionPane.showConfirmDialog(null, txtSenha, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int okCxl = JOptionPane.showConfirmDialog(null, txtSenha, "Digite a Nova Senha:", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (okCxl == JOptionPane.OK_OPTION) {
-            int confirm = JOptionPane.showConfirmDialog(null, txtConfirmSenha, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            int confirm = JOptionPane.showConfirmDialog(null, txtConfirmSenha, "Confirme sua Senha:", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
             if (confirm == JOptionPane.OK_OPTION) {
                 if(txtSenha.getText().equals(txtConfirmSenha.getText())){
                     String password = txtSenha.getText();

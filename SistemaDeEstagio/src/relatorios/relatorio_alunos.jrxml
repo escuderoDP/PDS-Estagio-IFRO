@@ -325,14 +325,18 @@
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="36" y="0" width="100" height="19" uuid="0a37314a-a127-4988-b8f2-8a266701c16e"/>
+				<reportElement x="36" y="0" width="100" height="19" uuid="0a37314a-a127-4988-b8f2-8a266701c16e">
+					<printWhenExpression><![CDATA[!$F{nome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Courier New" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="136" y="0" width="100" height="19" uuid="f9527c23-126c-4399-a42d-9b92d2b17dfb"/>
+				<reportElement x="136" y="0" width="100" height="19" uuid="f9527c23-126c-4399-a42d-9b92d2b17dfb">
+					<printWhenExpression><![CDATA[!$F{cpf}.isEmpty()]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Courier New" size="12" isBold="true"/>
 				</textElement>
@@ -413,7 +417,9 @@
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="36" y="1" width="100" height="20" uuid="db779dcc-1967-4a68-a56e-12d27b4fcc80"/>
+				<reportElement x="36" y="1" width="100" height="20" uuid="db779dcc-1967-4a68-a56e-12d27b4fcc80">
+					<printWhenExpression><![CDATA[!$F{nome}.isEmpty()]]></printWhenExpression>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
@@ -424,7 +430,9 @@
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="1" width="100" height="20" uuid="f1f3cb12-b76a-4b24-b399-ad2384961894"/>
+				<reportElement x="136" y="1" width="100" height="20" uuid="f1f3cb12-b76a-4b24-b399-ad2384961894">
+					<printWhenExpression><![CDATA[!$F{cpf}.isEmpty()]]></printWhenExpression>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
