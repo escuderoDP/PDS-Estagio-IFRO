@@ -132,6 +132,7 @@ public class FormEstagio extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Aluno.:");
 
+        btCadSalvar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +140,7 @@ public class FormEstagio extends javax.swing.JFrame {
             }
         });
 
+        btCadAtualizar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadAtualizar.setText("ATUALIZAR");
         btCadAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +148,7 @@ public class FormEstagio extends javax.swing.JFrame {
             }
         });
 
+        btCadCancelar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadCancelar.setText("CANCELAR");
         btCadCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,9 +182,9 @@ public class FormEstagio extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(139, 139, 139)
-                .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btCadAtualizar)
+                .addGap(130, 130, 130)
                 .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -364,6 +367,7 @@ public class FormEstagio extends javax.swing.JFrame {
             tbListEstagio.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        btListExcluir.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +375,7 @@ public class FormEstagio extends javax.swing.JFrame {
             }
         });
 
+        btListEditar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListEditar.setText("EDITAR");
         btListEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,6 +383,7 @@ public class FormEstagio extends javax.swing.JFrame {
             }
         });
 
+        btListNovo.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListNovo.setText("NOVO");
         btListNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

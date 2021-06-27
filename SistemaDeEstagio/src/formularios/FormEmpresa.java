@@ -143,6 +143,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Horario Funcionamento.:");
 
+        btCadSalvar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadSalvar.setText("SALVAR");
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +151,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             }
         });
 
+        btCadAtualizar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadAtualizar.setText("ATUALIZAR");
         btCadAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +159,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             }
         });
 
+        btCadCancelar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btCadCancelar.setText("CANCELAR");
         btCadCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,8 +208,8 @@ public class FormEmpresa extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(btCadSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139)
-                        .addComponent(btCadAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131)
+                        .addComponent(btCadAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)))
@@ -349,6 +352,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             tbListEmpresas.getColumnModel().getColumn(4).setPreferredWidth(80);
         }
 
+        btListExcluir.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListExcluir.setText("EXCLUIR");
         btListExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +360,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             }
         });
 
+        btListEditar.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListEditar.setText("EDITAR");
         btListEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,6 +368,7 @@ public class FormEmpresa extends javax.swing.JFrame {
             }
         });
 
+        btListNovo.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btListNovo.setText("NOVO");
         btListNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,6 +444,7 @@ public class FormEmpresa extends javax.swing.JFrame {
         txtCadCnpj.setName("cnpj");
         txtCadTelefone.setName("telefone");
         array.add(txtCadNome);
+        array.add(txtCadCnpj);
         array.add(txtCadTelefone);
         array.add(txtCadHorarioFunc);
         

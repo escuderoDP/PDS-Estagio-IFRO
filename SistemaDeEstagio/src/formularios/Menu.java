@@ -88,10 +88,6 @@ public class Menu extends javax.swing.JFrame {
         menuRelatorios = new javax.swing.JMenu();
         itemRelatorioAlunos = new javax.swing.JMenuItem();
         itemRelatorioEstagio = new javax.swing.JMenuItem();
-        itemRelatorioEmpresas = new javax.swing.JMenuItem();
-        itemRelatorioFuncionarios = new javax.swing.JMenuItem();
-        itemRelatorioFuncionarioEmp = new javax.swing.JMenuItem();
-        itemRelatorioProfOrient = new javax.swing.JMenuItem();
         menuConfiguracoes = new javax.swing.JMenu();
         itemAlterarSenha = new javax.swing.JMenuItem();
         itemLogout = new javax.swing.JMenuItem();
@@ -407,22 +403,6 @@ public class Menu extends javax.swing.JFrame {
         });
         menuRelatorios.add(itemRelatorioEstagio);
 
-        itemRelatorioEmpresas.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        itemRelatorioEmpresas.setText("Empresas");
-        menuRelatorios.add(itemRelatorioEmpresas);
-
-        itemRelatorioFuncionarios.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        itemRelatorioFuncionarios.setText("Funcionários");
-        menuRelatorios.add(itemRelatorioFuncionarios);
-
-        itemRelatorioFuncionarioEmp.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        itemRelatorioFuncionarioEmp.setText("Funcionários Empresa");
-        menuRelatorios.add(itemRelatorioFuncionarioEmp);
-
-        itemRelatorioProfOrient.setFont(new java.awt.Font("Courier New", 0, 20)); // NOI18N
-        itemRelatorioProfOrient.setText("Professores Orientadores");
-        menuRelatorios.add(itemRelatorioProfOrient);
-
         jMenuBar1.add(menuRelatorios);
 
         menuConfiguracoes.setText("CONFIGURAÇÕES");
@@ -573,6 +553,8 @@ public class Menu extends javax.swing.JFrame {
                 else{
                     JOptionPane.showMessageDialog(null, "Senhas diferentes!\nNão foi possível alterar a senha!");
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Sua senha não foi alterada!");
             }
         }
     }//GEN-LAST:event_itemAlterarSenhaActionPerformed
@@ -608,11 +590,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemLogout;
     private javax.swing.JMenuItem itemProfOrient;
     private javax.swing.JMenuItem itemRelatorioAlunos;
-    private javax.swing.JMenuItem itemRelatorioEmpresas;
     private javax.swing.JMenuItem itemRelatorioEstagio;
-    private javax.swing.JMenuItem itemRelatorioFuncionarioEmp;
-    private javax.swing.JMenuItem itemRelatorioFuncionarios;
-    private javax.swing.JMenuItem itemRelatorioProfOrient;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

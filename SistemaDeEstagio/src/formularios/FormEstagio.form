@@ -135,9 +135,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="btCadSalvar" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                          <Component id="btCadAtualizar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btCadAtualizar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                           <Component id="btCadCancelar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
@@ -277,6 +277,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btCadSalvar">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="SALVAR"/>
                   </Properties>
                   <Events>
@@ -285,6 +288,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btCadAtualizar">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
                   </Properties>
                   <Events>
@@ -293,6 +299,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btCadCancelar">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CANCELAR"/>
                   </Properties>
                   <Events>
@@ -637,6 +646,9 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btListExcluir">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="EXCLUIR"/>
                   </Properties>
                   <Events>
@@ -645,6 +657,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btListEditar">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="EDITAR"/>
                   </Properties>
                   <Events>
@@ -653,6 +668,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btListNovo">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Courier New" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="NOVO"/>
                   </Properties>
                   <Events>
